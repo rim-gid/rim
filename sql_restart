@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "restarting mysql server"
+su -c="/etc/init.d/mysql restart"

@@ -97,10 +97,10 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'rimgid.urls'
 
 TEMPLATE_DIRS = (
-    '/home/a/aaveter/public_html///rim/rimgid/templates',
+    #'/home/a/aaveter/public_html///rim/rimgid/templates',
     #'public_html///rim/rimgid/templates',
-    '/home/andrey/rimgid/rim/rimgid/templates',
-    '/home/andrey/rim/rimgid/templates',
+    #'/home/andrey/rimgid/rim/rimgid/templates',
+    #'/home/andrey/rim/rimgid/templates',
     '/usr/local/www/rim/rimgid/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.

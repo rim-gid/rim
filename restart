@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "restarting apache"
+su -c="/etc/init.d/apache restart"

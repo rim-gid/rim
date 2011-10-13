@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "saving db"
+mysqldump -u aaveter_0 -p -h localhost aaveter_0 > backup-file.sql
