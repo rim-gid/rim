@@ -1,0 +1,339 @@
+  html, body {
+    height: auto;
+    width: 100%;
+    min-width: 1000px;
+    margin: 0;
+background5: #000;
+    background5: #eee url('main_fon.png');
+    background8: #eee url('rim-fon-7.jpg');
+    background: #eee url('paper_white.jpg');
+    font: 0.92em Arial,sans-serif;
+    line-height: 1.4;
+    color: black;
+  }
+  #main {
+    width: 1000px;
+    height: auto;
+    background5: #dddd00;
+    left: 50%;
+    margin-left: -500px;
+    position: relative;
+    float: left;
+    background-image8: url('white_fon.png');
+  }
+  #header {
+    width: 100%;
+    height: 121px;
+    background6: #000;
+    position: relative;
+    margin: 10px 0 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;  /* для firefox */
+    -webkit-border-radius: 10px;  /* для Safari и Chrome */
+    box-shadow4: 3px 4px 2px #000;
+
+    -moz-box-shadow: 3px 3px 15px #000;
+    -webkit-box-shadow: 3px 3px 15px #000;
+    box-shadow: 3px 3px 15px #000;
+  }
+  #header-left {
+    width: 33%;
+    height: 121px;
+    background: #009900 url("rim-kolizey-fon.png");
+    position: relative;
+    float: left;
+    border-radius: 10px 0 0 10px;
+    -moz-border-radius: 10px 0 0 10px;  /* для firefox */
+    -webkit-border-radius: 10px 0 0 10px;  /* для Safari и Chrome */
+    box-shadow7: 3px 4px 2px #000;
+    background7: -moz-linear-gradient(top, #00dd00, #009900) url("rim-kolizey-fon.png");
+  background7: -webkit-gradient(linear, left top, right bottom, from(#00dd00), to(#009900)) url("rim-kolizey-fon.png");
+  filter7: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#00dd00, endColorstr=#009900);
+
+  }
+  #header-top {
+    width: 34%;
+    height: 121px;
+    background: #ffffff;
+    position: relative;
+    float: left;
+    text-align: center;
+  }
+  .podpis {
+    color:#fff;padding:0 10px 0 10px;font-weight:bold;background:#009900;position:absolute;
+    border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;  /* для firefox */
+    -webkit-border-radius: 0 0 10px 10px;  /* для Safari и Chrome */
+  }
+  @font-face {
+    font-family: "Super Font";
+    src: url("ds_stamper.ttf");
+    font-size: 11pt;
+  }
+  h1 {
+    text-align: left;
+  }
+  .note_place {
+    text-align:right;margin-top:-40px;float:right;width:auto;
+  }
+  #header-top h1 {
+    text-align6: center;
+    left6: 50%;
+    top6: 50%;
+    margin6: -220px -350px;
+    font-family: "Super Font","League-Gothic", Courier;
+    font-size: 44px;
+    text-transform: uppercase;
+    color: #009900;
+    text-shadow: 0px 2px 3px #666;
+    position6: absolute;
+    text-align: center;
+  }
+  #header-right {
+    width: 33%;
+    height: 121px;
+    background: #ff0000;
+    position: relative;
+    float: left;
+    border-radius: 0 10px 10px 0;
+    -moz-border-radius: 0 10px 10px 0;  /* для firefox */
+    -webkit-border-radius: 0 10px 10px 0;  /* для Safari и Chrome */
+    color: #990000;
+    box-shadow: 0px 2px 3px #666;
+    background: -moz-linear-gradient(top, #ff0000, #dd0000);
+  background: -webkit-gradient(linear, left top, right bottom, from(#ff0000), to(#dd0000));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff0000, endColorstr=#dd0000);
+
+  }
+  #menu {
+    width: 100%;
+    height: 40px;
+    background: #dd7777;
+    position: relative;
+    border-radius: 10px;
+  }
+  #menu .menu {
+    float: left;
+    width: 30%;
+    position: relative;
+    padding: 10px;
+  }
+  #base {
+    width:100%;
+    height:auto;
+    position:relative;
+    float:left;
+    background5:#333333;
+  }
+  #content {
+    width: auto;
+    height: auto;
+    background4: #ffffff;
+    position: relative;
+    float: left;
+    margin5: 10px 410px 10px 0px;
+    margin: 10px 350px 10px 0px;
+  }
+  #content IMG {
+    border-radius: 10px;
+    -moz-border-radius: 10px;  /* для firefox */
+    -webkit-border-radius: 10px;  /* для Safari и Chrome */
+  }
+  #content-up {
+    width: auto;
+    height: auto;
+    background7: #000033 url("rim-fon-7.jpg");
+    background5: #000033 url("kolizey-2.jpg");
+    background4: #000033 url("main_fon.png");
+    background: #000033 url("paper_yellow.jpg");
+    position: relative;
+    float: left;
+    padding: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;  /* для firefox */
+    -webkit-border-radius: 10px;  /* для Safari и Chrome */
+    color: #ffffff;
+dd: #fb9904;
+    -moz-box-shadow: 3px 3px 15px #000;
+    -webkit-box-shadow: 3px 3px 15px #000;
+    box-shadow: 3px 3px 15px #000;
+  }
+  .rounded {
+    padding: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;  /* для firefox */
+    -webkit-border-radius: 10px;  /* для Safari и Chrome */
+  }
+  .rounded-left {
+    padding: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;  /* для firefox */
+    -webkit-border-radius: 10px;  /* для Safari и Chrome */
+  }
+  #content-down {
+    width: auto;
+    height: auto;
+    position: relative;
+    float: left;
+    padding5: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0px;
+  }
+  #list {
+    width: 320px;
+    height: auto;
+    background9: #fb9904;
+    position: relative;
+    float: left;
+    right5: 0px;
+    margin: 10px 0px 10px -340px;
+    padding: 0px 10px 0;
+    border-radius6: 10px;
+    -moz-border-radius6: 10px;  /* для firefox */
+    -webkit-border-radius6: 10px;  /* для Safari и Chrome */
+    color: #9d5b0e;
+    -moz-box-shadow6: 3px 3px 15px #000;
+    -webkit-box-shadow6: 3px 3px 15px #000;
+    box-shadow6: 3px 3px 15px #000;
+  }
+  #list h2 {
+    text-align: center;
+  }
+  #list ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+  }
+  #list ul li a, #list ul li a:visited {
+   display: block;
+   padding: 5px;
+   margin-right: 1px;
+   color: #fff;
+   background-color5: #4682B4;
+   width: 100%;
+   text-align5: center;
+   text-decoration: none;
+   font-weight: bold;
+   background: #4682B4 url("ex-li-fon-2.png");
+   border-radius: 10px;
+    -moz-border-radius: 10px;  /* для firefox */
+    -webkit-border-radius: 10px;  /* для Safari и Chrome */
+    height: 50px;
+    margin-bottom: 5px;
+  }
+  #list ul li a:hover {
+   color: #fff;
+   background-color: #9d5b0e;
+    margin-left: -20px;
+    width: 360px;
+  }
+  #list ul li a span {
+    background6: #009900 url("paper_green.jpg");
+    background4: #333333;
+    color5: #ff0000;
+  }
+   
+  #footer {
+    color: #fff;
+    background: #009900;
+    position: relative;
+    border-radius: 10px;
+    -moz-border-radius: 10px;  /* для firefox */
+    -webkit-border-radius: 10px;  /* для Safari и Chrome */
+    text-align: justify;
+    float: left;
+    height: auto;
+    width: 100%;
+    padding8: 10px;
+    padding-right5: 0px;
+    padding-left5: 0px;
+    margin-bottom: 10px;
+    -moz-box-shadow: 3px 3px 15px #000;
+    -webkit-box-shadow: 3px 3px 15px #000;
+    box-shadow: 3px 3px 15px #000;
+    background: #009900 -moz-linear-gradient(top, #009900, #007700);
+  background: #009900 -webkit-gradient(linear, left top, left bottom, from(#009900), to(#007700));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#009900, endColorstr=#007700);
+  }
+  #footer p {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+ul.cssmenu2 {
+   padding: 0;
+padding-left: 0px;
+   margin: 0;
+   margin-top: -26px;
+   list-style: none;
+  width: 100%;
+  position: relative;
+  float: left;
+  font-weight: bold;
+  -moz-box-shadow5: 3px 3px 15px #000;
+    -webkit-box-shadow5: 3px 3px 15px #000;
+    box-shadow5: 3px 3px 15px #000;
+  background-color5: #4682B4;
+  border-radius5: 10px;
+    -moz-border-radius5: 10px;  /* для firefox */
+    -webkit-border-radius5: 10px;  /* для Safari и Chrome */
+  background5: -moz-linear-gradient(top, #b8b8ff, #4682B4);
+  background5: -webkit-gradient(linear, left top, left bottom, from(#b8b8ff), to(#4682B4));
+  filter5: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#b8b8ff, endColorstr=#222291);
+}
+ul.cssmenu2 li, li2 {
+   float: left;
+}
+ul.cssmenu2 li a, ul.cssmenu2 li a:visited {
+   display: block;
+   padding: 5px;
+   margin-right: 1px;
+   color: #fff;
+   background-color5: #4682B4;
+   width: 100px;
+   text-align: center;
+   text-decoration: none;
+}
+ul.cssmenu2 li2 a, ul.cssmenu2 li2 a:visited {
+  color: #0000ff;
+  display: block;
+   padding: 5px;
+   margin-right: 1px;
+   color6: #fff;
+   background-color5: #4682B4;
+   width: 100px;
+   text-align: center;
+   text-decoration: none;
+}
+ul.cssmenu2 li a:hover, ul.cssmenu2 li2 a:hover {
+  border-radius: 10px 0 10px 0;
+    -moz-border-radius: 10px 0 10px 0;  /* для firefox */
+    -webkit-border-radius: 10px 0 10px 0;  /* для Safari и Chrome */
+   color: #fff;
+cc:#4682B4;
+   background-color: #FAFAD2;
+   background: -moz-linear-gradient(top, #66a2F4, #4682B4);
+  background: -webkit-gradient(linear, left top, left bottom, from(#66a2F4), to(#4682B4));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#66a2F4, endColorstr=#4682B4);
+  margin-top: -8px;
+  height: 24px;
+}
+.foto {
+    width: auto;
+    height: auto;
+    background5: #000033 url("kolizey-2.jpg");
+    position: relative;
+    float: left;
+    padding5: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;  /* для firefox */
+    -webkit-border-radius: 10px;  /* для Safari и Chrome */
+    color: #ffffff;
+dd: #fb9904;
+    -moz-box-shadow6: 3px 3px 15px #000;
+    -webkit-box-shadow6: 3px 3px 15px #000;
+    box-shadow6: 3px 3px 15px #000;
+  }

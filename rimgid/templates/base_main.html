@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content_up %}
+<div id="content-up" align="justify">
+  <div id="olga_info" style="margin-top:-15px;">
+    <div class="foto"><img src="olga.png" width="200px;" height="auto" alt="Ольга Новикова"/><div class="podpis" style="top:220px;width:180px;">Ольга Новикова - <span style="font-weight:normal;font-size:8pt;">русскоговорящий лицензированный гид-переводчик по Риму и региону Лацио</span></div></div>
+    {% if content_up %}<h1>content_up.title</h1>{{ content_up.text }}{% endif %}
+    <h1 style="text-align: center;">Экскурсии в Риме</h1>
+    <span style="font-weight:bold;">Предлагаю Вам увлекательные экскурсии по Риму</span> и его пригородам со мной - русскоговорящим лицензированным гидом-переводчиком по Риму и региону Лацио. Вы сможете посетить археологические музеи, соборы, картинные галереи, музеи скульптуры и многое другое. Так как Рим расположен близ западного побережья Центральной Италии (примерно в 20 километрах от места впадения реки Тибр в Тирренское море), мы также сможем совершить интересные поездки на живописные морские курорты.
+  </div>
+</div>
+{% endblock %}
+
+{% block content_down %}
+{% if note %}
+<div id="content-down" align="justify">
+  {% if note.image != "0" %}
+  <img src="{{ note.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+  {% endif %}
+  <h1>{{ note.title }}</h1><div class="note_place">Новости</div>
+  {{ note.date }} - {{ note.text }}
+</div>
+{% endif %}
+{% if shop %}
+<div id="content-down" align="justify">
+  {% if note.image != "0" %}
+  <img src="{{ shop.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+  {% endif %}
+  <h1>{{ shop.title }}</h1><div class="note_place">Магазины</div>
+  {{ shop.text }}
+</div>
+{% endif %}
+{% if transport %}
+<div id="content-down" align="justify">
+  {% if note.image != "0" %}
+  <img src="{{ transport.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+  {% endif %}
+  <h1>{{ transport.title }}</h1><div class="note_place">Транспорт</div>
+  {{ transport.text }}
+</div>
+{% endif %}
+
+
+
+  {% if excursion_list %}
+  {% for excursion in excursion_list %}
+  
+  {% endfor %}
+  {% endif %}
+
+
+
+
+{% endblock %}
+
+{% block right %}
+{% if excursion_list %}
+<div id="list"><ul>
+  {% for excursion in excursion_list %}
+  <li><a href="excursion/{{ forloop.counter }}" style="background-image: url('{{ excursion.button_image }}');color:#fff;" onMouseOver="map_{{ forloop.counter }}.style.visibility='visible';map_{{ forloop.counter }}.style.height='auto';" onMouseOut="map_{{ forloop.counter }}.style.visibility='hidden';map_{{ forloop.counter }}.style.height='0px';"><span style="margin-left:-5px;padding-left:10px;">{{ forloop.counter }}. {{ excursion.title }}</span></a></li>
+  <div class="rounded" id="map_{{ forloop.counter }}" style="color:#fff;visibility:hidden;height:0px;position:absolute;padding-right:10px;width:620px;margin-left:-670px;background:#333333;margin-top:-160px;">
+    <h2 style="margin-top:0px;text-align:center;">{{ excursion.title }}</h2>
+    <img class="foto" style="height:auto;width:400px;" src="ex_1_minimap.png" width="400px" height="auto" />
+    {{ excursion.text }}
+  </div>
+  {% endfor %}
+</ul></div>
+{% endif %}
+{% endblock %}

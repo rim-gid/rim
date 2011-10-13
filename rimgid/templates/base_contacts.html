@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block style %}
+  #content {
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+  }
+  #content-down {
+    width: 46%;
+    position: relative;
+    float: left;
+    margin: 2%;
+  }
+  #content-up {
+    background: #000033 url("rim-fon-3.jpg");
+    width: 980px;
+  }
+  #body, html {
+    background5: #009900;
+  }
+{% endblock %}
+
+{% block content_up %}
+    <div id="content-up" align="justify">
+      <div class="foto"><img src="olga.png" width="200px;" height="auto" alt="Ольга Новикова"/><div class="podpis" style="top:220px;width:180px;">Ольга Новикова - <span style="font-weight:normal;font-size:8pt;">русскоговорящий лицензированный гид-переводчик по Риму и региону Лацио</span></div></div>
+      <h1 style="text-align: center;">Контакты</h1>
+{% if contacts_list %}
+  {% for contact in contacts_list %}
+      <div class="rounded" style="margin:10px;float:left;width:210px;background:#000033;color:#fff;">
+        <img src="{{ contact.image }}" height="50px" width="auto" style="margin:5px;float:left;" />
+        <h3 style="text-align:center;">{{ contact.name }}</h3>
+        {{ contact.value }}
+      </div>
+  {% endfor %}
+{% endif %}
+    </div>
+{% endblock %}
+
+{% block content_down %}
+    {% if note %}
+      <div id="content-down" align="justify">  
+        <img src="{{ note.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+        <h1>{{ note.title }}</h1><div style="text-align:right;margin-top:-40px;float:right;right:0px;">Новости</div>
+        {{ note.date }} - {{ note.text }}
+      </div>
+    {% endif %}
+    {% if shop %}
+      <div id="content-down" align="justify">  
+        <img src="{{ shop.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+        <h1>{{ shop.title }}</h1><div style="text-align:right;margin-top:-40px;float:right;right:0px;">Магазины</div>
+        {{ shop.text }}
+      </div>
+    {% endif %}
+    {% if transport %}
+      <div id="content-down" align="justify">  
+        <img src="{{ transport.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+        <h1>{{ transport.title }}</h1><div style="text-align:right;margin-top:-40px;float:right;right:0px;">Транспорт</div>
+        {{ transport.text }}
+      </div>
+    {% endif %}
+{% endblock %}

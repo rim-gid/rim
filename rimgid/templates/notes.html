@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content_down %}
+{% if notes_list %}
+  {% for note in notes_list %}
+    <div id="content-down" align="justify">  
+      <img src="{{ note.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+      <h1>{{ note.title }}</h1><div class="note_place">Новости</div>
+      {{ note.date }} - {{ note.text }}
+    </div>
+  {% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block right %}
+  {% if excursion_list %}
+    <div id="list"><ul>
+  {% for excursion in excursion_list %}
+      <li><a href="excursion/{{ forloop.counter }}" style="background-image: url('{{ excursion.button_image }}');color:#fff;"><span style="background:#007700;margin-left:-5px;padding-left:10px;">{{ forloop.counter }}. {{ excursion.title }}</span></a></li>
+  {% endfor %}
+    </ul></div>
+  {% endif %}
+{% endblock %}

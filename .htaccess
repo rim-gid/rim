@@ -1,0 +1,11 @@
+DirectoryIndex index.html index.cgi django.wsgi
+
+#AddHandler cgi-script .cgi
+AddHandler wsgi-script .wsgi
+
+#ErrorDocument 403 /error.html
+#ErrorDocument 500 /error505.html
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /django.wsgi/$1 [QSA,PT,L]

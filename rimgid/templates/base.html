@@ -1,0 +1,42 @@
+<HTML><HEAD><TITLE>Русскоязычный индивидуальный гид по Риму и Италии. Экскурсии на русском языке в Риме в Италии русскоговорящий гид. rim-gid.ru</TITLE>
+<META NAME="KeyWords" CONTENT="Русскоязычный индивидуальный гид по Риму и Италии. Экскурсии на русском языке в Риме в Италии русскоговорящий гид. rim-gid.ru ">
+<META NAME="Description" CONTENT="Офицальный сайт турфирмы Гид-переводчик Санкт-Петербург">
+<META content="text/html; charset=windows-1251" http-equiv=Content-Type>
+<META content=document name=resourse-type><LINK href="/style.css" rel="stylesheet" type="text/css">
+<style>{% block style %}{% endblock %}</style></head>
+<body>
+<div id="main">
+  <div id="header">
+    <div id="header-left"></div>
+    <div id="header-top"><h1>Гид по Риму</h1></div>
+    <div id="header-right"><p style="margin: 10px 10px 0;color:#fff;text-align:right;">Телефон +39 3336631315</p>
+      <p style="margin: 0 10px;color:#fff;text-align:right;">skype: olga.novikova22</p>
+      <p style="margin: 0 10px;color:#fff;text-align:right;">E-mail: oan_75@mail.ru</p>
+      <div style="position:absolute;float:left;margin:5px;bottom:0px;right:50px;"><img src="/vk.png" width="30px" height="auto" /></div>
+      <div style="position:absolute;float:left;margin:5px;bottom:50px;right:200px;"><img src="/cabriolet.png" width="100px" height="auto" /></div>
+    </div>
+    <ul class="cssmenu2">
+      <li><a href="/">Главная</a></li>
+      <li><a href="notes">Заметки</a></li>
+      <li><a href="transport">Транспорт</a></li>
+      <li2><a href="transfer">Трансферы</a></li2>
+      <li2><a href="recomendations">Отзывы</a></li2>
+      <li2><a href="contacts">Контакты</a></li2>
+    </ul>
+  </div>
+  <div id="base">
+    <div id="content" align="justify">
+      {% block content_up %}{% endblock %}
+      {% block content_down %}{% endblock %}
+    </div>
+    {% block right %}{% endblock %}
+  </div>
+  {% block down %}{% endblock %}
+{% if footer %}
+  <div id="footer">
+    <p>{{ footer.text }}</p>
+  </div>
+{% endif %}
+</div>
+</body>
+</html>
