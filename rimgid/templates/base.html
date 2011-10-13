@@ -6,14 +6,14 @@
 <style>{% block style %}{% endblock %}</style></head>
 <style>
 
-  ul.second_info {
-    visibility: hidden;
-    height: 0px;
-   padding: 0;
-padding-left: 0px;
-   margin: 0;
-   margin-top: 0px;
-   list-style: none;
+ul.second_info {
+  visibility: hidden;
+  height: 0px;
+  padding: 0;
+  padding-left: 0px;
+  margin: 0;
+  margin-top: 0px;
+  list-style: none;
   width: 100%;
   position: relative;
   float: left;
@@ -76,14 +76,14 @@ cc:#4682B4;
     </div>
     <ul class="cssmenu2">
       <li><a href="/">Главная</a></li>
-<li_info><a href="#" onmouseover="second_info.style.visibility='visible';second_info.style.height='auto';" onmouseout="second_info.style.visibility='hidden';second_info.style.height='0px';" >Информация</a></li_info>
+<li id="info_button"><a class="temp" href="#" onclick="second_info.style.visibility='visible';second_info.style.height='auto';info_button.style.height='40px';" >Информация</a></li_info>
       <li><a href="/notes">Заметки</a></li>
       <li2><a href="/fotos">Фотографии</a></li2>
       <li2><a href="/recomendations">Отзывы</a></li2>
       <li2><a href="/contacts">Контакты</a></li2>
     </ul>
 
-    <ul id="second_info" class="second_info">
+    <ul id="second_info" class="second_info shadowed">
       <li><a href="#">Авиаперелеты</a></li>
       <li><a href="/transfer">Трансферы</a></li>
       <li><a href="#">Отели</a></li>
@@ -91,6 +91,7 @@ cc:#4682B4;
       <li><a href="/shops">Магазины</a></li>
       <li><a href="/transport">Транспорт</a></li>
     </ul>
+    
 
   </div>
   <div id="base">
