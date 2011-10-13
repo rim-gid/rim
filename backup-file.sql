@@ -247,11 +247,11 @@ CREATE TABLE `books_excursion` (
   `button_image` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `group` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `special` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `text` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
-  `text_full` varchar(5000) COLLATE utf8_unicode_ci NOT NULL,
+  `text` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `text_full` longtext COLLATE utf8_unicode_ci NOT NULL,
   `cost` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `map_address` varchar(2000) COLLATE utf8_unicode_ci NOT NULL,
-  `map_preview` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `map_address` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `map_preview` longtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
