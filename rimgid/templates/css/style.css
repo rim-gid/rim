@@ -283,10 +283,10 @@ padding-left: 0px;
   background5: -webkit-gradient(linear, left top, left bottom, from(#b8b8ff), to(#4682B4));
   filter5: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#b8b8ff, endColorstr=#222291);
 }
-ul.cssmenu2 li, li2 {
+ul.cssmenu2 li, li2, li_info {
    float: left;
 }
-ul.cssmenu2 li a, ul.cssmenu2 li a:visited {
+ul.cssmenu2 li a, ul.cssmenu2 li a:visited, ul.cssmenu2 li_info a, ul.cssmenu2 li_info a:visited {
    display: block;
    padding: 5px;
    margin-right: 1px;
@@ -297,28 +297,49 @@ ul.cssmenu2 li a, ul.cssmenu2 li a:visited {
    text-decoration: none;
 }
 ul.cssmenu2 li2 a, ul.cssmenu2 li2 a:visited {
-  color: #0000ff;
+  color: #999999;
   display: block;
    padding: 5px;
    margin-right: 1px;
-   color6: #fff;
-   background-color5: #4682B4;
    width: 100px;
    text-align: center;
    text-decoration: none;
 }
-ul.cssmenu2 li a:hover, ul.cssmenu2 li2 a:hover {
+ul.cssmenu2 li a:hover {
   border-radius: 10px 0 10px 0;
-    -moz-border-radius: 10px 0 10px 0;  /* для firefox */
-    -webkit-border-radius: 10px 0 10px 0;  /* для Safari и Chrome */
-   color: #fff;
-cc:#4682B4;
-   background-color: #FAFAD2;
-   background: -moz-linear-gradient(top, #66a2F4, #4682B4);
-  background: -webkit-gradient(linear, left top, left bottom, from(#66a2F4), to(#4682B4));
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#66a2F4, endColorstr=#4682B4);
+  -moz-border-radius: 10px 0 10px 0;  /* для firefox */
+  -webkit-border-radius: 10px 0 10px 0;  /* для Safari и Chrome */
+  color: #99ff99;
+  background-color: #00bb00;
+  background: -moz-linear-gradient(top, #00bb00, #009900);
+  background: -webkit-gradient(linear, left top, left bottom, from(#00bb00), to(#009900));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#00bb00, endColorstr=#009900);
   margin-top: -8px;
   height: 24px;
+}
+ul.cssmenu2 li2 a:hover {
+  border-radius: 10px 0 10px 0;
+  -moz-border-radius: 10px 0 10px 0;  /* для firefox */
+  -webkit-border-radius: 10px 0 10px 0;  /* для Safari и Chrome */
+  color: #999;
+  background-color: #eee;
+  background: -moz-linear-gradient(top, #eee, #fff);
+  background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#eee, endColorstr=#fff);
+  margin-top: -8px;
+  height: 24px;
+}
+ul.cssmenu2 li_info a:hover {
+  border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;  /* для firefox */
+  -webkit-border-radius: 10px 10px 0 0;  /* для Safari и Chrome */
+  color: #99ff99;
+  background-color: #00bb00;
+  background: -moz-linear-gradient(top, #00bb00, #009900);
+  background: -webkit-gradient(linear, left top, left bottom, from(#00bb00), to(#009900));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#00bb00, endColorstr=#009900);
+  margin-top: -8px;
+  height: 40px;
 }
 .foto {
     width: auto;

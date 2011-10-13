@@ -49,12 +49,13 @@
   <div style="padding-left:20px;padding-bottom:20px;">
   <p><h1>{{ excursion.title }} - {{ excursion.title_time }}</h1>
   {{ excursion.text_full }}</p>
-    <iframe width="100%" height="700px" frameborder="1" scrolling="no" marginheight="10px" marginwidth="0" src="{{ map_address }}" style="color:#0000FF;text-align:left"></iframe><br /><small><a href="{{ map_address }}">Просмотреть увеличенную карту</a></small>
-
+    {% if excursion.map_address != "0" %}
+    <iframe width="100%" height="700px" frameborder="1" scrolling="no" marginheight="10px" marginwidth="0" src="{{ excursion.map_address }}" style="color:#0000FF;text-align:left"></iframe><br /><small><a href="{{ excursion.map_address }}">Просмотреть увеличенную карту</a></small>
+    {% endif %}
     <table border="0" width="100%" cellspacing="0" cellpadding="0" style="background-color: #d2dae0; border-style: solid; border-width: 1px 0px 1px 0px; border-color: url(100, 100, 100);"><tr>
       <td width="2%">&nbsp;</td>
       <td align="center"><a href="/time" class=menu><div class="menu_url">&nbsp; Назад &nbsp;</div></a></td>
-      <td align="center"><a href="" class=menu><div class="menu_url">&nbsp; Заказать &nbsp;</div></a></td>
+      <td align="center" style="visibility:hidden;"><a href="" class=menu><div class="menu_url">&nbsp; Заказать &nbsp;</div></a></td>
       <td align="center"><a href="" class=menu><div class="menu_url">&nbsp; {{ excursion.cost }} &nbsp;</div></a></td>
       <td width="2%">&nbsp;</td>
       </tr>

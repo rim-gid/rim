@@ -4,6 +4,65 @@
 <META content="text/html; charset=windows-1251" http-equiv=Content-Type>
 <META content=document name=resourse-type><LINK href="/style.css" rel="stylesheet" type="text/css">
 <style>{% block style %}{% endblock %}</style></head>
+<style>
+
+  ul.second_info {
+    visibility: hidden;
+    height: 0px;
+   padding: 0;
+padding-left: 0px;
+   margin: 0;
+   margin-top: 0px;
+   list-style: none;
+  width: 100%;
+  position: relative;
+  float: left;
+  font-weight: bold;
+  background: #009900;
+  border-radius: 10px;
+  -moz-border-radius: 10px;  /* для firefox */
+  -webkit-border-radius: 10px;  /* для Safari и Chrome */
+}
+ul.second_info li, li2 {
+   float: left;
+}
+ul.second_info li a, ul.second_info li a:visited {
+   display: block;
+   padding: 5px;
+   margin-right: 1px;
+   color: #fff;
+   width: 100px;
+   text-align: center;
+   text-decoration: none;
+}
+ul.second_info li2 a, ul.second_info li2 a:visited {
+  color: #0000ff;
+  display: block;
+   padding: 5px;
+   margin-right: 1px;
+   width: 100px;
+   text-align: center;
+   text-decoration: none;
+}
+ul.second_info li a:hover, ul.second_info li2 a:hover {
+  border-radius: 10px 0 10px 0;
+    -moz-border-radius: 10px 0 10px 0;  /* для firefox */
+    -webkit-border-radius: 10px 0 10px 0;  /* для Safari и Chrome */
+   color: #fff;
+cc:#4682B4;
+   background-color: #FAFAD2;
+   background: -moz-linear-gradient(top, #66a2F4, #4682B4);
+  background: -webkit-gradient(linear, left top, left bottom, from(#66a2F4), to(#4682B4));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#66a2F4, endColorstr=#4682B4);
+  margin-top: -8px;
+  height: 24px;
+}
+#info a:hover {
+  height: 34px;
+}
+
+</style>
+
 <body>
 <div id="main">
   <div id="header">
@@ -17,12 +76,22 @@
     </div>
     <ul class="cssmenu2">
       <li><a href="/">Главная</a></li>
-      <li><a href="notes">Заметки</a></li>
-      <li><a href="transport">Транспорт</a></li>
-      <li2><a href="transfer">Трансферы</a></li2>
-      <li2><a href="recomendations">Отзывы</a></li2>
-      <li2><a href="contacts">Контакты</a></li2>
+<li_info><a href="#" onmouseover="second_info.style.visibility='visible';second_info.style.height='auto';" onmouseout="second_info.style.visibility='hidden';second_info.style.height='0px';" >Информация</a></li_info>
+      <li><a href="/notes">Заметки</a></li>
+      <li2><a href="/fotos">Фотографии</a></li2>
+      <li2><a href="/recomendations">Отзывы</a></li2>
+      <li2><a href="/contacts">Контакты</a></li2>
     </ul>
+
+    <ul id="second_info" class="second_info">
+      <li><a href="#">Авиаперелеты</a></li>
+      <li><a href="/transfer">Трансферы</a></li>
+      <li><a href="#">Отели</a></li>
+      <li><a href="#">Рестораны</a></li>
+      <li><a href="/shops">Магазины</a></li>
+      <li><a href="/transport">Транспорт</a></li>
+    </ul>
+
   </div>
   <div id="base">
     <div id="content" align="justify">
