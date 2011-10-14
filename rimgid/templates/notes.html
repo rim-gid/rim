@@ -8,6 +8,11 @@
       <h1>{{ note.title }}</h1><div class="note_place">Новости</div>
       {{ note.date }} - {{ note.text }}
     </div>
-  {% endfor %}
+  {% endfor %}  
+{% else %}    
+    <div id="content-down" align="justify" style="width:640px;">
+      Пока нет ни одной заметки...
+    </div>
 {% endif %}
+
 {% endblock %}
