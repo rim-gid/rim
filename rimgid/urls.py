@@ -6,12 +6,14 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^admin/', include(admin.site.urls)),
+    #(r'^/?admin/', include(admin.site.urls)),
     ('^/?robots.txt', robots),
     ('^/?$', base_left_page, {'page_type':'main'}),
     ('^/?contacts/?$', base_left_page, {'page_type':'contacts'}),
     ('^/?transfer/?$', base_left_page, {'page_type':'transfer'}),
     ('^/?transport/?$', base_left_page, {'page_type':'transport'}),
+    ('^/?shops/?$', base_left_page, {'page_type':'shops'}),
+    ('^/?fotos/?$', base_left_page, {'page_type':'fotos'}),
     ('^/?notes/?$', base_left_page, {'page_type':'notes'}),
     ('^/?recomendations/?$', base_left_page, {'page_type':'recomendations'}),
     ('^/?excursion/(?P<num>\d+)/?$', excursion_page),
@@ -45,6 +47,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 #    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/path/to/media'}),
+    #(r'^admin/', include(admin.site.urls)),
     (r'^admin/', include(admin.site.urls)),
+    #(r'^/?admin/admin/$', include(admin_media)),
+    (r'^admin/admin/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/usr/local/www/rim/admin_media/', 'show_indexes': True}),
 )
 

@@ -40,21 +40,21 @@
     {% if note %}
       <div id="content-down" align="justify">  
         <img src="{{ note.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
-        <h1>{{ note.title }}</h1><div style="text-align:right;margin-top:-40px;float:right;right:0px;">Новости</div>
+        <h1>{{ note.title }}</h1><div style="text-align:right;margin-top:-40px;float:right;right:0px;"><a href="/notes">Новости</a></div>
         {{ note.date }} - {{ note.text }}
       </div>
     {% endif %}
     {% if shop %}
       <div id="content-down" align="justify">  
         <img src="{{ shop.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
-        <h1>{{ shop.title }}</h1><div style="text-align:right;margin-top:-40px;float:right;right:0px;">Магазины</div>
+        <h1>{{ shop.title }}</h1><div style="text-align:right;margin-top:-40px;float:right;right:0px;"><a href="/shops">Магазины</a></div>
         {{ shop.text }}
       </div>
     {% endif %}
     {% if transport %}
       <div id="content-down" align="justify">  
         <img src="{{ transport.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
-        <h1>{{ transport.title }}</h1><div style="text-align:right;margin-top:-40px;float:right;right:0px;">Транспорт</div>
+        <h1>{{ transport.title }}</h1><div style="text-align:right;margin-top:-40px;float:right;right:0px;"><a href="/transport">Транспорт</a></div>
         {{ transport.text }}
       </div>
     {% endif %}

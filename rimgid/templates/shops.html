@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block content_down %}
-{% if recomendations_list %}
-  {% for recomendation in recomendations_list %}
-    <div id="content-down" align="justify">  
-      {% if recomendation.image != "0" %}
-      <img src="{{ recomendation.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+{% if shops_list %}
+  {% for shop in shops_list %}
+    <div id="content-down" align="justify">
+      {% if shop.image != "0" %}
+      <img src="{{ shop.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
       {% endif %}
-      <h1>{{ recomendation.name }}</h1><div class="note_place">Отзывы</div>
-      <span style="font-weight:bold;">{{ recomendation.date }}</span> - {{ recomendation.text }}
+      <h1>{{ shop.title }}</h1><div class="note_place">Транспорт</div>
+      {{ shop.date }} - {{ shop.text }}
     </div>
   {% endfor %}
 {% endif %}
