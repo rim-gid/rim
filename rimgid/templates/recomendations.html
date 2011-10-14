@@ -8,7 +8,7 @@
       <img src="{{ recomendation.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
       {% endif %}
       <h1>{{ recomendation.name }}</h1><div class="note_place">Отзывы</div>
-      {{ recomendation.date }} - {{ recomendation.text }}
+      <span style="font-weight:bold;">{{ recomendation.date }}</span> - {{ recomendation.text }}
     </div>
   {% endfor %}
 {% endif %}

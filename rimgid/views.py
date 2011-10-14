@@ -5,6 +5,7 @@ import datetime
 from django.shortcuts import render_to_response
 from rimgid.books.models import *
 from django.conf import settings
+import random
 
 def robots(request):
     return render_to_response('robots.txt', locals())
@@ -22,13 +23,17 @@ def base_left_page(request, page_type='404'):
     shops_list = Shops.objects.all();
     transport_list = Transport.objects.all();
     if len(notes_list) > 0:
-      note = notes_list[len(notes_list)-1];
+      rand_note = random.randint(0, len(notes_list)-1);
+      note = notes_list[rand_note];
     if len(footer_list) > 0:
-      footer = footer_list[0];
+      rand_footer = random.randint(0, len(footer_list)-1);
+      footer = footer_list[rand_footer];
     if len(shops_list) > 0:
-      shop = shops_list[len(shops_list)-1];
+      rand_shop = random.randint(0, len(shops_list)-1);
+      shop = shops_list[rand_shop];
     if len(transport_list) > 0:
-      transport = transport_list[len(transport_list)-1];
+      rand_transport = random.randint(0, len(transport_list)-1);
+      transport = transport_list[rand_transport];
     if page_type == 'main' :
       url = 'base_main.html';
       excursion_list = Excursion.objects.all();
@@ -41,6 +46,12 @@ def base_left_page(request, page_type='404'):
       excursion_list = Excursion.objects.all();
     elif page_type == 'transport' :
       url = 'transport.html';
+      excursion_list = Excursion.objects.all();
+    elif page_type == 'shops' :
+      url = 'shops.html';
+      excursion_list = Excursion.objects.all();
+    elif page_type == 'fotos' :
+      url = 'fotos.html';
       excursion_list = Excursion.objects.all();
     elif page_type == 'recomendations' :
       url = 'recomendations.html';
