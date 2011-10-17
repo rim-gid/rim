@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Django settings for application project.
 
 import sys
@@ -9,7 +10,7 @@ os.environ['PYTHON_EGG_CACHE'] = '/usr/local/www/egg_cache'
 ADMIN_MEDIA_ROOT = '/admin/admin/'
 ADMIN_MEDIA_PREFIX = 'http://localhost:8000/admin_media/'
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_with_ex.html" %}
 
 {% block content_down %}
 {% if shops_list %}
@@ -7,19 +7,9 @@
       {% if shop.image != "0" %}
       <img src="{{ shop.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
       {% endif %}
-      <h1>{{ shop.title }}</h1><div class="note_place">Транспорт</div>
+      <h1>{{ shop.title }}</h1><div class="note_place">Магазины</div>
       {{ shop.date }} - {{ shop.text }}
     </div>
   {% endfor %}
 {% endif %}
-{% endblock %}
-
-{% block right %}
-  {% if excursion_list %}
-    <div id="list"><ul>
-  {% for excursion in excursion_list %}
-      <li><a href="excursion/{{ forloop.counter }}" style="background-image: url('{{ excursion.button_image }}');color:#fff;"><span style="background:#007700;margin-left:-5px;padding-left:10px;">{{ forloop.counter }}. {{ excursion.title }}</span></a></li>
-  {% endfor %}
-    </ul></div>
-  {% endif %}
 {% endblock %}

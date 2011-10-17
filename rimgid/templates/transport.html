@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_with_ex.html" %}
 
 {% block content_down %}
 {% if transport_list %}
@@ -12,14 +12,4 @@
     </div>
   {% endfor %}
 {% endif %}
-{% endblock %}
-
-{% block right %}
-  {% if excursion_list %}
-    <div id="list"><ul>
-  {% for excursion in excursion_list %}
-      <li><a href="excursion/{{ forloop.counter }}" style="background-image: url('{{ excursion.button_image }}');color:#fff;"><span style="background:#007700;margin-left:-5px;padding-left:10px;">{{ forloop.counter }}. {{ excursion.title }}</span></a></li>
-  {% endfor %}
-    </ul></div>
-  {% endif %}
 {% endblock %}
