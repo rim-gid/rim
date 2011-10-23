@@ -79,9 +79,9 @@ def ex_list(request):
     excursion_list = Excursion.objects.all();
     return render_to_response(url, locals())
     
-def border_radius(request):
-    url = 'border-radius.html';
-    return render_to_response(url, locals())
+#def border_radius(request):
+#    url = 'border-radius.html';
+#    return render_to_response(url, locals())
 
 def get_css(request,name):
     url = "css/" + name + ".css";
