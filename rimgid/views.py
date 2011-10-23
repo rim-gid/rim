@@ -83,6 +83,10 @@ def get_css(request,name):
     url = "css/" + name + ".css";
     return render_to_response(url, locals())
     
+def get_htc(request,name):
+    url = "htc/" + name + ".htc";
+    return render_to_response(url, locals())
+    
 def get_png(request,name):
     image_name = settings.MEDIA_ROOT + "images/" + name + ".png";
 #    image_name = "application/rimgid/images/" + name + ".png";

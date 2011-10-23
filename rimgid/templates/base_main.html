@@ -15,7 +15,7 @@
 {% if note %}
 <div id="content-down" align="justify">
   {% if note.image != "0" %}
-  <img src="{{ note.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+  <img src="{{ note.image }}" width="150px" height="auto !important" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
   {% endif %}
   <h1>{{ note.title }}</h1><div class="note_place"><a href="/notes">Новости</a></div>
   {{ note.date }} - {{ note.text }}
@@ -24,7 +24,7 @@
 {% if shop %}
 <div id="content-down" align="justify">
   {% if shop.image != "0" %}
-  <img src="{{ shop.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+  <img src="{{ shop.image }}" width="150px" height="auto !important" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
   {% endif %}
   <h1>{{ shop.title }}</h1><div class="note_place"><a href="/shops">Магазины</a></div>
   {{ shop.text }}
@@ -33,7 +33,7 @@
 {% if transport %}
 <div id="content-down" align="justify">
   {% if transport.image != "0" %}
-  <img src="{{ transport.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+  <img src="{{ transport.image }}" width="150px" height="auto !important" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
   {% endif %}
   <h1>{{ transport.title }}</h1><div class="note_place"><a href="/transport">Транспорт</a></div>
   {{ transport.text }}

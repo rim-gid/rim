@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls.defaults import patterns, include, url
 from views import *
 
@@ -21,21 +22,25 @@ urlpatterns = patterns('',
     
     ('^/?style.css/?$', get_css, {'name' : 'style'}),
     
+    ('^/?(?P<name>\w+).htc/?$', get_htc),
+    ('^/?(?P<name>\w+).png/?$', get_png),
+    ('^/?(?P<name>\w+).jpg/?$', get_jpg),
+    
     #('^/?olga.png/$', get_png, {'name':'olga'}),
     ('^/?rim-kolizey-fon.png/$', get_png, {'name':'rim-kolizey-fon'}),
     ('^/?kolizey-2.jpg/$', get_jpg, {'name':'kolizey-2'}),
     ('^/?rim-kolizey-fon-small.png/$', get_png, {'name':'rim-kolizey-fon-small'}),
-    ('^/?(?P<name>\w+).png/?$', get_png),
-
     ('^/?ex-li-fon-(?P<num>\d+).png/$', get_num_image_png, {'url':'ex-li-fon-'} ),
     ('^/?rim-fon-(?P<num>\d+).jpg/$', get_num_image_jpg, {'url':'rim-fon-'} ),
 
-    ('^/?(?P<name>\w+).jpg/?$', get_jpg),
-    ('^/?e-mail.png/$', get_png, {'name':'e-mail'}),
+    
+    #('^/?e-mail.png/$', get_png, {'name':'e-mail'}),
+    
+    
     
     #('^fon.png/$', get_png, {'name':'fon'}),
     #('^vk.png/$', get_png, {'name':'vk'}),
-    ('^fon_orange.png/$', get_png, {'name':'fon_orange'}),
+    #('^fon_orange.png/$', get_png, {'name':'fon_orange'}),
     ('^/?ds_stamper.ttf/$', get_ttf, {'name':'ds_stamper'}),
     # Examples:
     # url(r'^$', 'rimgid.views.home', name='home'),
