@@ -88,8 +88,9 @@ def get_css(request,name):
     return render_to_response(url, locals())
     
 def get_htc(request,name):
-    url = "htc/" + name + ".htc";
-    return render_to_response(url, locals())
+    url = settings.MEDIA_ROOT + "templates/htc/" + name + ".htc";
+    ufile = open(url, "rb").read()
+    return HttpResponse(ufile, mimetype="text/x-component")
     
 def get_png(request,name):
     image_name = settings.MEDIA_ROOT + "images/" + name + ".png";
