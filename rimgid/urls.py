@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     ('^/?recomendations/?$', base_left_page, {'page_type':'recomendations'}),
     ('^/?excursion/(?P<num>\d+)/?$', excursion_page),
     ('^/?ex_list.html', ex_list),
+    ('^/?border-radius.html', border_radius),
     
     ('^/?style.css/?$', get_css, {'name' : 'style'}),
     
