@@ -26,6 +26,8 @@ urlpatterns = patterns('',
     ('^/?(?P<name>\w+).htc/?$', get_htc),
     ('^/?(?P<name>\w+).png/?$', get_png),
     ('^/?(?P<name>\w+).jpg/?$', get_jpg),
+    ('^/?images/(?P<name>\w+).png/?$', get_png),
+    ('^/?images/(?P<name>\w+).jpg/?$', get_jpg),
     
     #('^/?olga.png/$', get_png, {'name':'olga'}),
     ('^/?rim-kolizey-fon.png/$', get_png, {'name':'rim-kolizey-fon'}),
@@ -56,6 +58,6 @@ urlpatterns = patterns('',
     #(r'^admin/', include(admin.site.urls)),
     (r'^admin/', include(admin.site.urls)),
     #(r'^/?admin/admin/$', include(admin_media)),
-    (r'^admin/admin/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/usr/local/www/rim/admin_media/', 'show_indexes': True}),
+    #(r'^admin/admin/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/usr/local/www/rim/admin_media/', 'show_indexes': True}),
 )
 

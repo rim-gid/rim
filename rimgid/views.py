@@ -52,6 +52,7 @@ def base_left_page(request, page_type='404'):
       excursion_list = Excursion.objects.all();
     elif page_type == 'fotos' :
       url = 'fotos.html';
+      fotos_list = Fotos.objects.all();
       excursion_list = Excursion.objects.all();
     elif page_type == 'recomendations' :
       url = 'recomendations.html';

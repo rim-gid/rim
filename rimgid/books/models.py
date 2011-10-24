@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class Book(models.Model):
@@ -44,7 +45,7 @@ class Note(models.Model):
     #text = models.CharField(max_length=1000)
     text = models.TextField()
     date = models.DateField()
-    image = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="images/",null="True")
     
     def __unicode__(self):
         return self.title
@@ -113,4 +114,16 @@ class Transfer(models.Model):
     
     def __unicode__(self):
         return self.title        
+
+class Fotos(models.Model):
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    #upload_to=settings.MEDIA_ROOT+
+    image = models.ImageField(upload_to="images/",null="True")
+    date = models.DateField()
+    
+    def __unicode__(self):
+        return self.title        
+
+        
         
