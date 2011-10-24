@@ -7,8 +7,8 @@ sys.path.append('/usr/local/www/rim')
 import os
 os.environ['PYTHON_EGG_CACHE'] = '/usr/local/www/egg_cache'
 
-#ADMIN_MEDIA_ROOT = '/admin/admin/'
-#ADMIN_MEDIA_PREFIX = 'http://localhost:8000/admin_media/'
+ADMIN_MEDIA_ROOT = '/admin-media/'
+ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
