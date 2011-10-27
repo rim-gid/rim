@@ -28,7 +28,7 @@ a {
   position: relative;
   margin: 10px 0 10px;
   margin= 10px 0 10px; /* for IE */
-  border= solid 1px #777; /* for IE */
+  border= solid 1px #333; /* for IE */
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
