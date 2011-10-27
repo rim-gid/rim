@@ -351,7 +351,7 @@ dd: #fb9904;
     border-radius: 10px 10px 0 0;
     -moz-border-radius: 10px 10px 0 0; /* для firefox */
     -webkit-border-radius: 10px 10px 0 0; /* для Safari и Chrome */
-    behavior: url("border_radius.htc"); /* для IE */
+    behavior4: url("border_radius.htc"); /* для IE */
 }
 
 .shadowed {
