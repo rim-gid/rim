@@ -74,7 +74,8 @@ h1 {
   text-align:right;margin-top:-40px;float:right;width:auto;
 }
 #header-top h1 {
-  font-family: "Super Font","League-Gothic", Courier;
+  font-family: "Super Font", "Arial", "Courier";
+  font-family= "Times New Roman", "Arial", "Courier";
   font-size: 44px;
   text-transform: uppercase;
   color: #009900;
