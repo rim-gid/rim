@@ -191,6 +191,7 @@ dd: #fb9904;
   position: relative;
   float: left;
   margin: 10px 0px 10px -340px;
+  margin= 10px 0px 10px -330px;
   padding: 0px 10px 0;
   color: #9d5b0e;
 }
