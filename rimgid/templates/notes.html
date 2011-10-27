@@ -4,7 +4,7 @@
 {% if notes_list %}
   {% for note in notes_list %}
     <div id="content-down" align="justify" style="width:640px;">  
-      <img src="{{ note.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+      <img src="{{ note.image }}" width="150px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
       <h1>{{ note.title }}</h1><div class="note_place">Новости</div>
       {{ note.date }} - {{ note.text }}
     </div>

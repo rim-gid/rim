@@ -42,6 +42,7 @@ a {
   width: 33%;
   height: 121px;
   background: #009900 url("rim-kolizey-fon.png");
+  background=#009900;
   position: relative;
   float: left;
   border-radius: 10px 0 0 10px;
@@ -99,6 +100,7 @@ h1 {
   background: -moz-linear-gradient(top, #ff0000, #dd0000);
   background: -webkit-gradient(linear, left top, right bottom, from(#ff0000), to(#dd0000));
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff0000, endColorstr=#dd0000);
+  background=#dd0000;
 }
 #header-right a {
   color: #770000;
@@ -165,6 +167,12 @@ dd: #fb9904;
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
   behavior5: url("border_radius.htc"); /* для IE */
 }
+.rounded_up {
+  border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;  /* для firefox */
+  -webkit-border-radius: 10px 10px 0 0;  /* для Safari и Chrome */
+  behavior5: url("border_radius.htc"); /* для IE */
+}
 .bordered {
   border: solid 1px #333;
 }
@@ -191,7 +199,7 @@ dd: #fb9904;
   position: relative;
   float: left;
   margin: 10px 0px 10px -340px;
-  margin= 10px 0px 10px -330px;
+  margin= 0px 0px 0px -340px;
   padding: 0px 10px 0;
   color: #9d5b0e;
 }
@@ -264,12 +272,12 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr
 
 ul.mainmenu, ul.mainmenu_2 {
   padding: 0;
-  padding-left: 0px;
   margin: 0;
-  margin-top: -26px;
+  margin-top: -36px;
   list-style: none;
   width: 100%;
-  position: relative;
+  position: absolute;
+  position= relative;
   float: left;
   font-weight: bold;
 }
@@ -298,9 +306,9 @@ ul.mainmenu_2 li a, ul.mainmenu_2 li a:visited {
   text-decoration: none;
 }
 ul.mainmenu li a:hover {
-  border-radius: 10px 0 10px 0;
-  -moz-border-radius: 10px 0 10px 0;  /* для firefox */
-  -webkit-border-radius: 10px 0 10px 0;  /* для Safari и Chrome */
+  border-radius: 10px;
+  -moz-border-radius: 10px;  /* для firefox */
+  -webkit-border-radius: 10px;  /* для Safari и Chrome */
   behavior5: url("border_radius.htc"); /* для IE */
   color: #99ff99;
   background-color: #00bb00;
@@ -311,9 +319,9 @@ ul.mainmenu li a:hover {
   height: 24px;
 }
 ul.mainmenu_2 li a:hover {
-  border-radius: 10px 0 10px 0;
-  -moz-border-radius: 10px 0 10px 0;  /* для firefox */
-  -webkit-border-radius: 10px 0 10px 0;  /* для Safari и Chrome */
+  border-radius: 10px;
+  -moz-border-radius: 10px;  /* для firefox */
+  -webkit-border-radius: 10px;  /* для Safari и Chrome */
   behavior5: url("border_radius.htc"); /* для IE */
   color: #999;
   background-color: #eee;
@@ -348,10 +356,6 @@ dd: #fb9904;
     position: relative;
     float: left;
     margin-right: 10px;
-    border-radius: 10px 10px 0 0;
-    -moz-border-radius: 10px 10px 0 0; /* для firefox */
-    -webkit-border-radius: 10px 10px 0 0; /* для Safari и Chrome */
-    behavior4: url("border_radius.htc"); /* для IE */
 }
 
 .foto_with_podpis IMG {

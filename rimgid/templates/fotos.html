@@ -5,7 +5,7 @@
   {% for foto in fotos_list %}
     <div id="content-down" align="justify" style="width:640px;">
       {% if foto.image != "0" %}
-      <a href="{{ foto.image }}"><img src="{{ foto.image }}" width="300px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/></a>
+      <a href="{{ foto.image }}"><img src="{{ foto.image }}" width="300px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/></a>
       {% endif %}
       <h1>{{ foto.title }}</h1><div class="note_place">Фото</div>
       {{ foto.date }} - {{ foto.text }}

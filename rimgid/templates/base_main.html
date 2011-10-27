@@ -1,9 +1,9 @@
 {% extends "base_with_ex.html" %}
 
 {% block content_up %}
-<div id="content-up" align="justify">
+<div id="content-up" align="justify" style="margin-top=-10px;border='solid 10px #333';">
   <div id="olga_info" style="margin-top:-15px;">
-    <div class="foto_with_podpis"><div style="background:url('/olga.png');width:200px;height:220px;"></div><div class="podpis" style="top:220px;width:180px;">Ольга Новикова - <span style="font-weight:normal;font-size:8pt;">русскоговорящий лицензированный гид-переводчик по Риму и региону Лацио</span></div></div>
+    <div class="foto_with_podpis"><div class="rounded_up" style="background:url('/olga.png');width:200px;height:220px;margin-top=10px;"></div><div class="podpis" style="width:180px;width=200px;">Ольга Новикова - <span style="font-weight:normal;font-size:8pt;">русскоговорящий лицензированный гид-переводчик по Риму и региону Лацио</span></div></div>
     {% if content_up %}<h1>content_up.title</h1>{{ content_up.text }}{% endif %}
     <h1 style="text-align: center;">Экскурсии в Риме</h1>
     <span style="font-weight:bold;">Предлагаю Вам увлекательные экскурсии по Риму</span> и его пригородам со мной - русскоговорящим лицензированным гидом-переводчиком по Риму и региону Лацио. Вы сможете посетить археологические музеи, соборы, картинные галереи, музеи скульптуры и многое другое. Так как Рим расположен близ западного побережья Центральной Италии (примерно в 20 километрах от места впадения реки Тибр в Тирренское море), мы также сможем совершить интересные поездки на живописные морские курорты.
@@ -15,7 +15,7 @@
 {% if note %}
 <div id="content-down" align="justify">
   {% if note.image != "0" %}
-  <img src="{{ note.image }}" width="150px" height="auto !important" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+  <img src="{{ note.image }}" width="150px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;border='solid 1px #333;'"/>
   {% endif %}
   <h1>{{ note.title }}</h1><div class="note_place"><a href="/notes">Новости</a></div>
   {{ note.date }} - {{ note.text }}
@@ -24,7 +24,7 @@
 {% if shop %}
 <div id="content-down" align="justify">
   {% if shop.image != "0" %}
-  <img src="{{ shop.image }}" width="150px" height="auto !important" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+  <img src="{{ shop.image }}" width="150px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;border='solid 1px #333;'"/>
   {% endif %}
   <h1>{{ shop.title }}</h1><div class="note_place"><a href="/shops">Магазины</a></div>
   {{ shop.text }}
@@ -33,7 +33,7 @@
 {% if transport %}
 <div id="content-down" align="justify">
   {% if transport.image != "0" %}
-  <img src="{{ transport.image }}" width="150px" height="auto !important" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+  <img src="{{ transport.image }}" width="150px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;border='solid 1px #333;'" />
   {% endif %}
   <h1>{{ transport.title }}</h1><div class="note_place"><a href="/transport">Транспорт</a></div>
   {{ transport.text }}

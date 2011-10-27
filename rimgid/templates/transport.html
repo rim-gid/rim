@@ -5,7 +5,7 @@
   {% for transport in transport_list %}
     <div id="content-down" align="justify">
       {% if transport.image != "0" %}
-      <img src="{{ transport.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+      <img src="{{ transport.image }}" width="150px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
       {% endif %}
       <h1>{{ transport.title }}</h1><div class="note_place">Транспорт</div>
       {{ transport.date }} - {{ transport.text }}

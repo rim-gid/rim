@@ -5,7 +5,7 @@
   {% for shop in shops_list %}
     <div id="content-down" align="justify">
       {% if shop.image != "0" %}
-      <img src="{{ shop.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+      <img src="{{ shop.image }}" width="150px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
       {% endif %}
       <h1>{{ shop.title }}</h1><div class="note_place">Магазины</div>
       {{ shop.date }} - {{ shop.text }}
