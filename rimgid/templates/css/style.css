@@ -30,7 +30,7 @@ a {
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
-  behavior: url("border_radius.htc"); /* для IE */
+  behavior4: url("border_radius.htc"); /* для IE */
 
   -moz-box-shadow: 3px 3px 15px #000;
   -webkit-box-shadow: 3px 3px 15px #000;
