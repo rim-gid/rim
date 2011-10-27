@@ -27,6 +27,8 @@ a {
   height: 121px;
   position: relative;
   margin: 10px 0 10px;
+  margin= 10px 0 10px; /* for IE */
+  border= solid 1px #777; /* for IE */
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
@@ -75,7 +77,7 @@ h1 {
 }
 #header-top h1 {
   font-family: "Super Font", "Arial", "Courier";
-  font-family= "Times New Roman", "Arial", "Courier";
+  font-family= "Arial", "Courier", "Times New Roman";
   font-size: 44px;
   text-transform: uppercase;
   color: #009900;
@@ -184,6 +186,7 @@ dd: #fb9904;
 }
 #list {
   width: 320px;
+  width= 340px;
   height: auto;
   position: relative;
   float: left;
