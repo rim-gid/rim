@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from rimgid.wysiwyg import WYSIWYGField
 
 # Create your models here.
 class Book(models.Model):
@@ -43,7 +44,7 @@ class Tab(models.Model):
 class Note(models.Model):
     title = models.CharField(max_length=200)
     #text = models.CharField(max_length=1000)
-    text = models.TextField()
+    text = WYSIWYGField()
     date = models.DateField()
     image = models.ImageField(upload_to="images/",null="True")
     
