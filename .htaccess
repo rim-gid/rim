@@ -9,3 +9,9 @@ AddHandler wsgi-script .wsgi
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ /django.wsgi/$1 [QSA,PT,L]
+
+# Описание расположения статических файлов.
+#    Alias "/admin-media/" "/usr/lib/pymodules/python2.6/django/contrib/admin/media/"
+#    <Location "/admin-media/">
+#        SetHandler None
+#    </Location>
