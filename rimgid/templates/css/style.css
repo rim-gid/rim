@@ -192,7 +192,7 @@ dd: #fb9904;
   margin: 5px;
   padding: 0px;
 }
-#list {
+#right {
   width: 320px;
   width= 340px;
   height: auto;
@@ -201,6 +201,8 @@ dd: #fb9904;
   margin: 10px 0px 10px -340px;
   margin= 0px 0px 0px -340px;
   padding: 0px 10px 0;
+}
+#list {
   color: #9d5b0e;
 }
 #list h2 {
