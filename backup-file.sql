@@ -106,7 +106,7 @@ CREATE TABLE `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
   KEY `auth_permission_1bb8f392` (`content_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +115,7 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add permission',1,'add_permission'),(2,'Can change permission',1,'change_permission'),(3,'Can delete permission',1,'delete_permission'),(4,'Can add group',2,'add_group'),(5,'Can change group',2,'change_group'),(6,'Can delete group',2,'delete_group'),(7,'Can add user',3,'add_user'),(8,'Can change user',3,'change_user'),(9,'Can delete user',3,'delete_user'),(10,'Can add content type',4,'add_contenttype'),(11,'Can change content type',4,'change_contenttype'),(12,'Can delete content type',4,'delete_contenttype'),(13,'Can add session',5,'add_session'),(14,'Can change session',5,'change_session'),(15,'Can delete session',5,'delete_session'),(16,'Can add site',6,'add_site'),(17,'Can change site',6,'change_site'),(18,'Can delete site',6,'delete_site'),(19,'Can add log entry',7,'add_logentry'),(20,'Can change log entry',7,'change_logentry'),(21,'Can delete log entry',7,'delete_logentry'),(22,'Can add book',8,'add_book'),(23,'Can change book',8,'change_book'),(24,'Can delete book',8,'delete_book'),(25,'Can add excursion',9,'add_excursion'),(26,'Can change excursion',9,'change_excursion'),(27,'Can delete excursion',9,'delete_excursion'),(28,'Can add tab',10,'add_tab'),(29,'Can change tab',10,'change_tab'),(30,'Can delete tab',10,'delete_tab'),(31,'Can add note',11,'add_note'),(32,'Can change note',11,'change_note'),(33,'Can delete note',11,'delete_note'),(34,'Can add contacts',12,'add_contacts'),(35,'Can change contacts',12,'change_contacts'),(36,'Can delete contacts',12,'delete_contacts'),(37,'Can add olga info',13,'add_olgainfo'),(38,'Can change olga info',13,'change_olgainfo'),(39,'Can delete olga info',13,'delete_olgainfo'),(40,'Can add site footer',14,'add_sitefooter'),(41,'Can change site footer',14,'change_sitefooter'),(42,'Can delete site footer',14,'delete_sitefooter'),(43,'Can add recomendations',15,'add_recomendations'),(44,'Can change recomendations',15,'change_recomendations'),(45,'Can delete recomendations',15,'delete_recomendations'),(46,'Can add shops',16,'add_shops'),(47,'Can change shops',16,'change_shops'),(48,'Can delete shops',16,'delete_shops'),(49,'Can add transport',17,'add_transport'),(50,'Can change transport',17,'change_transport'),(51,'Can delete transport',17,'delete_transport'),(52,'Can add transfer',18,'add_transfer'),(53,'Can change transfer',18,'change_transfer'),(54,'Can delete transfer',18,'delete_transfer');
+INSERT INTO `auth_permission` VALUES (1,'Can add permission',1,'add_permission'),(2,'Can change permission',1,'change_permission'),(3,'Can delete permission',1,'delete_permission'),(4,'Can add group',2,'add_group'),(5,'Can change group',2,'change_group'),(6,'Can delete group',2,'delete_group'),(7,'Can add user',3,'add_user'),(8,'Can change user',3,'change_user'),(9,'Can delete user',3,'delete_user'),(10,'Can add content type',4,'add_contenttype'),(11,'Can change content type',4,'change_contenttype'),(12,'Can delete content type',4,'delete_contenttype'),(13,'Can add session',5,'add_session'),(14,'Can change session',5,'change_session'),(15,'Can delete session',5,'delete_session'),(16,'Can add site',6,'add_site'),(17,'Can change site',6,'change_site'),(18,'Can delete site',6,'delete_site'),(19,'Can add log entry',7,'add_logentry'),(20,'Can change log entry',7,'change_logentry'),(21,'Can delete log entry',7,'delete_logentry'),(22,'Can add book',8,'add_book'),(23,'Can change book',8,'change_book'),(24,'Can delete book',8,'delete_book'),(25,'Can add excursion',9,'add_excursion'),(26,'Can change excursion',9,'change_excursion'),(27,'Can delete excursion',9,'delete_excursion'),(28,'Can add tab',10,'add_tab'),(29,'Can change tab',10,'change_tab'),(30,'Can delete tab',10,'delete_tab'),(31,'Can add note',11,'add_note'),(32,'Can change note',11,'change_note'),(33,'Can delete note',11,'delete_note'),(34,'Can add contacts',12,'add_contacts'),(35,'Can change contacts',12,'change_contacts'),(36,'Can delete contacts',12,'delete_contacts'),(37,'Can add olga info',13,'add_olgainfo'),(38,'Can change olga info',13,'change_olgainfo'),(39,'Can delete olga info',13,'delete_olgainfo'),(40,'Can add site footer',14,'add_sitefooter'),(41,'Can change site footer',14,'change_sitefooter'),(42,'Can delete site footer',14,'delete_sitefooter'),(43,'Can add recomendations',15,'add_recomendations'),(44,'Can change recomendations',15,'change_recomendations'),(45,'Can delete recomendations',15,'delete_recomendations'),(46,'Can add shops',16,'add_shops'),(47,'Can change shops',16,'change_shops'),(48,'Can delete shops',16,'delete_shops'),(49,'Can add transport',17,'add_transport'),(50,'Can change transport',17,'change_transport'),(51,'Can delete transport',17,'delete_transport'),(52,'Can add transfer',18,'add_transfer'),(53,'Can change transfer',18,'change_transfer'),(54,'Can delete transfer',18,'delete_transfer'),(55,'Can add message',19,'add_message'),(56,'Can change message',19,'change_message'),(57,'Can delete message',19,'delete_message'),(58,'Can add fotos',20,'add_fotos'),(59,'Can change fotos',20,'change_fotos'),(60,'Can delete fotos',20,'delete_fotos');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +149,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'admin','','','aa.veter@gmail.com','sha1$E24T341kc00j$178f3d217103b7e9d6c58ba865b6b5e1f2566f6f',1,1,1,'2011-10-13 06:34:39','2011-10-03 04:36:26'),(2,'olga','','','','sha1$KKcFNR2PJ92r$92885336d85e0a9331a49495be5b1afc7af57583',1,1,0,'2011-10-14 22:41:22','2011-10-13 09:10:44');
+INSERT INTO `auth_user` VALUES (1,'admin','','','aa.veter@gmail.com','sha1$E24T341kc00j$178f3d217103b7e9d6c58ba865b6b5e1f2566f6f',1,1,1,'2011-10-18 10:14:42','2011-10-03 04:36:26'),(2,'olga','','','','sha1$KKcFNR2PJ92r$92885336d85e0a9331a49495be5b1afc7af57583',1,1,0,'2011-11-08 06:17:17','2011-10-13 09:10:44');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +195,7 @@ CREATE TABLE `auth_user_user_permissions` (
   UNIQUE KEY `user_id` (`user_id`,`permission_id`),
   KEY `auth_user_user_permissions_403f60f` (`user_id`),
   KEY `auth_user_user_permissions_1e014c8f` (`permission_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,7 +204,7 @@ CREATE TABLE `auth_user_user_permissions` (
 
 LOCK TABLES `auth_user_user_permissions` WRITE;
 /*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
-INSERT INTO `auth_user_user_permissions` VALUES (1,2,19),(2,2,25),(3,2,26),(4,2,27),(5,2,31),(6,2,32),(7,2,33),(8,2,34),(9,2,35),(10,2,36),(11,2,37),(12,2,38),(13,2,39),(14,2,43),(15,2,44),(16,2,45),(17,2,46),(18,2,47),(19,2,48),(20,2,49),(21,2,50),(22,2,51),(23,2,52),(24,2,53),(25,2,54);
+INSERT INTO `auth_user_user_permissions` VALUES (50,2,54),(49,2,53),(48,2,52),(47,2,51),(46,2,50),(45,2,49),(44,2,48),(43,2,47),(42,2,46),(41,2,45),(40,2,44),(39,2,43),(38,2,39),(37,2,38),(36,2,37),(35,2,36),(34,2,35),(33,2,34),(32,2,33),(31,2,32),(30,2,31),(29,2,27),(28,2,26),(27,2,25),(26,2,19),(51,2,58),(52,2,59),(53,2,60);
 /*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,6 +293,33 @@ INSERT INTO `books_excursion` VALUES (1,'Обзорная экскурсия п�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `books_fotos`
+--
+
+DROP TABLE IF EXISTS `books_fotos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `books_fotos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `text` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `books_fotos`
+--
+
+LOCK TABLES `books_fotos` WRITE;
+/*!40000 ALTER TABLE `books_fotos` DISABLE KEYS */;
+INSERT INTO `books_fotos` VALUES (1,'у Колизея','Я рядом с Колизеем во время одной из экскурсий','images/colosseo1_2.jpg','2011-11-08'),(2,'Собор Святого Петра','во время экскурсии в Ватикане на фоне его крупнейшего сооружения - Собора Святого Петра','images/S_Pietro1.jpg','2011-11-08'),(3,'Каноп в Тиволи','во время одной из экскурсий в Вилле Адриана в Тиволи. Позади нас Каноп.','images/Tivoli1.jpg','2011-11-08'),(4,'в Тиволи','продолжение','images/Tivoli2.jpg','2011-11-08'),(5,'в Тиволи','Вилла Адриана. Островная вилла.','images/Tivoli3.jpg','2011-11-08'),(6,'Тиволи','Каноп','images/Tivoli4.jpg','2011-11-08');
+/*!40000 ALTER TABLE `books_fotos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `books_note`
 --
 
@@ -304,9 +331,9 @@ CREATE TABLE `books_note` (
   `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `text` longtext COLLATE utf8_unicode_ci NOT NULL,
   `date` date NOT NULL,
-  `image` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -315,6 +342,7 @@ CREATE TABLE `books_note` (
 
 LOCK TABLES `books_note` WRITE;
 /*!40000 ALTER TABLE `books_note` DISABLE KEYS */;
+INSERT INTO `books_note` VALUES (2,'Выставки в Риме','Выставка художников возрождения - Филиппино Липпи и Сандро Ботичелли\r\n5.10.2011 - 15.01.2012 \r\nДворей Квиринале - Via XXIV Maggio, 16','2011-10-30','images/Boticelli.jpg'),(3,'Выставки в Риме','Выставка художника XX века \r\nМондриан - Совершенсво Гармонии\r\n8.11.2010 - 29.01.2011\r\nКомплекс Викториано\r\nVia San Pietro in Carcere','2011-10-30','images/Mondrian.jpg'),(5,'Cкидки на туры!','Специальное зимнее предложение!\r\n\r\nВ период с 01.11.2011 - 20.12.2012\r\n\r\n10 % скидки на все экскурсии\r\n15 % скидки на весь транспорт','2011-11-02','images/skidka.jpg');
 /*!40000 ALTER TABLE `books_note` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -387,7 +415,7 @@ CREATE TABLE `books_shops` (
   `text` longtext COLLATE utf8_unicode_ci NOT NULL,
   `image` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -420,7 +448,7 @@ CREATE TABLE `books_sitefooter` (
 
 LOCK TABLES `books_sitefooter` WRITE;
 /*!40000 ALTER TABLE `books_sitefooter` DISABLE KEYS */;
-INSERT INTO `books_sitefooter` VALUES (1,'© 2011 Гид по Риму, rim-gid.com. Все права защищены. Перепечатка запрещена.');
+INSERT INTO `books_sitefooter` VALUES (1,'© 2011 Гид по Риму, rim-gid.com. Все права защищены. Использование информации без ссылки на сайт запрещено.');
 /*!40000 ALTER TABLE `books_sitefooter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -518,7 +546,7 @@ CREATE TABLE `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `django_admin_log_403f60f` (`user_id`),
   KEY `django_admin_log_1bb8f392` (`content_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -527,7 +555,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
-INSERT INTO `django_admin_log` VALUES (1,'2011-10-03 04:37:30',1,13,'1','еее',1,''),(2,'2011-10-03 04:42:25',1,14,'1','© 2011 Гид по Риму, rim-gid.com. Все права защищены. Перепечатка запрещена.',2,'Изменен text.'),(3,'2011-10-03 06:55:05',1,16,'1','Распродажи в Риме',1,''),(4,'2011-10-03 06:56:38',1,17,'1','О штрафах',1,''),(5,'2011-10-03 07:53:08',1,9,'1','Экс - 1',1,''),(6,'2011-10-03 08:54:36',1,9,'1','Обзорная экскурсия по Риму',2,'Изменен title,text_full и cost.'),(7,'2011-10-03 09:26:07',1,9,'1','Обзорная экскурсия по Риму',2,'Изменен button_image.'),(8,'2011-10-04 04:50:25',1,14,'1','© 2011 Гид по Риму, rim-gid.com. Все права защищены. Перепечатка запрещена.',2,'Ни одно поле не изменено.'),(9,'2011-10-04 05:35:17',1,15,'1','Андрей Комелин',1,''),(10,'2011-10-04 06:13:35',1,15,'1','Андрей Комелин',1,''),(11,'2011-10-04 06:14:47',1,12,'1','Телефон',1,''),(12,'2011-10-04 06:15:20',1,12,'1','Телефон',2,'Изменен image.'),(13,'2011-10-04 06:21:39',1,12,'2','Skype',1,''),(14,'2011-10-04 06:22:12',1,12,'3','E-mail',1,''),(15,'2011-10-04 06:22:28',1,12,'3','E-mail',2,'Изменен image.'),(16,'2011-10-04 06:24:40',1,12,'4','Вконтакте',1,''),(17,'2011-10-04 06:25:02',1,12,'4','Вконтакте',2,'Изменен image.'),(18,'2011-10-04 06:25:11',1,12,'4','Вконтакте',2,'Изменен image.'),(19,'2011-10-04 06:30:04',1,9,'1','Обзорная экскурсия по Риму',2,'Изменен text и cost.'),(20,'2011-10-04 06:32:47',1,9,'2','Обзорная экскурсия по Риму',1,''),(21,'2011-10-04 06:35:29',1,9,'3','Античный Рим',1,''),(22,'2011-10-04 06:37:08',1,9,'4','Античный Рим',1,''),(23,'2011-10-04 06:41:07',1,9,'5','Государство Ватикан',1,''),(24,'2011-10-04 06:44:34',1,9,'6','Монументальный Рим - от Возрождения до Барокко',1,''),(25,'2011-10-04 06:48:46',1,9,'7','Христианский Рим !',1,''),(26,'2011-10-04 06:50:01',1,9,'8','Подземный Рим',1,''),(27,'2011-10-04 06:53:51',1,9,'9','Вечерний Рим',1,''),(28,'2011-10-04 06:55:14',1,9,'10','Ангелы и Демоны Рима !',1,''),(29,'2011-10-04 07:00:01',1,9,'11','Римская жизнь',1,''),(30,'2011-10-04 07:01:43',1,9,'12','Рафаэль и Микеланджело в Риме [links]',1,''),(31,'2011-10-04 07:03:29',1,9,'13','Бернини и Борромини в Риме !',1,''),(32,'2011-10-04 07:05:09',1,9,'14','Караваджо в Риме',1,''),(33,'2011-10-04 07:06:31',1,9,'15','Галерея Боргезе',1,''),(34,'2011-10-04 07:07:29',1,9,'16','Капитолийские музеи',1,''),(35,'2011-10-04 07:11:16',1,9,'17','Галереи живописи в Риме',1,''),(36,'2011-10-04 07:12:40',1,9,'18','Галереи скульптуры в Риме',1,''),(37,'2011-10-04 07:13:39',1,9,'19','Тиволи - вилла Адриана, вилла д\' Эсте, Грегорианская вилла.',1,''),(38,'2011-10-04 07:15:10',1,9,'20','Озеро Браччано и Замок Орсини - Одескальки',1,''),(39,'2011-10-04 07:16:40',1,9,'21','Замки Рима - гастрономический тур',1,''),(40,'2011-10-04 07:21:03',1,17,'2','Метро и автобусы Рима !',1,''),(41,'2011-10-04 07:21:41',1,17,'3','Такси в Риме',1,''),(42,'2011-10-04 07:22:06',1,17,'4','Как добраться из аэропорта Fiumicino в центр города !',1,''),(43,'2011-10-04 07:23:09',1,17,'5','Как добраться из аэропорта Сiampino в центр Рима',1,''),(44,'2011-10-04 07:25:14',1,16,'2','ВРЕМЯ РАБОТЫ МАГАЗИНОВ',1,''),(45,'2011-10-04 07:25:47',1,16,'3','AУТЛЕТ \"CASTEL ROMANO\" !',1,''),(46,'2011-10-04 07:26:16',1,16,'4','AУТЛЕТ \"VALMONTONE\"',1,''),(47,'2011-10-04 07:27:18',1,16,'5','TAX FREE',1,''),(48,'2011-10-04 07:45:39',1,16,'2','ВРЕМЯ РАБОТЫ МАГАЗИНОВ',2,'Изменен image.'),(49,'2011-10-04 07:49:00',1,16,'5','TAX FREE',2,'Изменен image.'),(50,'2011-10-04 07:51:16',1,17,'5','Как добраться из аэропорта Сiampino в центр Рима',2,'Изменен image.'),(51,'2011-10-04 07:53:36',1,17,'2','Метро и автобусы Рима !',2,'Изменен image.'),(52,'2011-10-04 07:55:27',1,17,'3','Такси в Риме',2,'Изменен image.'),(53,'2011-10-04 07:56:36',1,17,'4','Как добраться из аэропорта Fiumicino в центр города !',2,'Изменен image.'),(54,'2011-10-04 08:11:51',1,9,'2','Обзорная экскурсия по Риму',2,'Изменен button_image.'),(55,'2011-10-13 06:36:27',1,9,'7','Христианский Рим',2,'Изменен title и text_full.'),(56,'2011-10-13 07:39:27',1,9,'10','Ангелы и Демоны Рима',2,'Изменен title и text_full.'),(57,'2011-10-13 07:45:01',1,9,'13','Бернини и Борромини в Риме',2,'Изменен title и text_full.'),(58,'2011-10-13 08:42:41',1,9,'7','Христианский Рим',2,'Изменен map_address.'),(59,'2011-10-13 08:51:17',1,9,'7','Христианский Рим',2,'Изменен map_address.'),(60,'2011-10-13 09:10:44',1,3,'2','olga',1,''),(61,'2011-10-13 09:13:15',1,3,'2','olga',2,'Изменен is_staff и user_permissions.'),(62,'2011-10-14 16:22:20',1,15,'2','Vera Litvak',1,''),(63,'2011-10-14 22:59:12',2,15,'4','Irina Lutovinova',1,''),(64,'2011-10-14 22:59:24',2,15,'3','Irina Lutovinova',3,'');
+INSERT INTO `django_admin_log` VALUES (1,'2011-10-03 04:37:30',1,13,'1','еее',1,''),(2,'2011-10-03 04:42:25',1,14,'1','© 2011 Гид по Риму, rim-gid.com. Все права защищены. Перепечатка запрещена.',2,'Изменен text.'),(3,'2011-10-03 06:55:05',1,16,'1','Распродажи в Риме',1,''),(4,'2011-10-03 06:56:38',1,17,'1','О штрафах',1,''),(5,'2011-10-03 07:53:08',1,9,'1','Экс - 1',1,''),(6,'2011-10-03 08:54:36',1,9,'1','Обзорная экскурсия по Риму',2,'Изменен title,text_full и cost.'),(7,'2011-10-03 09:26:07',1,9,'1','Обзорная экскурсия по Риму',2,'Изменен button_image.'),(8,'2011-10-04 04:50:25',1,14,'1','© 2011 Гид по Риму, rim-gid.com. Все права защищены. Перепечатка запрещена.',2,'Ни одно поле не изменено.'),(9,'2011-10-04 05:35:17',1,15,'1','Андрей Комелин',1,''),(10,'2011-10-04 06:13:35',1,15,'1','Андрей Комелин',1,''),(11,'2011-10-04 06:14:47',1,12,'1','Телефон',1,''),(12,'2011-10-04 06:15:20',1,12,'1','Телефон',2,'Изменен image.'),(13,'2011-10-04 06:21:39',1,12,'2','Skype',1,''),(14,'2011-10-04 06:22:12',1,12,'3','E-mail',1,''),(15,'2011-10-04 06:22:28',1,12,'3','E-mail',2,'Изменен image.'),(16,'2011-10-04 06:24:40',1,12,'4','Вконтакте',1,''),(17,'2011-10-04 06:25:02',1,12,'4','Вконтакте',2,'Изменен image.'),(18,'2011-10-04 06:25:11',1,12,'4','Вконтакте',2,'Изменен image.'),(19,'2011-10-04 06:30:04',1,9,'1','Обзорная экскурсия по Риму',2,'Изменен text и cost.'),(20,'2011-10-04 06:32:47',1,9,'2','Обзорная экскурсия по Риму',1,''),(21,'2011-10-04 06:35:29',1,9,'3','Античный Рим',1,''),(22,'2011-10-04 06:37:08',1,9,'4','Античный Рим',1,''),(23,'2011-10-04 06:41:07',1,9,'5','Государство Ватикан',1,''),(24,'2011-10-04 06:44:34',1,9,'6','Монументальный Рим - от Возрождения до Барокко',1,''),(25,'2011-10-04 06:48:46',1,9,'7','Христианский Рим !',1,''),(26,'2011-10-04 06:50:01',1,9,'8','Подземный Рим',1,''),(27,'2011-10-04 06:53:51',1,9,'9','Вечерний Рим',1,''),(28,'2011-10-04 06:55:14',1,9,'10','Ангелы и Демоны Рима !',1,''),(29,'2011-10-04 07:00:01',1,9,'11','Римская жизнь',1,''),(30,'2011-10-04 07:01:43',1,9,'12','Рафаэль и Микеланджело в Риме [links]',1,''),(31,'2011-10-04 07:03:29',1,9,'13','Бернини и Борромини в Риме !',1,''),(32,'2011-10-04 07:05:09',1,9,'14','Караваджо в Риме',1,''),(33,'2011-10-04 07:06:31',1,9,'15','Галерея Боргезе',1,''),(34,'2011-10-04 07:07:29',1,9,'16','Капитолийские музеи',1,''),(35,'2011-10-04 07:11:16',1,9,'17','Галереи живописи в Риме',1,''),(36,'2011-10-04 07:12:40',1,9,'18','Галереи скульптуры в Риме',1,''),(37,'2011-10-04 07:13:39',1,9,'19','Тиволи - вилла Адриана, вилла д\' Эсте, Грегорианская вилла.',1,''),(38,'2011-10-04 07:15:10',1,9,'20','Озеро Браччано и Замок Орсини - Одескальки',1,''),(39,'2011-10-04 07:16:40',1,9,'21','Замки Рима - гастрономический тур',1,''),(40,'2011-10-04 07:21:03',1,17,'2','Метро и автобусы Рима !',1,''),(41,'2011-10-04 07:21:41',1,17,'3','Такси в Риме',1,''),(42,'2011-10-04 07:22:06',1,17,'4','Как добраться из аэропорта Fiumicino в центр города !',1,''),(43,'2011-10-04 07:23:09',1,17,'5','Как добраться из аэропорта Сiampino в центр Рима',1,''),(44,'2011-10-04 07:25:14',1,16,'2','ВРЕМЯ РАБОТЫ МАГАЗИНОВ',1,''),(45,'2011-10-04 07:25:47',1,16,'3','AУТЛЕТ \"CASTEL ROMANO\" !',1,''),(46,'2011-10-04 07:26:16',1,16,'4','AУТЛЕТ \"VALMONTONE\"',1,''),(47,'2011-10-04 07:27:18',1,16,'5','TAX FREE',1,''),(48,'2011-10-04 07:45:39',1,16,'2','ВРЕМЯ РАБОТЫ МАГАЗИНОВ',2,'Изменен image.'),(49,'2011-10-04 07:49:00',1,16,'5','TAX FREE',2,'Изменен image.'),(50,'2011-10-04 07:51:16',1,17,'5','Как добраться из аэропорта Сiampino в центр Рима',2,'Изменен image.'),(51,'2011-10-04 07:53:36',1,17,'2','Метро и автобусы Рима !',2,'Изменен image.'),(52,'2011-10-04 07:55:27',1,17,'3','Такси в Риме',2,'Изменен image.'),(53,'2011-10-04 07:56:36',1,17,'4','Как добраться из аэропорта Fiumicino в центр города !',2,'Изменен image.'),(54,'2011-10-04 08:11:51',1,9,'2','Обзорная экскурсия по Риму',2,'Изменен button_image.'),(55,'2011-10-13 06:36:27',1,9,'7','Христианский Рим',2,'Изменен title и text_full.'),(56,'2011-10-13 07:39:27',1,9,'10','Ангелы и Демоны Рима',2,'Изменен title и text_full.'),(57,'2011-10-13 07:45:01',1,9,'13','Бернини и Борромини в Риме',2,'Изменен title и text_full.'),(58,'2011-10-13 08:42:41',1,9,'7','Христианский Рим',2,'Изменен map_address.'),(59,'2011-10-13 08:51:17',1,9,'7','Христианский Рим',2,'Изменен map_address.'),(60,'2011-10-13 09:10:44',1,3,'2','olga',1,''),(61,'2011-10-13 09:13:15',1,3,'2','olga',2,'Изменен is_staff и user_permissions.'),(62,'2011-10-14 16:22:20',1,15,'2','Vera Litvak',1,''),(63,'2011-10-14 22:59:12',2,15,'4','Irina Lutovinova',1,''),(64,'2011-10-14 22:59:24',2,15,'3','Irina Lutovinova',3,''),(65,'2011-10-18 10:15:25',1,14,'1','© 2011 Гид по Риму, rim-gid.com. Все права защищены. Использование информации без ссылки на сайт запрещено.',2,'Изменен text.'),(66,'2011-10-24 17:15:07',1,3,'2','olga',2,'Изменен user_permissions.'),(67,'2011-10-28 08:16:48',1,16,'6','test',1,''),(68,'2011-10-28 08:17:11',1,16,'6','test',3,''),(69,'2011-10-28 08:33:06',1,11,'1','test',1,''),(70,'2011-10-28 08:34:01',1,11,'1','test',2,'Изменен text.'),(71,'2011-10-28 08:35:32',1,11,'1','test',3,''),(72,'2011-10-28 09:29:38',2,11,'1','тест',1,''),(73,'2011-10-28 09:30:42',2,11,'1','тест',3,''),(74,'2011-10-30 20:15:04',2,11,'2','Выставки в Риме',1,''),(75,'2011-10-30 20:21:49',2,11,'3','Выставки в Риме',1,''),(76,'2011-11-01 06:50:06',2,11,'4','тест',1,''),(77,'2011-11-01 06:51:06',2,11,'4','тест',2,'Изменен text.'),(78,'2011-11-01 06:51:17',2,11,'4','тест текст текст текст текст текст текст текст текст текст текст ',2,'Изменен title.'),(79,'2011-11-01 06:52:29',2,11,'4','тест текст текст текст текст текст текст текст текст текст текст ',3,''),(80,'2011-11-02 05:48:52',2,11,'5','Тест',1,''),(81,'2011-11-06 09:42:06',2,11,'5','Cкидки',2,'Изменен title и text.'),(82,'2011-11-06 09:42:17',2,11,'5','Cкидки',2,'Ни одно поле не изменено.'),(83,'2011-11-06 09:42:23',2,11,'5','Cкидки',2,'Ни одно поле не изменено.'),(84,'2011-11-06 09:42:33',2,11,'5','Cкидки',2,'Ни одно поле не изменено.'),(85,'2011-11-06 09:43:02',2,11,'5','Cкидки на туры!',2,'Изменен title.'),(86,'2011-11-08 06:25:47',2,20,'1','у Колизея',1,''),(87,'2011-11-08 06:32:17',2,20,'2','Собор Святого Петра',1,''),(88,'2011-11-08 06:43:55',2,20,'3','Канопа в Тиволи',1,''),(89,'2011-11-08 06:46:32',2,20,'3','Каноп в Тиволи',2,'Изменен title и text.'),(90,'2011-11-08 06:48:22',2,20,'4','в Тиволи',1,''),(91,'2011-11-08 06:51:44',2,20,'5','в Тиволи продолжение',1,''),(92,'2011-11-08 06:53:44',2,20,'5','в Тиволи',2,'Изменен title.'),(93,'2011-11-08 06:56:39',2,20,'6','Тиволи',1,'');
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -545,7 +573,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `app_label` (`app_label`,`model`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -554,7 +582,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'permission','auth','permission'),(2,'group','auth','group'),(3,'user','auth','user'),(4,'content type','contenttypes','contenttype'),(5,'session','sessions','session'),(6,'site','sites','site'),(7,'log entry','admin','logentry'),(8,'book','books','book'),(9,'excursion','books','excursion'),(10,'tab','books','tab'),(11,'note','books','note'),(12,'contacts','books','contacts'),(13,'olga info','books','olgainfo'),(14,'site footer','books','sitefooter'),(15,'recomendations','books','recomendations'),(16,'shops','books','shops'),(17,'transport','books','transport'),(18,'transfer','books','transfer');
+INSERT INTO `django_content_type` VALUES (1,'permission','auth','permission'),(2,'group','auth','group'),(3,'user','auth','user'),(4,'content type','contenttypes','contenttype'),(5,'session','sessions','session'),(6,'site','sites','site'),(7,'log entry','admin','logentry'),(8,'book','books','book'),(9,'excursion','books','excursion'),(10,'tab','books','tab'),(11,'note','books','note'),(12,'contacts','books','contacts'),(13,'olga info','books','olgainfo'),(14,'site footer','books','sitefooter'),(15,'recomendations','books','recomendations'),(16,'shops','books','shops'),(17,'transport','books','transport'),(18,'transfer','books','transfer'),(19,'message','auth','message'),(20,'fotos','books','fotos');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -580,7 +608,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('f97c8ba708ba91a26781f70d14aedd19','YjdmNGE4YzkyNDM3NWY1ZGY2NTg1ODI0YmU3YTYzMjM0YTc2OTI5ZDqAAn1xAS4=\n','2011-10-17 07:05:43'),('e92564a5aa0327353b4feb294004b5fb','OWQ4MjExOTJhMWE0YTRhZTRjODkyNzc1YTNkMjM1MzZjYmYxMGZmMzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n','2011-10-17 04:37:05'),('beb1a838b1161df0c09faa4b0d4ae6f4','gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k\ncy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEEigEBdS5iMTc2Y2I0NmU2MTNiMTkwMWE5\nMTkyNzY5ZDgzZmVkNA==\n','2011-10-27 06:34:39'),('ae7a2cd0b4c1e7351253de1d524eafd6','YjdmNGE4YzkyNDM3NWY1ZGY2NTg1ODI0YmU3YTYzMjM0YTc2OTI5ZDqAAn1xAS4=\n','2011-10-27 09:00:30'),('06a2ac2d32f1278fc89a6dc7b2613204','Mjk0N2Q1YmU1MzU5ODRiNGYyMWE1OTcxNDAzZjg3NmFjNWY1M2E4MzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQJ1Lg==\n','2011-10-28 22:41:22');
+INSERT INTO `django_session` VALUES ('f97c8ba708ba91a26781f70d14aedd19','YjdmNGE4YzkyNDM3NWY1ZGY2NTg1ODI0YmU3YTYzMjM0YTc2OTI5ZDqAAn1xAS4=\n','2011-10-17 07:05:43'),('e92564a5aa0327353b4feb294004b5fb','OWQ4MjExOTJhMWE0YTRhZTRjODkyNzc1YTNkMjM1MzZjYmYxMGZmMzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n','2011-10-17 04:37:05'),('beb1a838b1161df0c09faa4b0d4ae6f4','gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k\ncy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEEigEBdS5iMTc2Y2I0NmU2MTNiMTkwMWE5\nMTkyNzY5ZDgzZmVkNA==\n','2011-10-27 06:34:39'),('ae7a2cd0b4c1e7351253de1d524eafd6','YjdmNGE4YzkyNDM3NWY1ZGY2NTg1ODI0YmU3YTYzMjM0YTc2OTI5ZDqAAn1xAS4=\n','2011-10-27 09:00:30'),('06a2ac2d32f1278fc89a6dc7b2613204','Mjk0N2Q1YmU1MzU5ODRiNGYyMWE1OTcxNDAzZjg3NmFjNWY1M2E4MzqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQJ1Lg==\n','2011-10-28 22:41:22'),('1e22ed74ae25fdf82da26b3f487b2ff1','gAJ9cQEuYjIwNWE3MWJjODQ1MGE5MTk1MjA1MTcxODgwZTZjMzQ=\n','2011-11-10 09:49:38'),('62b6de3862763b219db6a00dc01a5a77','gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k\ncy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEEigECdS5hMTBkYzRkZmZlMjk4NzhjYTBk\nNTg4YzExMzQ3OTU5Ng==\n','2011-10-30 19:11:03'),('9abc50a1ff23032603cb6d9ed243cb0e','gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k\ncy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEEigECdS5hMTBkYzRkZmZlMjk4NzhjYTBk\nNTg4YzExMzQ3OTU5Ng==\n','2011-11-08 18:55:01'),('8d53ec2a428d32400c9537d123ba44db','gAJ9cQFVCnRlc3Rjb29raWVxAlUGd29ya2VkcQNzLjljZGIxYTg4ZDAxOTZlNTc1MTZmOWQ5Y2Q4\nMmExYzBh\n','2011-11-13 20:10:34'),('dffc9b4859e1533f3455caf3a7ae7d5e','gAJ9cQFVCnRlc3Rjb29raWVxAlUGd29ya2VkcQNzLjljZGIxYTg4ZDAxOTZlNTc1MTZmOWQ5Y2Q4\nMmExYzBh\n','2011-11-18 19:04:37'),('cfe1af25858476f8eb4813fc361035d6','gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k\ncy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEEigECdS5hMTBkYzRkZmZlMjk4NzhjYTBk\nNTg4YzExMzQ3OTU5Ng==\n','2011-11-10 22:41:07'),('e521d9a31b7e8f1e3a376e4860e09257','gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k\ncy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEEigECdS5hMTBkYzRkZmZlMjk4NzhjYTBk\nNTg4YzExMzQ3OTU5Ng==\n','2011-11-11 08:08:32'),('f34a769941c566ec672f58425b6b806b','gAJ9cQEuYjIwNWE3MWJjODQ1MGE5MTk1MjA1MTcxODgwZTZjMzQ=\n','2011-11-22 06:57:33');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -618,4 +646,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-10-15  1:12:42
+-- Dump completed on 2011-11-08  9:04:18
