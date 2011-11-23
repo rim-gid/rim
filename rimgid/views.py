@@ -73,6 +73,14 @@ def excursion_page(request, num):
     if num > 0 :
       if len(excursion_list) > t_num :
         excursion = excursion_list[t_num];
+        db_template = Template(excursion.text_full);
+        db_rez_template = Template('{% extends db_template %}');
+        db_c = Context(locals());
+        db_t = db_template.render(db_c);
+        #t = Template('{% filter wordcount %}{% include "excursion_fulltext.html" %}{% endfilter %}');
+        #c = Context(locals());
+        #wordcount = int(t.render(c));
+        #abcount = len(db_t);
     return render_to_response(url, locals())
 
 def ex_list(request):

@@ -33,6 +33,12 @@
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px;
   }
+  .abzac {
+    float: left;
+    width: 500px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
 {% endblock %}
 
 {% block right10 %}
@@ -48,7 +54,8 @@
 {% block content_down %}
   <div style="padding-left:20px;padding-bottom:20px;">
   <p><h1>{{ excursion.title }}{% if excursion.title_time != '0' %} - {{ excursion.title_time }}{% endif %}</h1>
-  {{ excursion.text_full }}</p>
+      {{ db_t }}
+  </p>
     {% if excursion.map_address != "0" %}
     <iframe width="100%" height="700px" frameborder="1" scrolling="no" marginheight="10px" marginwidth="0" src="{{ excursion.map_address }}" style="color:#0000FF;text-align:left"></iframe><br /><small><a href="{{ excursion.map_address }}">Просмотреть увеличенную карту</a></small>
     {% endif %}
