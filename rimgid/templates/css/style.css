@@ -33,6 +33,7 @@ a {
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
   behavior4: url("border_radius.htc"); /* для IE */
+  background4: #009900 url("rim.png");
 
   -moz-box-shadow: 3px 3px 15px #000;
   -webkit-box-shadow: 3px 3px 15px #000;
@@ -41,7 +42,8 @@ a {
 #header-left {
   width: 33%;
   height: 121px;
-  background: #009900 url("rim-kolizey-fon.png");
+  background5: #009900 url("rim-kolizey-fon.png");
+  background: #009900 url("rim_left.png");
   background=#009900;
   position: relative;
   float: left;
@@ -88,7 +90,7 @@ h1 {
 #header-right {
   width: 33%;
   height: 121px;
-  background: #ff0000;
+  background: #ff0000 url("rim_right.png");
   position: relative;
   float: left;
   border-radius: 0 10px 10px 0;
@@ -97,9 +99,9 @@ h1 {
   behavior4: url("border_radius.htc"); /* для IE */
   color: #990000;
   box-shadow: 0px 2px 3px #666;
-  background: -moz-linear-gradient(top, #ff0000, #dd0000);
-  background: -webkit-gradient(linear, left top, right bottom, from(#ff0000), to(#dd0000));
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff0000, endColorstr=#dd0000);
+  background5: -moz-linear-gradient(top, #ff0000, #dd0000);
+  background5: -webkit-gradient(linear, left top, right bottom, from(#ff0000), to(#dd0000));
+  filter5: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff0000, endColorstr=#dd0000);
   background=#dd0000;
 }
 #header-right a {
