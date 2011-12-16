@@ -61,6 +61,20 @@ def base_left_page(request, page_type='404'):
     elif page_type == "notes" :
       url = "notes.html";
       excursion_list = Excursion.objects.all();
+    elif page_type == "translate" :
+      url = "translate.html";
+      datas = OlgaInfo.objects.all();
+      
+      data = datas[1];
+      db_template = Template(data.hello_text);
+      db_rez_template = Template('{% extends db_template %}');
+      db_c = Context(locals());
+      db_t = db_template.render(db_c);
+
+      excursion_list = Excursion.objects.all();
+    elif page_type == "italy" :
+      url = "italy.html";
+      excursion_list = Excursion.objects.all();
     return render_to_response(url, locals())
 
 def excursion_page(request, num):
@@ -125,4 +139,9 @@ def get_ttf(request,name):
     image_data = open(image_name, "rb").read()
     return HttpResponse(image_data, mimetype="image/ttf")
     
- 
+def get_pdf(request,name):
+    image_name = settings.MEDIA_ROOT + "images/" + name + ".pdf";
+    image_data = open(image_name, "rb").read()
+    return HttpResponse(image_data, mimetype="image/pdf")
+
+
