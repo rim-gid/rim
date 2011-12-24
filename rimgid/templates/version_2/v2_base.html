@@ -300,7 +300,7 @@ border4: 1px solid #000;
 <body onload="init_ie6();" style="width:=100%;margin:0;font-family:Helvetica,Sans;font-size:0.95em;color:#363636;">
 <div id="main" style="width:1000px;left: 50%;margin-left: -500px;position: relative;float: left;">
 
-<div style="background:#77dd77;border-right:4px dashed #559955;width:100%;height:100%;right:50%;margin-right:520px;position:absolute;">
+<div style="background:#77dd77 url('green.jpg');border-right:4px dashed #559955;width:100%;height:100%;right:50%;margin-right:520px;position:absolute;">
 </div>
 
 <div style="background:#dd7777;border-left:4px dashed #995555;width:100%;height:100%;left:50%;margin-left:520px;position:absolute;">
@@ -311,7 +311,7 @@ border4: 1px solid #000;
   <div id="header" style="position:relative;float:left;" onMouseOver7="this.style.backgroundPosition='-30px -20px';" on6MouseOut="this.style.backgroundPosition='0px 0px';">
 
 
-<a id="mover" style="position:absolute;width:0px;height:300px;background:#fff url('rim_photo_2.jpg');"></a>
+<a id="mover" style="position:absolute;width:0px;height:300px;background:#fff url('rim_photo_2.jpg');"><div id="on" style="visibility:hidden;backgroun5d:#fff;height:200px;padding-left:260px;padding-top:50px;font-size:30px;">Ольга Новикова</div></a>
 
 <p id="p1" class="pp"></p>
 <p id="p2" class="pp"></p>
@@ -346,6 +346,9 @@ border4: 1px solid #000;
 		    mover.style.left= i + 'px';
                     mm=1000-i;
 		    mover.style.width= mm + 'px';
+        if (i > 500) {
+          on.style.visibility='hidden';
+        }
 		  }
 		}
 		else { 
@@ -359,12 +362,14 @@ border4: 1px solid #000;
 		    mover.style.width= '1000px';
 		    p2.style.background='#dd7777';
 		    p1.style.background='#fff';
+        on.style.visibility='visible';
 		  } else {
 		    m=0;
 		    mover.style.left= '0px';
 		    mover.style.width='0px';
 		    p1.style.background='#dd7777';
 		    p2.style.background='#fff';
+        on.style.visibility='hidden';
 		  }
 		}
 	}
@@ -382,7 +387,7 @@ border4: 1px solid #000;
     </div>
     
     <div style="margin-left:10px;float:left;margin-bottom:60px;">
-      <h1 style="margin-top:50px;float:left;width:220px;">ГИД ПО РИМУ</h1>
+      <h1 style="margin-top:50px;float:left;width:240px;">ГИД ПО РИМУ</h1>
     </div>
 
     <ul class="mainmenu">
