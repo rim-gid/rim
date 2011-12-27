@@ -134,6 +134,11 @@ def get_jpg(request,name):
     image_data = open(image_name, "rb").read()
     return HttpResponse(image_data, mimetype="image/jpg")
     
+def get_papka_jpg(request,papka,name):
+    image_name = settings.MEDIA_ROOT + "images/" + papka + "/" + name + ".jpg";
+    image_data = open(image_name, "rb").read()
+    return HttpResponse(image_data, mimetype="image/jpg")
+    
 def get_ttf(request,name):
     image_name = settings.MEDIA_ROOT + "images/" + name + ".ttf";
     image_data = open(image_name, "rb").read()

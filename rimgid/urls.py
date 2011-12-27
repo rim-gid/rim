@@ -31,6 +31,7 @@ urlpatterns = patterns('',
     ('^/?(?P<name>\w+).pdf/?$', get_pdf),
     ('^/?images/(?P<name>\w+).png/?$', get_png),
     ('^/?images/(?P<name>\w+).jpg/?$', get_jpg),
+    ('^/?images/(?P<papka>\w+)/(?P<name>\w+).jpg/?$', get_papka_jpg),
     
     #('^/?olga.png/$', get_png, {'name':'olga'}),
     ('^/?rim-kolizey-fon.png/$', get_png, {'name':'rim-kolizey-fon'}),
