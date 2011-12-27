@@ -9,11 +9,11 @@
 <div id="list"><ul>
   {% for excursion in excursion_list %}
   <li><a class="bordered" href="/excursion/{{ forloop.counter }}" style="{% if excursion.button_image == '0' %}height:auto;background-image: url('/paper_yellow_alpha.png');{% else %}background-image: url('/{{ excursion.button_image }}');{% endif %}color:#fff;" onMouseOver="map_{{ forloop.counter }}.style.visibility='visible';map_{{ forloop.counter }}.style.height='auto';" onMouseOut="map_{{ forloop.counter }}.style.visibility='hidden';map_{{ forloop.counter }}.style.height='0px';"><span style="margin-left:-5px;padding-left:10px;{% if excursion.button_image != '0' %}background:url('/paper_yellow_alpha.png');{% endif %}">{{ forloop.counter }}. {{ excursion.title }}</span>{% if excursion.title_time != '0' %} - <span class="rounded" style="padding:0px;background-color:#090;padding-left:5px;padding-right:5px;">{{ excursion.title_time }}</span>{% endif %}</a></li>
-  <div class="rounded" id="map_{{ forloop.counter }}" style="color:#fff;visibility:hidden;height:0px;position:absolute;padding-right:10px;width:620px;margin-left:-670px;background:#333333;margin-top:-160px;">
+  <!--div class="rounded" id="map_{{ forloop.counter }}" style="color:#fff;visibility:hidden;height:0px;position:absolute;padding-right:10px;width:620px;margin-left:-670px;background:#333333;margin-top:-160px;">
     <h2 style="margin-top:0px;text-align:center;">{{ excursion.title }}</h2>
     <img class="foto" style="height:auto;width:400px;" src="/ex_1_minimap.png" width="400px" height="auto" />
     {{ excursion.text }}
-  </div>
+  </div-->
   {% endfor %}
 </ul></div>
 {% endif %}
