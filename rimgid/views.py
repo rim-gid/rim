@@ -9,6 +9,9 @@ import random
 
 def robots(request):
     return render_to_response('robots.txt', locals())
+    
+def yandex_61b9f126eb948082_txt(request):
+    return render_to_response('yandex_61b9f126eb948082.txt', locals())
 
 def method_splitter(request, GET=None, POST=None):
     if request.method == 'GET' and GET is not None:
