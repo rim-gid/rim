@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /yandex_61b9f126eb948082.txt
