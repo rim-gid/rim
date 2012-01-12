@@ -8,6 +8,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     #(r'^/?admin/', include(admin.site.urls)),
+    
+    ('^/?contact_form/?(?P<ex>[^/]+)/?$',contact_form),
+    
     ('^/?robots.txt', robots),
     ('^/?yandex_61b9f126eb948082.txt', yandex_61b9f126eb948082_txt),
     ('^/?$', base_left_page, {'page_type':'main'}),
@@ -21,6 +24,7 @@ urlpatterns = patterns('',
     ('^/?translate/?$', base_left_page, {'page_type':'translate'}),
     ('^/?recomendations/?$', base_left_page, {'page_type':'recomendations'}),
     ('^/?excursion/(?P<num>\d+)/?$', excursion_page),
+    ('^/?order_excursion/(?P<ex>\w+)/?(?P<mail>\w+)/?(?P<text>\w+)/?$', excursion_order),
     ('^/?ex_list.html', ex_list),
 #    ('^/?border-radius.html', border_radius),
     
