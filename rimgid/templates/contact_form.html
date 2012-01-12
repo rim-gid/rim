@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title>Contact us</title>
+    <style type="text/css">
+    ul.errorlist {
+        margin: 0;
+        padding: 0;
+    }
+    .errorlist li {
+        background-color: red;
+        color: white;
+        display: block;
+        font-size: 10px;
+        margin: 0 0 3px;
+        padding: 4px 5px;
+    }
+    #order_form {border-radius7:10px;border7:1px solid #363636;width:480px;display3:inline-block;padding:0px;margin:0px;background2:#fff;}
+    #order_form h2 {padding:5px;margin:5px;}
+    #order_name {width:460px;height3:30px;border-radius:4px;border:1px solid #363636;margin:5px;padding:5px;}
+    #order_mail {width:460px;height3:30px;border-radius:4px;border:1px solid #363636;margin:5px;padding:5px;}
+    #order_date {width:460px;height3:30px;border-radius:4px;border:1px solid #363636;margin:5px;padding:5px;}
+    #order_text {width:460px;height3:200px;float2:left;border-radius:4px;border:1px solid #363636;margin:5px;padding:5px;}
+    </style>
+</head>
+<body>
+    {% if order_ok %}
+       Спасибо за заказ!
+    {% else %}
+    <form id="order_form" action="" method="post">
+        <h2>Заказ</h2>
+
+        {% if form.errors %}
+            <p style="color: red;">
+                Пожалуйста исправьте ошибки.
+            </p>
+        {% endif %}
+
+            {% if form.name.errors %}
+                <ul>
+                {% for error in form.name.errors %}
+                    <li><strong>{{ error }}</strong></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <label for="id_name">{{ form.name.label }}</label>
+            {{ form.name }}
+
+        <!--div id="order_date" class="field{% if form.subject.errors %} errors{% endif %}"-->
+            {% if form.subject.errors %}
+                <ul>
+                {% for error in form.subject.errors %}
+                    <li><strong>{{ error }}</strong></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <label for="id_subject">{{ form.subject.label }}</label>
+            {{ form.subject }}
+        <!--/div-->
+        <!--div id="order_mail" class="field{% if form.email.errors %} errors{% endif %}"-->
+            {% if form.email.errors %}
+                <ul>
+                {% for error in form.email.errors %}
+                    <li><strong>{{ error }}</strong></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <label for="id_email">{{ form.email.label }}</label>
+            {{ form.email }}
+        <!--/div-->
+        <!--div id="order_text" class="field{% if form.message.errors %} errors{% endif %}"-->
+          {% if form.message.errors %}
+              <ul>
+              {% for error in form.message.errors %}
+                  <li><strong>{{ error }}</strong></li>
+              {% endfor %}
+              </ul>
+          {% endif %}
+          <label for="id_message">{{ form.message.label }}:</label>
+          {{ form.message }}
+        <!--/div-->
+        <input type="submit" id="ordersubmit" value="Заказать" />
+    </form>
+  {% endif %}
+
+    <!--form id="orderform" method="post" action="" onsubmit="return orderExcursion('{{ excursion.title }}',mail.text,comment.text);">
+      {% csrf_token %}
+      <p id="orderform_result">vfdv</p>
+      <div>Для заказа этой экскурсии введите свой адрес электронной почты. На этот адрес я вышлю ответ.</div>
+      <input type="text" placeholder="адрес почты..." size="35" maxlength="50" name="mail" id="mail" /> 
+      <input type="text" placeholder="дата..."  size="35" maxlength="50" name="phone" id="phone" /> 
+      <textarea id="comment"  placeholder="комментарий к заказу..."></textarea>
+      <input type="submit" id="ordersubmit" value="Заказать" />
+    </form-->
+
+</body>
+</html>
