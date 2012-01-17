@@ -62,10 +62,29 @@ cc:#4682B4;
   height: 34px;
 }
 
+.page_fon {
+  background8: #336879;
+  background8: -moz-linear-gradient(top, #b1eafd, #336879);
+  background8: -webkit-gradient(linear, left top, left bottom, from(#b1eafd), to(#336879));
+  filter8: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#b1eafd, endColorstr=#336879);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+}
+
+#main {
+  background3: #336879;
+}
+
 </style>
 
-<body onload="init_ie6();">
+<body>
+
+<div class="page_fon"><img src="/nebo_large.jpg" width="100%" /></div>
+
 <div id="main">
+
   <div id="header">
     <div id="header-left"></div>
     <div id="header-top"><h1>Гид по Риму</h1></div>
