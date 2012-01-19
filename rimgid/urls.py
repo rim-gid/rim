@@ -9,6 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     #(r'^/?admin/', include(admin.site.urls)),
     
+    ('^test/?(?P<page>[^/]+)?/?$',base_test),
     ('^/?contact_form/?(?P<ex>[^/]+)/?$',contact_form),
     
     ('^/?robots.txt', robots),

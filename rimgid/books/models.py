@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.conf import settings
 from rimgid.wysiwyg import WYSIWYGField
@@ -33,6 +34,13 @@ class Excursion(models.Model):
     
     def __unicode__(self):
         return self.title
+        
+class Page(models.Model):
+    link = models.TextField()
+    title = models.TextField()
+    inner = models.TextField()
+    def __unicode__(self):
+        return self.link + " " + self.title
     
 class Tab(models.Model):
     adress = models.CharField(max_length=200)

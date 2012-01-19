@@ -114,6 +114,23 @@ def method_splitter(request, GET=None, POST=None):
         return POST(request)
     raise Http404
 
+def base_test(request,page=""):
+    pgs = [Page(link="main",title="Title",inner="{% extends 'base.html' %}"),
+	  Page(link="404",title="404",inner="__404__")]
+    pg404s = [item for item in pgs if item.link=="404"]
+    if len(pg404s) > 0:
+      pg404 = pg404s[0].inner
+    else:
+      pg404 = "404"
+    pg_s = [item for item in pgs if item.link==page]
+    if len(pg_s) > 0:
+      pg = pg_s[0].inner
+    else:
+      pg = pg404
+    db_template = Template(pg);
+    db_c = Context(locals());
+    return HttpResponse(db_template.render(db_c), mimetype="text/html");
+
 def base_left_page(request, page_type='404'):
     notes_list = Note.objects.all();
     footer_list = SiteFooter.objects.all();
