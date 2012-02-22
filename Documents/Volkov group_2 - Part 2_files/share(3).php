@@ -1,0 +1,1 @@
+VK.Share.count(3, 0);
