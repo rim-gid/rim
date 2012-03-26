@@ -35,7 +35,7 @@ def accounts_profile(request,name,ex,mail,text,date):
     # от кого и кому отправлять 
     #fromaddr = "iridium.toread@gmail.com"
     fromaddr = mail;
-    toaddr = "aa.veter@gmail.com"
+    toaddr = "aa.veter@gmail.com;oan_75@mail.ru;"
     # дамп БД и медиафайлы сжимаем в файл buckup.tar.gz
     #os.system("mysqldump -u [пользователь] --password=[пароль] [БД] [таблица1] [таблица2]> dump.sql")
     #os.system("tar -zcf backup.tar.gz dump.sql [путь к каталогу с медиа файлами]")
