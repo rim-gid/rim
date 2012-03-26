@@ -21,7 +21,6 @@ from django.shortcuts import render_to_response
 from rimgid.forms import ContactForm
 
 def accounts_profile(request,name,ex,mail,text,date):
-    
     mes_text = u"Вам отправили заказ. Детали заказа смотрите ниже:\n\n";
     mes_text += u"Имя: " + name + u"\nОбратный e-mail: " + mail;
     mes_text += u"\nЭкскурсия: "+ ex + u"\nЖелаемая дата: " + date;

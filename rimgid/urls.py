@@ -26,7 +26,6 @@ urlpatterns = patterns('',
     ('^/?excursion/(?P<num>\d+)/?$', excursion_page),
     ('^/?order_excursion/(?P<ex>\w+)/?(?P<mail>\w+)/?(?P<text>\w+)/?$', excursion_order),
     ('^/?ex_list.html', ex_list),
-#    ('^/?border-radius.html', border_radius),
     
     ('^/?style.css/?$', get_css, {'name' : 'style'}),
     
@@ -38,21 +37,12 @@ urlpatterns = patterns('',
     ('^/?images/(?P<name>\w+).jpg/?$', get_jpg),
     ('^/?images/(?P<papka>\w+)/(?P<name>\w+).jpg/?$', get_papka_jpg),
     
-    #('^/?olga.png/$', get_png, {'name':'olga'}),
     ('^/?rim-kolizey-fon.png/$', get_png, {'name':'rim-kolizey-fon'}),
     ('^/?kolizey-2.jpg/$', get_jpg, {'name':'kolizey-2'}),
     ('^/?rim-kolizey-fon-small.png/$', get_png, {'name':'rim-kolizey-fon-small'}),
     ('^/?ex-li-fon-(?P<num>\d+).png/$', get_num_image_png, {'url':'ex-li-fon-'} ),
     ('^/?rim-fon-(?P<num>\d+).jpg/$', get_num_image_jpg, {'url':'rim-fon-'} ),
 
-    
-    #('^/?e-mail.png/$', get_png, {'name':'e-mail'}),
-    
-    
-    
-    #('^fon.png/$', get_png, {'name':'fon'}),
-    #('^vk.png/$', get_png, {'name':'vk'}),
-    #('^fon_orange.png/$', get_png, {'name':'fon_orange'}),
     ('^/?ds_stamper.ttf/$', get_ttf, {'name':'ds_stamper'}),
     # Examples:
     # url(r'^$', 'rimgid.views.home', name='home'),
