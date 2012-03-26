@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /yandex_61b9f126eb948082.txt
-Disallow: /1be09f3f8a74.html
 Disallow: /admin*
 Disallow: /time
 Disallow: /guida_turistica.pdf
