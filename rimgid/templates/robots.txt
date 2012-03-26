@@ -3,3 +3,4 @@ Allow: /
 Disallow: /yandex_61b9f126eb948082.txt
 Disallow: /admin*
 Disallow: /time
+Disallow: /guida_turistica.pdf
