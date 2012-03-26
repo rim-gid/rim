@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'rerimerwidget.h'
 **
-** Created: Wed Feb 22 17:36:54 2012
+** Created: Mon Mar 26 16:48:25 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

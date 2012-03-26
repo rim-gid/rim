@@ -290,7 +290,11 @@ void copyTranslited(const QString &filesDir,const QString &fileName, const QStri
         }
     }
     QFile file(filesDir+"/"+fileName);
-    QFile fileOut(filesDir+"_TRANSLITED/"+translited);
+
+    QString translitedR = translited;
+    translitedR.replace(QString("-"),QString("_"));
+
+    QFile fileOut(filesDir+"_TRANSLITED/"+translitedR);
     if (file.open(QFile::ReadOnly)) {
         if (fileOut.open(QFile::WriteOnly)) {
             QByteArray ar = file.readAll();
