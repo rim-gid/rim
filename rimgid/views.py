@@ -105,6 +105,9 @@ def robots(request):
     
 def yandex_61b9f126eb948082_txt(request):
     return render_to_response('yandex_61b9f126eb948082.txt', locals())
+    
+def html_1be09f3f8a74_html(request):
+    return render_to_response('1be09f3f8a74.html', locals())
 
 def method_splitter(request, GET=None, POST=None):
     if request.method == 'GET' and GET is not None:

@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     
     ('^/?robots.txt', robots),
     ('^/?yandex_61b9f126eb948082.txt', yandex_61b9f126eb948082_txt),
+    ('^/?1be09f3f8a74.html', html_1be09f3f8a74_html),
     ('^/?$', base_left_page, {'page_type':'main'}),
     ('^/?contacts/?$', base_left_page, {'page_type':'contacts'}),
     ('^/?transfer/?$', base_left_page, {'page_type':'transfer'}),
