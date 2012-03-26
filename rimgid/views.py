@@ -205,6 +205,14 @@ def ex_list(request):
     url = 'ex_list.html';
     excursion_list = Excursion.objects.all();
     return render_to_response(url, locals())
+
+def error404(request):
+    url = '404.html';
+    request_path = request.path;
+    excursion_list = Excursion.objects.all();
+    return render_to_response(url, locals())
+
+
     
 #def border_radius(request):
 #    url = 'border-radius.html';

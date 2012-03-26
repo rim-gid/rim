@@ -44,6 +44,9 @@ urlpatterns = patterns('',
     ('^/?rim-fon-(?P<num>\d+).jpg/$', get_num_image_jpg, {'url':'rim-fon-'} ),
 
     ('^/?ds_stamper.ttf/$', get_ttf, {'name':'ds_stamper'}),
+    
+    ('[.]+',error404),
+    
     # Examples:
     # url(r'^$', 'rimgid.views.home', name='home'),
     # url(r'^rimgid/', include('rimgid.foo.urls')),
