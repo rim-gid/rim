@@ -116,6 +116,13 @@ def method_splitter(request, GET=None, POST=None):
         return POST(request)
     raise Http404
 
+def edit_excursions(request):
+    excursion_list = Excursion.objects.all();
+    return render_to_response('edit_excursions.html',locals())
+
+def jseditor(request):
+    return render_to_response('jseditor.html',locals())
+
 def base_left_page(request, page_type='404'):
     notes_list = Note.objects.all();
     footer_list = SiteFooter.objects.all();
@@ -224,6 +231,10 @@ def error404(request):
 def get_css(request,name):
     url = "css/" + name + ".css";
     return render_to_response(url, locals())
+
+def get_js(request,name):
+    url = "js/" + name + ".js";
+    return render_to_response(url, locals())
     
 def get_htc(request,name):
     url = settings.MEDIA_ROOT + "templates/htc/" + name + ".htc";
@@ -253,6 +264,12 @@ def get_papka_jpg(request,papka,name):
     image_name = settings.MEDIA_ROOT + "images/" + papka + "/" + name + ".jpg";
     image_data = open(image_name, "rb").read()
     return HttpResponse(image_data, mimetype="image/jpg")
+
+def get_papka_gif(request,papka,name):
+    #return HttpResponse("ok!", mimetype="text/html");
+    image_name = settings.MEDIA_ROOT + "images/" + papka + "/" + name + ".gif";
+    image_data = open(image_name, "rb").read()
+    return HttpResponse(image_data, mimetype="image/gif")
     
 def get_ttf(request,name):
     image_name = settings.MEDIA_ROOT + "images/" + name + ".ttf";

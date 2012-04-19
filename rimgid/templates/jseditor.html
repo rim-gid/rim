@@ -1,0 +1,32 @@
+<html><head>
+<link rel="stylesheet" type="text/css" href="jseditor.css">
+<meta http-equiv="Content-Type" 
+ content="text/html; charset=windows-1251">
+<title>JS editor</title>
+<script type="text/javascript" src="jseditor.js"></script>
+</head>
+<body bgcolor="#EEEEEE" text="#111111">
+
+<form name="f1" action="" method="post" enctype="multipart/form-data">
+
+ <table border=0 align="center">
+ <tr><td>
+  <script type="text/javascript">
+   showIcons (); 
+  </script>
+  <br>
+  <span id="helpbox" style="width:450px; font-size:10px" 
+   class="small">smthg 1</span>
+  </td></tr>
+  <tr><td>
+   <textarea name="text" class="button" rows="10" cols="72" 
+   onselect="storeCaret(this);" onclick="storeCaret(this);" 
+   onkeyup="storeCaret(this);"></textarea>
+  </td></tr>
+  <tr><td>
+   <input type="submit" class="button" value="submit" 
+    onclick="bbstyle(-1); return checkblock();">
+  </td></tr>
+</form>
+
+</body></html>

@@ -8,6 +8,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     #(r'^/?admin/', include(admin.site.urls)),
+
+    (r'^/?admin_jseditor/?$', jseditor),
     
     ('^/?contact_form/?(?P<ex>[^/]+)/?$',contact_form),
     
@@ -28,7 +30,8 @@ urlpatterns = patterns('',
     ('^/?order_excursion/(?P<ex>\w+)/?(?P<mail>\w+)/?(?P<text>\w+)/?$', excursion_order),
     ('^/?ex_list.html', ex_list),
     
-    ('^/?style.css/?$', get_css, {'name' : 'style'}),
+    ('^/?(?P<name>\w+).css/?$', get_css),
+    ('^/?(?P<name>\w+).js/?$', get_js),
     
     ('^/?(?P<name>\w+).htc/?$', get_htc),
     ('^/?(?P<name>\w+).png/?$', get_png),
@@ -37,6 +40,8 @@ urlpatterns = patterns('',
     ('^/?images/(?P<name>\w+).png/?$', get_png),
     ('^/?images/(?P<name>\w+).jpg/?$', get_jpg),
     ('^/?images/(?P<papka>\w+)/(?P<name>\w+).jpg/?$', get_papka_jpg),
+
+    ('^/?tags/(?P<name>\w+).gif/?$', get_papka_gif, {'papka':'tags'}),
     
     ('^/?rim-kolizey-fon.png/$', get_png, {'name':'rim-kolizey-fon'}),
     ('^/?kolizey-2.jpg/$', get_jpg, {'name':'kolizey-2'}),
@@ -46,7 +51,7 @@ urlpatterns = patterns('',
 
     ('^/?ds_stamper.ttf/$', get_ttf, {'name':'ds_stamper'}),
     
-    ('[.]+',error404),
+    ('^/?[.]+/?$',error404),
     
     # Examples:
     # url(r'^$', 'rimgid.views.home', name='home'),
@@ -60,6 +65,7 @@ urlpatterns = patterns('',
 #    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/path/to/media'}),
     #(r'^admin/', include(admin.site.urls)),
     (r'^admin/', include(admin.site.urls)),
+    (r'^/?admin_excursions/?$',edit_excursions),
     #(r'^/?admin/admin/$', include(admin_media)),
     #(r'^admin/admin/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/usr/local/www/rim/admin_media/', 'show_indexes': True}),
 )
