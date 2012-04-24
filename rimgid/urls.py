@@ -13,45 +13,27 @@ urlpatterns = patterns('',
     
     ('^/?contact_form/?(?P<ex>[^/]+)/?$',contact_form),
     
+    # PAGES:
     ('^/?robots.txt', robots),
     ('^/?yandex_61b9f126eb948082.txt', yandex_61b9f126eb948082_txt),
     ('^/?1be09f3f8a74.html', html_1be09f3f8a74_html),
-    ('^/?$', base_left_page, {'page_type':'main'}),
-    ('^/?contacts/?$', base_left_page, {'page_type':'contacts'}),
-    ('^/?transfer/?$', base_left_page, {'page_type':'transfer'}),
-    ('^/?transport/?$', base_left_page, {'page_type':'transport'}),
-    ('^/?shops/?$', base_left_page, {'page_type':'shops'}),
-    ('^/?fotos/?$', base_left_page, {'page_type':'fotos'}),
-    ('^/?notes/?$', base_left_page, {'page_type':'notes'}),
-    ('^/?italy/?$', base_left_page, {'page_type':'italy'}),
-    ('^/?translate/?$', base_left_page, {'page_type':'translate'}),
-    ('^/?recomendations/?$', base_left_page, {'page_type':'recomendations'}),
+    
+    ('^/?$', get_page, {'page_type':'main'}),
+    ('^/?(?P<page_type>\w+)?/?$', get_page),
+    
     ('^/?excursion/(?P<num>\d+)/?$', excursion_page),
     ('^/?order_excursion/(?P<ex>\w+)/?(?P<mail>\w+)/?(?P<text>\w+)/?$', excursion_order),
     ('^/?ex_list.html', ex_list),
     
+    ('^/?test.html', test),
+    
+    # IMAGES:
     ('^/?(?P<name>\w+).css/?$', get_css),
     ('^/?(?P<name>\w+).js/?$', get_js),
+    ('^/?(images/)?((?P<papka>\w+)/)?(?P<name>[^/]+)\.(?P<tp>\w+)/?$', get_image),
+    ('^/?ds_stamper.ttf/$', get_image, {'tp':'ttf'}),
     
-    ('^/?(?P<name>\w+).htc/?$', get_htc),
-    ('^/?(?P<name>\w+).png/?$', get_png),
-    ('^/?(?P<name>\w+).jpg/?$', get_jpg),
-    ('^/?(?P<name>\w+).pdf/?$', get_pdf),
-    ('^/?images/(?P<name>\w+).png/?$', get_png),
-    ('^/?images/(?P<name>\w+).jpg/?$', get_jpg),
-    ('^/?images/(?P<papka>\w+)/(?P<name>\w+).jpg/?$', get_papka_jpg),
-
-    ('^/?tags/(?P<name>\w+).gif/?$', get_papka_gif, {'papka':'tags'}),
-    
-    ('^/?rim-kolizey-fon.png/$', get_png, {'name':'rim-kolizey-fon'}),
-    ('^/?kolizey-2.jpg/$', get_jpg, {'name':'kolizey-2'}),
-    ('^/?rim-kolizey-fon-small.png/$', get_png, {'name':'rim-kolizey-fon-small'}),
-    ('^/?ex-li-fon-(?P<num>\d+).png/$', get_num_image_png, {'url':'ex-li-fon-'} ),
-    ('^/?rim-fon-(?P<num>\d+).jpg/$', get_num_image_jpg, {'url':'rim-fon-'} ),
-
-    ('^/?ds_stamper.ttf/$', get_ttf, {'name':'ds_stamper'}),
-    
-    ('^/?[.]+/?$',error404),
+    #('^/?[.]+/?$',error404),
     
     # Examples:
     # url(r'^$', 'rimgid.views.home', name='home'),

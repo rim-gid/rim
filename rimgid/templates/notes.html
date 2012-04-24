@@ -1,17 +1,19 @@
 {% extends "base_with_ex.html" %}
 
 {% block content_down %}
-{% if notes_list %}
-  {% for note in notes_list %}
-    <div id="content-down" align="justify" style="width:640px;">  
+{% if content_list %}
+  {% for note in content_list %}
+    <div id="content-down" align="justify" style="width:640px;">
+      {% if note.image != "0" %}
       <img src="{{ note.image }}" width="150px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
-      <h1>{{ note.title }}</h1><div class="note_place">Новости</div>
+      {% endif %}
+      <h1>{{ note.title }}</h1><div class="note_place">{{ content_name }}</div>
       {{ note.date }} - {{ note.text }}
     </div>
   {% endfor %}  
 {% else %}    
     <div id="content-down" align="justify" style="width:640px;">
-      Пока нет ни одной заметки...
+      {{ content_no }}
     </div>
 {% endif %}
 

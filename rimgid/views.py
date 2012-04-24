@@ -123,7 +123,96 @@ def edit_excursions(request):
 def jseditor(request):
     return render_to_response('jseditor.html',locals())
 
+def get_main_params():
+    mp = { 'site_name':settings.AAA_SITE_NAME,
+      'site_footer':settings.AAA_SITE_FOOTER,
+      'page_title':settings.AAA_SITE_TITLE,
+      'page_keywords':u"Русскоязычный индивидуальный гид по Риму и Италии. Экскурсии на русском языке в Риме в Италии русскоговорящий гид. rim-gid.com",
+      'page_description':u"Офицальный сайт Ольги Новиковой - гида-переводчика в Риме",
+      'owner_phone':"+39 3336631315",
+      'owner_skype':"olga.novikova22",
+      'owner_email':"oan_75@mail.ru",
+	    }
+    return mp
+
+def excursion_page(request, num):
+    mp = get_main_params()
+    footer_list = SiteFooter.objects.all()
+    if len(footer_list) > 0:
+      footer = footer_list[0]
+    url = 'excursion.html'
+    excursion_list = Excursion.objects.all()
+    t_num = int(num)-1;
+    ex_num = str(t_num);
+    if num > 0 :
+      if len(excursion_list) > t_num:
+        excursion = excursion_list[t_num]
+        db_template = Template(excursion.text_full)
+        db_rez_template = Template('{% extends db_template %}')
+        db_c = Context(locals())
+        db_t = db_template.render(db_c)
+    return render_to_response(url, locals())
+
+def get_page(request, page_type='404'):
+    mp = get_main_params()
+
+    if page_type == 'main':
+      try:
+	notes_count = Note.objects.all().count()
+	rand_note = random.randint(0, notes_count-1)
+	note = Note.objects.all()[rand_note]
+	
+	shops_count = Shops.objects.all().count()
+	rand_shop = random.randint(0, shops_count-1)
+	shop = Shops.objects.all()[rand_shop]
+	
+	transport_count = Transport.objects.all().count()
+	rand_transport = random.randint(0, transport_count-1)
+	transport = Transport.objects.all()[rand_transport]
+      except:
+	notes_error=True
+    elif page_type == 'contacts':
+      contacts_list = Contacts.objects.all()
+    elif page_type == 'transfer':
+      transfers_list = Transfer.objects.all()
+    elif page_type == 'fotos':
+      fotos_list = Fotos.objects.all()
+    elif page_type == 'recomendations':
+      recomendations_list = Recomendations.objects.all()
+    elif page_type == "translate" :
+      datas = OlgaInfo.objects.all()
+      data = datas[1]
+      db_template = Template(data.hello_text)
+      db_rez_template = Template('{% extends db_template %}')
+      db_c = Context(locals())
+      db_t = db_template.render(db_c)
+    elif page_type == "notes" :
+      content_name = u'Новости'
+      content_no = u'Пока нет ни одной новости'
+      content_list = Note.objects.all()
+    elif page_type == "shops" :
+      content_name = u'Магазины'
+      content_no = u'Пока нет ни одной заметки про магазины'
+      content_list = Shops.objects.all()
+      page_type = "notes"
+    elif page_type == "transport" :
+      content_name = u'Транспорт'
+      content_no = u'Пока нет ни одной заметки про транспорт'
+      content_list = Transport.objects.all()
+      page_type = "notes"
+    
+    try:
+      url = page_type+".html"
+      excursion_list = Excursion.objects.all()
+      return render_to_response(url, locals())
+    except:
+      return error404(request)
+
 def base_left_page(request, page_type='404'):
+    site_name = settings.AAA_SITE_NAME;
+    site_footer = settings.AAA_SITE_FOOTER;
+    site_title = settings.AAA_SITE_TITLE;
+  
     notes_list = Note.objects.all();
     footer_list = SiteFooter.objects.all();
     shops_list = Shops.objects.all();
@@ -140,6 +229,8 @@ def base_left_page(request, page_type='404'):
     if len(transport_list) > 0:
       rand_transport = random.randint(0, len(transport_list)-1);
       transport = transport_list[rand_transport];
+      
+      
     if page_type == 'main' :
       url = 'base_main.html';
       excursion_list = Excursion.objects.all();
@@ -187,30 +278,6 @@ def excursion_order(request,ex,mail,text):
     rez = accounts_profile(request,ex,mail,text);
     return HttpResponse(str(rez), mimetype="text/html");
 
-def excursion_page(request, num):
-    #if request.needtosended is not None and request.needtosended = True:
-      #return HttpResponseRedirect("/login/")
-      
-    footer_list = SiteFooter.objects.all();
-    if len(footer_list) > 0:
-      footer = footer_list[0];
-    url = 'excursion.html';
-    excursion_list = Excursion.objects.all();
-    t_num = int(num)-1;
-    ex_num = str(t_num);
-    if num > 0 :
-      if len(excursion_list) > t_num :
-        excursion = excursion_list[t_num];
-        db_template = Template(excursion.text_full);
-        db_rez_template = Template('{% extends db_template %}');
-        db_c = Context(locals());
-        db_t = db_template.render(db_c);
-        #t = Template('{% filter wordcount %}{% include "excursion_fulltext.html" %}{% endfilter %}');
-        #c = Context(locals());
-        #wordcount = int(t.render(c));
-        #abcount = len(db_t);
-    return render_to_response(url, locals())
-
 def ex_list(request):
     url = 'ex_list.html';
     excursion_list = Excursion.objects.all();
@@ -222,8 +289,31 @@ def error404(request):
     excursion_list = Excursion.objects.all();
     return render_to_response(url, locals())
 
-
+def about_pages(request, page):
+    try:
+        return direct_to_template(request, template="about/%s.html" % page)
+    except TemplateDoesNotExist:
+        raise Http404()
     
+def test(request):
+    data="<?xml version='1.0' encoding='utf-8'?>"
+    data+="<data>"
+    try:
+      main = SiteParam.objects.get(name="main")
+      values = main.value.split(";")
+      for val in values:
+	vv = val.split("=")
+	if len(vv) > 1:
+	  data += "<value id='"+vv[0]+"'>" +vv[1]+ "</value>"
+    except SiteParam.DoesNotExist:
+      return error404(request)
+    data+="</data>"
+    return HttpResponse(data, mimetype="text/xml")
+    xargs = main.value.split("&")
+    xa_len = len(xargs)
+    if xa_len < 1:
+      return HttpResponse("ERROR*xa_len < 1 in: "+args, mimetype="text/html");
+    return HttpResponse("ERROR*xa_len < 1 in: "+args, mimetype="text/html");
 #def border_radius(request):
 #    url = 'border-radius.html';
 #    return render_to_response(url, locals())
@@ -241,44 +331,21 @@ def get_htc(request,name):
     ufile = open(url, "rb").read()
     return HttpResponse(ufile, mimetype="text/x-component")
     
-def get_png(request,name):
-    image_name = settings.MEDIA_ROOT + "images/" + name + ".png";
-#    image_name = "application/rimgid/images/" + name + ".png";
-    image_data = open(image_name, "rb").read()
-    return HttpResponse(image_data, mimetype="image/png")
-
-def get_num_image_png(request,url,num):
-    name = url + num;
-    return get_png(request,name);
-      
-def get_num_image_jpg(request,url,num):
-    name = url + num;
-    return get_jpg(request,name);
-
-def get_jpg(request,name):
-    image_name = settings.MEDIA_ROOT + "images/" + name + ".jpg";
-    image_data = open(image_name, "rb").read()
-    return HttpResponse(image_data, mimetype="image/jpg")
-    
 def get_papka_jpg(request,papka,name):
-    image_name = settings.MEDIA_ROOT + "images/" + papka + "/" + name + ".jpg";
-    image_data = open(image_name, "rb").read()
-    return HttpResponse(image_data, mimetype="image/jpg")
+    return get_image(request,papka+"/"+name,"jpg")
 
 def get_papka_gif(request,papka,name):
-    #return HttpResponse("ok!", mimetype="text/html");
-    image_name = settings.MEDIA_ROOT + "images/" + papka + "/" + name + ".gif";
-    image_data = open(image_name, "rb").read()
-    return HttpResponse(image_data, mimetype="image/gif")
-    
-def get_ttf(request,name):
-    image_name = settings.MEDIA_ROOT + "images/" + name + ".ttf";
-    image_data = open(image_name, "rb").read()
-    return HttpResponse(image_data, mimetype="image/ttf")
-    
-def get_pdf(request,name):
-    image_name = settings.MEDIA_ROOT + "images/" + name + ".pdf";
-    image_data = open(image_name, "rb").read()
-    return HttpResponse(image_data, mimetype="image/pdf")
+    return get_image(request,papka+"/"+name,"gif")
 
-
+def get_image(request,name,tp,papka):
+    try:
+      if len(papka) > 0:
+	name = papka + "/" + name
+    except TypeError:
+      papka=""
+    image_name = "images/" + name + "." + tp;
+    try:
+      image_data = open(settings.MEDIA_ROOT+image_name, "rb").read()
+    except IOError:
+      image_data = open("rimgid/"+image_name, "rb").read()
+    return HttpResponse(image_data, mimetype="image/"+tp)

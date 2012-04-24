@@ -1,0 +1,21 @@
+PROJECT="rim"
+DB="aaveter_0";
+DBUSER="aaveter_0";
+DBPASS="uR1zdiC7";
+UROOPASS="f2y0l0h10";
+EMAIL="aa.veter@gmail.com"
+CLONEPATH="git@github.com:rim/rim.git"
+
+# Заменяем настроечный файл mysql
+  cp /etc/mysql/my.cnf /etc/mysql/my.cnf.tmp0
+  cp my.cnf /etc/mysql/my.cnf
+
+/etc/init.d/mysql restart;
+
+# Создаем базу данных имя которой мы ввели
+	mysql -uroot -p${UROOPASS} --execute="create database ${DB};"
+# Создаем нового пользователя
+	mysql -uroot -p${UROOPASS} --execute="GRANT ALL PRIVILEGES ON ${DB}.* TO ${DBUSER}@localhost IDENTIFIED by '${DBPASS}'  WITH GRANT OPTION;"
+
+python manage.py syncdb;
+./sql_load $DBPASS

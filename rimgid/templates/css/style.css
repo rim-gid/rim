@@ -8,6 +8,14 @@ html, body {
   line-height: 1.4;
   color: black;
 }
+TABLE {
+    background: #fff; /* Цвет фона таблицы */
+    color: white; /* Цвет текста */
+    width: 600px;
+   }
+  TD {
+    background: #009900; /* Цвет фона ячеек */
+  }
 #main {
   width: 1000px;
   height: auto;
@@ -421,4 +429,70 @@ dd: #fb9904;
   background6: #009900 url("paper_green.jpg");
   background4: #333333;
   color5: #ff0000;
+}
+
+
+ul.second_info {
+  visibility: hidden;
+  height: 0px;
+  padding: 0;
+  padding-left: 0px;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+  position: relative;
+  float: left;
+  font-weight: bold;
+  background: #009900;
+  border-radius: 10px;
+  -moz-border-radius: 10px;  /* для firefox */
+  -webkit-border-radius: 10px;  /* для Safari и Chrome */
+}
+ul.second_info li, li2 {
+   float: left;
+}
+ul.second_info li a, ul.second_info li a:visited {
+   display: block;
+   padding: 5px;
+   margin-right: 1px;
+   color: #fff;
+   width: 100px;
+   text-align: center;
+   text-decoration: none;
+}
+ul.second_info li2 a, ul.second_info li2 a:visited {
+  color: #0000ff;
+  display: block;
+   padding: 5px;
+   margin-right: 1px;
+   width: 100px;
+   text-align: center;
+   text-decoration: none;
+}
+ul.second_info li a:hover, ul.second_info li2 a:hover {
+  border-radius: 10px;
+    -moz-border-radius: 10px;  /* для firefox */
+    -webkit-border-radius: 10px;  /* для Safari и Chrome */
+   color: #fff;
+cc:#4682B4;
+   background-color: #00bb00;
+  background: -moz-linear-gradient(top, #00bb00, #009900);
+  background: -webkit-gradient(linear, left top, left bottom, from(#00bb00), to(#009900));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#00bb00, endColorstr=#009900);
+  margin-top: -8px;
+  height: 24px;
+}
+#info a:hover {
+  height: 34px;
+}
+
+.page_fon {
+  background8: #336879;
+  background8: -moz-linear-gradient(top, #b1eafd, #336879);
+  background8: -webkit-gradient(linear, left top, left bottom, from(#b1eafd), to(#336879));
+  filter8: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#b1eafd, endColorstr=#336879);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
 }

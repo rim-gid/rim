@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 from rimgid.books.models import *
 
@@ -12,3 +13,4 @@ admin.site.register(OlgaInfo)
 admin.site.register(Recomendations)
 admin.site.register(Contacts)
 admin.site.register(Fotos)
+admin.site.register(SiteParam)

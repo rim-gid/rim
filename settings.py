@@ -68,6 +68,10 @@ MEDIA_URL = '/usr/local/www/rim/rimgid/'
 
 DEFAULT_CHARSET = 'utf8'
 
+AAA_SITE_NAME = u'Гид по Риму'
+AAA_SITE_FOOTER = u'© 2011 Гид по Риму, rim-gid.com. Все права защищены. Использование информации без ссылки на сайт запрещено.'
+AAA_SITE_TITLE = u'Русскоязычный индивидуальный гид по Риму и Италии. Экскурсии на русском языке в Риме в Италии русскоговорящий гид. rim-gid.com'
+
 #STATIC = '/home/a/aaveter/public_html///rim/rimgid/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
