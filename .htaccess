@@ -1,10 +1,11 @@
-DirectoryIndex index.html index.cgi django.wsgi
+DirectoryIndex django.wsgi
 
-#AddHandler cgi-script .cgi
+Options -Indexes
+
 AddHandler wsgi-script .wsgi
 
-#ErrorDocument 403 /error.html
-#ErrorDocument 500 /error505.html
+ErrorDocument 403 /rimgid/templates/error404.html
+ErrorDocument 500 /rimgid/templates/error505.html
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
