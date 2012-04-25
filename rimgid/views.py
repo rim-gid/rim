@@ -208,72 +208,6 @@ def get_page(request, page_type='404'):
     except:
       return error404(request)
 
-def base_left_page(request, page_type='404'):
-    site_name = settings.AAA_SITE_NAME;
-    site_footer = settings.AAA_SITE_FOOTER;
-    site_title = settings.AAA_SITE_TITLE;
-  
-    notes_list = Note.objects.all();
-    footer_list = SiteFooter.objects.all();
-    shops_list = Shops.objects.all();
-    transport_list = Transport.objects.all();
-    if len(notes_list) > 0:
-      rand_note = random.randint(0, len(notes_list)-1);
-      note = notes_list[rand_note];
-    if len(footer_list) > 0:
-      rand_footer = random.randint(0, len(footer_list)-1);
-      footer = footer_list[rand_footer];
-    if len(shops_list) > 0:
-      rand_shop = random.randint(0, len(shops_list)-1);
-      shop = shops_list[rand_shop];
-    if len(transport_list) > 0:
-      rand_transport = random.randint(0, len(transport_list)-1);
-      transport = transport_list[rand_transport];
-      
-      
-    if page_type == 'main' :
-      url = 'base_main.html';
-      excursion_list = Excursion.objects.all();
-    elif page_type == 'contacts' :
-      url = 'base_contacts.html';
-      contacts_list = Contacts.objects.all();
-    elif page_type == 'transfer' :
-      url = 'transfer.html';
-      transfers_list = Transfer.objects.all();
-      excursion_list = Excursion.objects.all();
-    elif page_type == 'transport' :
-      url = 'transport.html';
-      excursion_list = Excursion.objects.all();
-    elif page_type == 'shops' :
-      url = 'shops.html';
-      excursion_list = Excursion.objects.all();
-    elif page_type == 'fotos' :
-      url = 'fotos.html';
-      fotos_list = Fotos.objects.all();
-      excursion_list = Excursion.objects.all();
-    elif page_type == 'recomendations' :
-      url = 'recomendations.html';
-      recomendations_list = Recomendations.objects.all();
-      excursion_list = Excursion.objects.all();
-    elif page_type == "notes" :
-      url = "notes.html";
-      excursion_list = Excursion.objects.all();
-    elif page_type == "translate" :
-      url = "translate.html";
-      datas = OlgaInfo.objects.all();
-      
-      data = datas[1];
-      db_template = Template(data.hello_text);
-      db_rez_template = Template('{% extends db_template %}');
-      db_c = Context(locals());
-      db_t = db_template.render(db_c);
-
-      excursion_list = Excursion.objects.all();
-    elif page_type == "italy" :
-      url = "italy.html";
-      excursion_list = Excursion.objects.all();
-    return render_to_response(url, locals())
-
 def excursion_order(request,ex,mail,text):
     rez = accounts_profile(request,ex,mail,text);
     return HttpResponse(str(rez), mimetype="text/html");
@@ -284,6 +218,7 @@ def ex_list(request):
     return render_to_response(url, locals())
 
 def error404(request):
+    mp = get_main_params()
     url = '404.html';
     request_path = request.path;
     excursion_list = Excursion.objects.all();
