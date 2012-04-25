@@ -3,6 +3,8 @@
 
 import sys
 sys.path.append('/usr/local/www/rim')
+sys.path.append('/usr/local/www/rim_version')
+sys.path.append('../rim_version')
 
 import os
 os.environ['PYTHON_EGG_CACHE'] = '/usr/local/www/egg_cache'
@@ -68,9 +70,7 @@ MEDIA_URL = '/usr/local/www/rim/rimgid/'
 
 DEFAULT_CHARSET = 'utf8'
 
-AAA_SITE_NAME = u'Гид по Риму'
-AAA_SITE_FOOTER = u'© 2011 Гид по Риму, rim-gid.com. Все права защищены. Использование информации без ссылки на сайт запрещено.'
-AAA_SITE_TITLE = u'Русскоязычный индивидуальный гид по Риму и Италии. Экскурсии на русском языке в Риме в Италии русскоговорящий гид. rim-gid.com'
+from project_params import *
 
 #STATIC = '/home/a/aaveter/public_html///rim/rimgid/'
 
@@ -102,10 +102,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'rimgid.urls'
 
 TEMPLATE_DIRS = (
-    #'/home/a/aaveter/public_html///rim/rimgid/templates',
-    #'public_html///rim/rimgid/templates',
-    #'/home/andrey/rimgid/rim/rimgid/templates',
-    #'/home/andrey/rim/rimgid/templates',
     '/usr/local/www/rim/rimgid/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.

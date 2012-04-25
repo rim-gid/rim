@@ -124,16 +124,7 @@ def jseditor(request):
     return render_to_response('jseditor.html',locals())
 
 def get_main_params():
-    mp = { 'site_name':settings.AAA_SITE_NAME,
-      'site_footer':settings.AAA_SITE_FOOTER,
-      'page_title':settings.AAA_SITE_TITLE,
-      'page_keywords':u"Русскоязычный индивидуальный гид по Риму и Италии. Экскурсии на русском языке в Риме в Италии русскоговорящий гид. rim-gid.com",
-      'page_description':u"Офицальный сайт Ольги Новиковой - гида-переводчика в Риме",
-      'owner_phone':"+39 3336631315",
-      'owner_skype':"olga.novikova22",
-      'owner_email':"oan_75@mail.ru",
-	    }
-    return mp
+    return settings.AAA_SITE_PARAMS
 
 def excursion_page(request, num):
     mp = get_main_params()
