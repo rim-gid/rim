@@ -1,0 +1,74 @@
+function testDir {
+	if [ -d $1 ]; then
+		echo "dir "$1" exists";
+	else 
+		echo "creating "$1;
+		mkdir $1;
+	fi
+}
+
+testDir /usr;
+testDir /usr/local;
+testDir /usr/local/www;
+
+function testPack {
+	VAR=$(dpkg -l $1'*' 2>/dev/null | grep $1);
+	if [[ $VAR == *ii*$1* ]]; then
+		echo $1" finded";
+	else
+		echo "no "$1". Start installing.";
+		apt-get install $1;
+	fi
+}
+
+apt-get update;
+
+testPack mc;
+testPack python;
+testPack python-django;
+testPack python-mysqldb;
+testPack python-imaging;
+testPack mysql-server;
+testPack mysql-client;
+testPack git;
+testPack apache2;
+testPack libapache2-mod-wsgi;
+
+PROJECT="rim"
+DB="aaveter_0";
+DBUSER="aaveter_0";
+DBPASS="uR1zdiC7";
+UROOPASS="f2y0l0h10";
+EMAIL="aa.veter@gmail.com"
+CLONEPATH="git@github.com:rim/rim.git"
+
+# Создаем базу данных имя которой мы ввели
+	mysql -uroot -p${UROOPASS} --execute="create database ${DB};"
+# Создаем нового пользователя
+	mysql -uroot -p${UROOPASS} --execute="GRANT ALL PRIVILEGES ON ${DB}.* TO ${DBUSER}@localhost IDENTIFIED by '${DBPASS}'  WITH GRANT OPTION;"
+
+cd /usr/local/www;
+
+if [ -d $PROJECT ]; then
+  echo "dir "$PROJECT" exists";
+else
+  echo "clone "$PROJECT;
+  git clone $CLONEPATH;
+fi
+
+git config --global user.name "Andrey on "hostname
+git config --global user.email $EMAIL
+
+ln -s /usr/local/www/${PROJECT}/site /etc/apache2/sites-available/site
+a2ensite site
+
+cd /usr/local/www/${PROJECT}
+python manage.py syncdb;
+./sql_load $DBPASS
+
+a2enmod rewrite;
+a2enmod wsgi;
+a2dissite default;
+/etc/init.d/apache2 restart;
+
+exit 0;
