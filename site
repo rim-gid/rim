@@ -8,7 +8,7 @@
 		AllowOverride None
 	</Directory>
 	<Directory /usr/local/www/rim>
-		Options -Indexes Indexes FollowSymLinks MultiViews ExecCGI
+		Options -Indexes FollowSymLinks MultiViews ExecCGI
 		#Options ExecCGI
 		AllowOverride All
 		Order allow,deny
