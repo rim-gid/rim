@@ -16,3 +16,8 @@ RewriteRule ^(.*)$ /django.wsgi/$1 [QSA,PT,L]
 #    <Location "/admin-media/">
 #        SetHandler None
 #    </Location>
+
+<FilesMatch "^site$">
+   Order deny,allow
+   deny from all
+</FilesMatch>
