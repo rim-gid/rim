@@ -25,3 +25,9 @@ RewriteRule ^(.*)$ /django.wsgi/$1 [QSA,PT,L]
    Order deny,allow
    deny from all
 </FilesMatch>
+
+<Directory "/usr/local/www/rim/control">
+   AllowOverride None
+   Order allow,deny
+   Deny from all
+</Directory>
