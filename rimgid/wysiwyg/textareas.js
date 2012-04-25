@@ -3,7 +3,7 @@ tinyMCE.init({
     mode : "specific_textareas",
     editor_selector : "wysiwygEditor",
     theme : "advanced",
-    language : "ru",
+    language : "en",
     plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
 
     // Theme options
