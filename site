@@ -3,12 +3,12 @@
 
 	DocumentRoot /usr/local/www/rim
 	<Directory />
-		Options FollowSymLinks
+		Options -Indexes FollowSymLinks
 		#Options ExecCGI
 		AllowOverride None
 	</Directory>
 	<Directory /usr/local/www/rim>
-		Options Indexes FollowSymLinks MultiViews ExecCGI
+		Options -Indexes Indexes FollowSymLinks MultiViews ExecCGI
 		#Options ExecCGI
 		AllowOverride All
 		Order allow,deny
