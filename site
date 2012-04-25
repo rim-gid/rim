@@ -3,8 +3,8 @@
 
 	DocumentRoot /usr/local/www/rim
 	<Directory />
-		#Options FollowSymLinks
-		Options ExecCGI
+		Options FollowSymLinks
+		#Options ExecCGI
 		AllowOverride None
 	</Directory>
 	<Directory /usr/local/www/rim>
