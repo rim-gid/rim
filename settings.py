@@ -68,7 +68,7 @@ MEDIA_ROOT = '/usr/local/www/rim/rimgid/'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/usr/local/www/rim/rimgid/'
+MEDIA_URL = '/rimgid/'
 
 DEFAULT_CHARSET = 'utf8'
 
