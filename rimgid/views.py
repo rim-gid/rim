@@ -26,11 +26,13 @@ def accounts_profile(request,name,ex,mail,text,date):
     try:
       mes_text += u"\nЭкскурсия: "+ ex 
     except:
-      mes_text += u"\nЭкскурсия: не задано" 
+      ex= u"не задано" 
+      mes_text += u"\nЭкскурсия: "+ ex 
     try:
-      mes_text += u"\nЖелаемая дата: " + date;
+      mes_text += u"\nЖелаемая дата: " + date
     except:
-      mes_text += u"\nЖелаемая дата: не задано"
+      date = u"не задано"
+      mes_text += u"\nЖелаемая дата: " + date
       
     mes_text += u"\nКомментарий: " + text;
     mes_text += u"\n\nЭто письмо сгенерировано автоматически. Для связи с клиентом используйте данные в тексте выше."
