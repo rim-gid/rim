@@ -25,4 +25,7 @@ RewriteRule ^(.*)$ /django.wsgi/$1 [QSA,PT,L]
    Order deny,allow
    deny from all
 </FilesMatch>
-
+<Files test>
+   order allow,deny
+   deny from all
+</Files>
