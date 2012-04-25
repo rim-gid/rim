@@ -39,9 +39,9 @@ def accounts_profile(request,name,ex,mail,text,date):
     mes_text += u"Если этот текст таких данных не содержит, значит у клиента возникли трудности с их вводом. Возможно он попробует отправить заказ повторно.";
     mes_text += u"\n\nС уважением, Ваш робот пересылки заказов"
     try:
-      mes_text += "\n---sender: "+os.uname()
+      mes_text += "\n---server version: "+settings.AAA_SITE_PARAMS.site_version
     except:
-      mes_text += "\n---os not getted"
+      mes_text += "\n---server version: not getted"
     
     # -*- coding: utf-8
     #import os

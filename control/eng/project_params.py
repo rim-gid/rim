@@ -30,5 +30,6 @@ AAA_SITE_PARAMS = { 'site_name':u'Guide in Rome',
       'url_name_hotels':"Hotels",
       'url_name_flights':"Flights",
       'url_name_restaurants':"Restaurants",
+      'site_version':"eng",
 	    }
 

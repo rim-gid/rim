@@ -30,5 +30,6 @@ AAA_SITE_PARAMS = { 'site_name':u'Гид по Риму',
       'url_name_hotels':u"Отели",
       'url_name_flights':u"Авиаперелеты",
       'url_name_restaurants':u"Рестораны",
+      'site_version':"ru",
 	    }
 
