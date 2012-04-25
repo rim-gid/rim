@@ -12,10 +12,13 @@ TABLE {
     background: #fff; /* Цвет фона таблицы */
     color: white; /* Цвет текста */
     width: 600px;
+    border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;
    }
   TD {
     background: #009900; /* Цвет фона ячеек */
   }
+#order_form {border-radius:10px;border:1px solid #363636;width:500px;display:inline-block;padding:20px;margin:20px;height:525px;overflow:hidden;background:#d7f3d7;}
+#order_form_pole {width:100%;float:left;text-align:center;}
 #main {
   width: 1000px;
   height: auto;
@@ -75,6 +78,7 @@ a.light {
   text-align: center;
 }
 .podpis {
+  min-height:50;
   color:#fff;padding:0 10px 0 10px;font-weight:bold;background:#009900;
   border-radius: 0 0 10px 10px;
   -moz-border-radius: 0 0 10px 10px;  /* для firefox */

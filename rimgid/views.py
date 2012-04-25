@@ -124,7 +124,9 @@ def jseditor(request):
     return render_to_response('jseditor.html',locals())
 
 def get_main_params():
-    return settings.AAA_SITE_PARAMS
+    mp = settings.AAA_SITE_PARAMS
+    mp['local']=settings.AAA_SITE_LOCAL_PARAMS
+    return mp
 
 def excursion_page(request, num):
     mp = get_main_params()
