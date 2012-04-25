@@ -22,8 +22,8 @@ class Excursion(models.Model):
     
     #text = models.CharField(max_length=1000)
     #text_full = models.CharField(max_length=5000)
-    text = models.TextField()
-    text_full = models.TextField()
+    text = WYSIWYGField()
+    text_full = WYSIWYGField()
     
     cost = models.CharField(max_length=30)
     
@@ -70,7 +70,7 @@ class Contacts(models.Model):
 class OlgaInfo(models.Model):
     title = models.CharField(max_length=50)
     #hello_text = models.CharField(max_length=1000)
-    hello_text = models.TextField()
+    hello_text = WYSIWYGField()
     image = models.CharField(max_length=50)
     image_title = models.CharField(max_length=200)
     fon_image = models.CharField(max_length=50)
@@ -80,7 +80,7 @@ class OlgaInfo(models.Model):
  
 class SiteFooter(models.Model):
     #text = models.CharField(max_length=1000)
-    text = models.TextField()
+    text = WYSIWYGField()
 
     def __unicode__(self):
         return self.text
@@ -90,7 +90,7 @@ class Recomendations(models.Model):
     mail = models.CharField(max_length=100)
     image = models.CharField(max_length=50)
     #text = models.CharField(max_length=1000)
-    text = models.TextField()
+    text = WYSIWYGField()
     date = models.DateField()
 
     def __unicode__(self):
@@ -99,7 +99,7 @@ class Recomendations(models.Model):
 class Shops(models.Model):
     title = models.CharField(max_length=200)
     #text = models.CharField(max_length=1000)
-    text = models.TextField()
+    text = WYSIWYGField()
     image = models.CharField(max_length=50)
     
     def __unicode__(self):
@@ -108,7 +108,7 @@ class Shops(models.Model):
 class Transport(models.Model):
     title = models.CharField(max_length=200)
     #text = models.CharField(max_length=1000)
-    text = models.TextField()
+    text = WYSIWYGField()
     image = models.CharField(max_length=50)
     
     def __unicode__(self):
@@ -117,7 +117,7 @@ class Transport(models.Model):
 class Transfer(models.Model):
     title = models.CharField(max_length=200)
     #text = models.CharField(max_length=1000)
-    text = models.TextField()
+    text = WYSIWYGField()
     image = models.CharField(max_length=50)
     
     def __unicode__(self):
@@ -125,7 +125,7 @@ class Transfer(models.Model):
 
 class Fotos(models.Model):
     title = models.CharField(max_length=200)
-    text = models.TextField()
+    text = WYSIWYGField()
     #upload_to=settings.MEDIA_ROOT+
     image = models.ImageField(upload_to="images/",null="True")
     date = models.DateField()
