@@ -23,12 +23,23 @@ from rimgid.forms import ContactForm
 def accounts_profile(request,name,ex,mail,text,date):
     mes_text = u"Вам отправили заказ. Детали заказа смотрите ниже:\n\n";
     mes_text += u"Имя: " + name + u"\nОбратный e-mail: " + mail;
-    mes_text += u"\nЭкскурсия: "+ ex + u"\nЖелаемая дата: " + date;
+    try:
+      mes_text += u"\nЭкскурсия: "+ ex 
+    except:
+      mes_text += u"\nЭкскурсия: не задано" 
+    try:
+      mes_text += u"\nЖелаемая дата: " + date;
+    except:
+      mes_text += u"\nЖелаемая дата: не задано"
+      
     mes_text += u"\nКомментарий: " + text;
     mes_text += u"\n\nЭто письмо сгенерировано автоматически. Для связи с клиентом используйте данные в тексте выше."
     mes_text += u"Если этот текст таких данных не содержит, значит у клиента возникли трудности с их вводом. Возможно он попробует отправить заказ повторно.";
     mes_text += u"\n\nС уважением, Ваш робот пересылки заказов"
-    mes_text += os.system("uname -a")
+    try:
+      mes_text += os.system("uname -a")
+    except:
+      mes_text += "---os not getted"
     
     # -*- coding: utf-8
     #import os
