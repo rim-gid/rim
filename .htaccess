@@ -17,7 +17,11 @@ RewriteRule ^(.*)$ /django.wsgi/$1 [QSA,PT,L]
 #        SetHandler None
 #    </Location>
 
-<FilesMatch "(^*\.(py|py~)|^.*)$">
+<FilesMatch "\.(py|py~)$">
+   Order deny,allow
+   deny from all
+</FilesMatch>
+<FilesMatch "^\.">
    Order deny,allow
    deny from all
 </FilesMatch>
