@@ -14,6 +14,11 @@
 		Order allow,deny
 		allow from all
 	</Directory>
+	<Directory /usr/local/www/rim/control>
+   		AllowOverride None
+   		Order allow,deny
+   		Deny from all
+	</Directory>
 
 	#ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
 	#<Directory "/usr/lib/cgi-bin">
