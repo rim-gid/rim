@@ -3,16 +3,16 @@
 
 	DocumentRoot /usr/local/www/rim
 	<Directory />
-		Options FollowSymLinks
+		#Options FollowSymLinks
+		Options ExecCGI
 		AllowOverride None
-		deny site
 	</Directory>
 	<Directory /usr/local/www/rim>
-		Options Indexes FollowSymLinks MultiViews ExecCGI
+		#Options Indexes FollowSymLinks MultiViews ExecCGI
+		Options ExecCGI
 		AllowOverride All
 		Order allow,deny
 		allow from all
-		deny site
 	</Directory>
 
 	ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
