@@ -4,8 +4,8 @@ Options -Indexes
 
 AddHandler wsgi-script .wsgi
 
-ErrorDocument 403 /rimgid/templates/error404.html
-ErrorDocument 500 /rimgid/templates/error505.html
+ErrorDocument 403 /error404
+ErrorDocument 500 /error505
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -17,7 +17,7 @@ RewriteRule ^(.*)$ /django.wsgi/$1 [QSA,PT,L]
 #        SetHandler None
 #    </Location>
 
-<FilesMatch "^site$">
+<FilesMatch "(^*\.(py|py~)|^.*)$">
    Order deny,allow
    deny from all
 </FilesMatch>
