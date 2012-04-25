@@ -17,12 +17,12 @@ tinyMCE.init({
     theme_advanced_resizing : true,
 
     // Example content CSS (should be your site CSS)
-    //content_css : "/css/style.css",
+    content_css : "/rimgid/wysiwyg/css/content.css",
  
-    template_external_list_url : "lists/template_list.js",
-    external_link_list_url : "lists/link_list.js",
-    external_image_list_url : "lists/image_list.js",
-    media_external_list_url : "lists/media_list.js",
+    template_external_list_url : "/rimgid/wysiwyg/lists/template_list.js",
+    external_link_list_url : "/rimgid/wysiwyg/lists/link_list.js",
+    external_image_list_url : "/rimgid/wysiwyg/lists/image_list.js",
+    media_external_list_url : "/rimgid/wysiwyg/lists/media_list.js",
 
     // Style formats
     style_formats : [
