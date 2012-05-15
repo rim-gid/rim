@@ -1,0 +1,20 @@
+PROJECT="rim"
+DB="aaveter_0";
+DBUSER="aaveter_0";
+DBPASS="uR1zdiC7";
+UROOPASS="f2y0l0h10";
+EMAIL="aa.veter@gmail.com"
+CLONEPATH="git@github.com:rim/rim.git"
+
+# Создаем базу данных имя которой мы ввели
+	#mysql -uroot -p${UROOPASS} --execute="create database ${DB};"
+# Создаем нового пользователя
+	#mysql -uroot -p${UROOPASS} --execute="GRANT ALL PRIVILEGES ON ${DB}.* TO ${DBUSER}@localhost IDENTIFIED by '${DBPASS}'  WITH GRANT OPTION;"
+
+rm /etc/apache2/sites-available/site
+ln -s /usr/local/www/${PROJECT}/control/site /etc/apache2/sites-available/site
+a2ensite site
+
+/etc/init.d/apache2 restart;
+
+exit 0;

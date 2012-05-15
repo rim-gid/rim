@@ -2,11 +2,11 @@
 echo "set version "$1
 mkdir /usr/local/www/rim_version
 if [ $1 == "ru" ]; then
-  rm /usr/local/www/rim/project_params.py
+  rm /usr/local/www/rim_version/project_params.py
   ln -s /usr/local/www/rim/control/ru/project_params.py /usr/local/www/rim_version/project_params.py
 else
   if [ $1 == "eng" ]; then
-    rm /usr/local/www/rim/project_params.py
+    rm /usr/local/www/rim_version/project_params.py
     ln -s /usr/local/www/rim/control/eng/project_params.py /usr/local/www/rim_version/project_params.py
   else
     echo "INVALID VERSION "$1
