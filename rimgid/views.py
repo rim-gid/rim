@@ -163,25 +163,36 @@ def excursion_page(request, num):
 # рендерит все заметки выбранной таблицы
 def renderNotesText(objs):
     datas = objs.objects.all()
-    i = 0
     for data in datas:
-      db_template = Template(data.text)
-      data.text = Template('{% extends db_template %}').render(Context(locals()))
-      i += 1
+      data.text = renderText(data.text)
     return datas
     
 # рендерит конкретную заметку
 def renderNote(note):
     if note:
-      db_template = Template(note.text)
-      note.text = Template('{% extends db_template %}').render(Context(locals()))
-      return note
+      note.text = renderText(note.text)
     return note
+
+# рендерит конкретный текст
+def renderText(text):
+    if text:
+      db_template = Template(text)
+      text = Template('{% extends db_template %}').render(Context(locals()))
+    return text
     
 def get_page(request, page_type='404'):
     mp = get_main_params()
 
     if page_type == 'main':
+      
+      try:
+        if mp['owner_maintext_rendered'] != True:
+          mp['owner_maintext'] = renderText(mp['owner_maintext'])
+          mp['owner_maintext_rendered'] = True
+      except:    
+        mp['owner_maintext_rendered'] = True
+        mp['owner_maintext'] = renderText(mp['owner_maintext'])
+      
       try:
         notes_count = Note.objects.all().count()
         rand_note = random.randint(0, notes_count-1)
