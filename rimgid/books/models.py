@@ -131,7 +131,35 @@ class Fotos(models.Model):
     date = models.DateField()
     
     def __unicode__(self):
+        return self.title    
+
+class Flights(models.Model):
+    title = models.CharField(max_length=200)
+    text = WYSIWYGField()
+    #upload_to=settings.MEDIA_ROOT+
+    image = models.ImageField(upload_to="images/",null="True")
+    date = models.DateField()
+    
+    def __unicode__(self):
         return self.title        
 
-        
-        
+class Hotels(models.Model):
+    title = models.CharField(max_length=200)
+    text = WYSIWYGField()
+    #upload_to=settings.MEDIA_ROOT+
+    #image = models.ImageField(upload_to="images/",null="True")
+    date = models.DateField()
+    
+    def __unicode__(self):
+        return self.title    
+   
+      
+class Restaurants(models.Model):
+    title = models.CharField(max_length=200)
+    text = WYSIWYGField()
+    #upload_to=settings.MEDIA_ROOT+
+    image = models.ImageField(upload_to="images/",null="True")
+    date = models.DateField()
+    
+    def __unicode__(self):
+        return self.title    

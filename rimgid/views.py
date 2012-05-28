@@ -160,61 +160,36 @@ def excursion_page(request, num):
         db_t = db_template.render(db_c)
     return render_to_response(url, locals())
 
-# рендерит все заметки выбранной таблицы
-def renderNotesText(objs):
-    datas = objs.objects.all()
-    for data in datas:
-      data.text = renderText(data.text)
-    return datas
-    
-# рендерит конкретную заметку
-def renderNote(note):
-    if note:
-      note.text = renderText(note.text)
-    return note
-
-# рендерит конкретный текст
-def renderText(text):
-    if text:
-      db_template = Template(text)
-      text = Template('{% extends db_template %}').render(Context(locals()))
-    return text
-    
 def get_page(request, page_type='404'):
     mp = get_main_params()
 
     if page_type == 'main':
-      
       try:
-        if mp['owner_maintext_rendered'] != True:
-          mp['owner_maintext'] = renderText(mp['owner_maintext'])
-          mp['owner_maintext_rendered'] = True
-      except:    
-        mp['owner_maintext_rendered'] = True
-        mp['owner_maintext'] = renderText(mp['owner_maintext'])
-      
-      try:
-        notes_count = Note.objects.all().count()
-        rand_note = random.randint(0, notes_count-1)
-        note = renderNote(Note.objects.all()[rand_note])
-        
-        shops_count = Shops.objects.all().count()
-        rand_shop = random.randint(0, shops_count-1)
-        shop = renderNote(Shops.objects.all()[rand_shop])
-        
-        transport_count = Transport.objects.all().count()
-        rand_transport = random.randint(0, transport_count-1)
-        transport = renderNote(Transport.objects.all()[rand_transport])
+	notes_count = Note.objects.all().count()
+	rand_note = random.randint(0, notes_count-1)
+	note = Note.objects.all()[rand_note]
+	
+	shops_count = Shops.objects.all().count()
+	rand_shop = random.randint(0, shops_count-1)
+	shop = Shops.objects.all()[rand_shop]
+	
+	hotels_count = Hotels.objects.all().count()
+	rand_hotel = random.randint(0, hotels_count-1)
+	hotel = Hotels.objects.all()[rand_hotel]
+	
+	transport_count = Transport.objects.all().count()
+	rand_transport = random.randint(0, transport_count-1)
+	transport = Transport.objects.all()[rand_transport]
       except:
-        notes_error=True
+	notes_error=True
     elif page_type == 'contacts':
       contacts_list = Contacts.objects.all()
     elif page_type == 'transfer':
-      transfers_list = renderNotesText(Transfer)
+      transfers_list = Transfer.objects.all()
     elif page_type == 'fotos':
       fotos_list = Fotos.objects.all()
     elif page_type == 'recomendations':
-      recomendations_list = renderNotesText(Recomendations)
+      recomendations_list = Recomendations.objects.all()
     elif page_type == "translate" :
       datas = OlgaInfo.objects.all()
       data = datas[1]
@@ -225,16 +200,21 @@ def get_page(request, page_type='404'):
     elif page_type == "notes" :
       content_name = u'Новости'
       content_no = u'Пока нет ни одной новости'
-      content_list = renderNotesText(Note)
+      content_list = Note.objects.all()
     elif page_type == "shops" :
       content_name = u'Магазины'
       content_no = u'Пока нет ни одной заметки про магазины'
-      content_list = renderNotesText(Shops)
+      content_list = Shops.objects.all()
+      page_type = "notes"
+    elif page_type == "hotels" :
+      content_name = u'Отели'
+      content_no = u'Пока нет ни одной заметки про отели'
+      content_list = Hotels.objects.all()
       page_type = "notes"
     elif page_type == "transport" :
       content_name = u'Транспорт'
       content_no = u'Пока нет ни одной заметки про транспорт'
-      content_list = renderNotesText(Transport)
+      content_list = Transport.objects.all()
       page_type = "notes"
     
     try:
