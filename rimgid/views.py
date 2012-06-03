@@ -76,7 +76,7 @@ def accounts_profile(request,name,ex,mail,text,date):
     server.ehlo()
     server.starttls()
     server.ehlo()
-    server.login("gid.po.rimu", "f2y0l0h10tqhfgf")
+    server.login("gid.po.rimu", "bruihrhr843hr748hfre")
     # отправляем сформированное сообщение, после чего выходим
     server.sendmail(fromaddr, toaddr, msg.as_string())
     server.quit()
