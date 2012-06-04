@@ -1,3 +1,5 @@
+
+
 <html>
 <head>
     <title>Contact us</title>
@@ -24,14 +26,14 @@
 </head>
 <body>
     {% if order_ok %}
-       {{ mp.msg_thx }}
+       {{ form.msg_thx }}
     {% else %}
     <form id="order_form" action="" method="post">
-        <h2>{{ mp.request_title }}</h2>
+        <h2>{{ form.request_title }}</h2>
 
         {% if form.errors %}
             <p style="color: red;">
-                {{ mp.request_msg_error }}
+                {{ form.request_msg_error }}
             </p>
         {% endif %}
 

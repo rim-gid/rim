@@ -2,6 +2,7 @@
 from django import forms
 import datetime
 #import floppyforms as forms
+from settings import get_main_params
 
 """
 import datetime, re  
@@ -142,7 +143,11 @@ class SelectDateWidget(Widget):
 """
 
 class ContactForm(forms.Form):
-    name = forms.CharField(required=False,label=u'Ваше имя',
+    mp = get_main_params()
+    request_msg_error = mp['request_msg_error']
+    request_title = mp['request_title']
+    msg_thx = mp['msg_thx']
+    name = forms.CharField(required=False,label=mp['form_label_name'],
       widget=forms.TextInput(attrs={'placeholder' : u'Введите Ваше имя...', 'id' : 'order_name'},),)
     subject = forms.CharField(required=False,label=u'Предпочтительная дата экскурсии',
       #initial=datetime.date.today,input_formats=('%d-%m-%Y',),
