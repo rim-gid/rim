@@ -14,6 +14,13 @@ ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 from project_local_params import *
 
+from django.conf import settings
+
+def get_main_params():
+    mp = settings.AAA_SITE_PARAMS
+    mp['local']=settings.AAA_SITE_LOCAL_PARAMS
+    return mp
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 

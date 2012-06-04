@@ -148,14 +148,14 @@ class ContactForm(forms.Form):
     request_title = mp['request_title']
     msg_thx = mp['msg_thx']
     name = forms.CharField(required=False,label=mp['form_label_name'],
-      widget=forms.TextInput(attrs={'placeholder' : u'Введите Ваше имя...', 'id' : 'order_name'},),)
-    subject = forms.CharField(required=False,label=u'Предпочтительная дата экскурсии',
+      widget=forms.TextInput(attrs={'placeholder' : mp['form_input_name'], 'id' : 'order_name'},),)
+    subject = forms.CharField(required=False,label=mp['form_label_date'],
       #initial=datetime.date.today,input_formats=('%d-%m-%Y',),
       #widget=SelectDateWidget(input_format='%d-%B-%Y', years=range(year, year-101, -1)),)
-      widget=forms.TextInput(attrs={'placeholder' : u'Введите желаемую дату...', 'id' : 'order_date'},),)
-    email = forms.EmailField(required=True, label=u'Ваш e-mail',widget=forms.TextInput(
-      attrs={'placeholder' : u'Адрес почты...', 'id' : 'order_mail'},
+      widget=forms.TextInput(attrs={'placeholder' : mp['form_input_date'], 'id' : 'order_date'},),)
+    email = forms.EmailField(required=True, label=mp['form_label_email'],widget=forms.TextInput(
+      attrs={'placeholder' : mp['form_input_email'], 'id' : 'order_mail'},
       ),)
-    message = forms.CharField(required=False, label=u'Комментарий к заказу',widget=forms.Textarea(
-      attrs={'placeholder' : u'Напишите дополнительные пожелания...', 'id' : 'order_text'},
+    message = forms.CharField(required=False, label=mp['form_label_comments'],widget=forms.Textarea(
+      attrs={'placeholder' : mp['form_input_comments'], 'id' : 'order_text'},
       ),)
