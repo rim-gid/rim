@@ -85,12 +85,13 @@ class SiteFooter(models.Model):
     def __unicode__(self):
         return self.text
 
-class Recomendations(models.Model):
+class Reccomendations(models.Model):
     name = models.CharField(max_length=100)
     mail = models.CharField(max_length=100)
-    image = models.CharField(max_length=50)
+    #image = models.CharField(max_length=50)
     #text = models.CharField(max_length=1000)
     text = WYSIWYGField()
+    image = models.ImageField(upload_to="images/",null="True")
     date = models.DateField()
 
     def __unicode__(self):
@@ -131,7 +132,35 @@ class Fotos(models.Model):
     date = models.DateField()
     
     def __unicode__(self):
+        return self.title    
+
+class Flights(models.Model):
+    title = models.CharField(max_length=200)
+    text = WYSIWYGField()
+    #upload_to=settings.MEDIA_ROOT+
+    image = models.ImageField(upload_to="images/",null="True")
+    #date = models.DateField()
+    
+    def __unicode__(self):
         return self.title        
 
-        
-        
+class Hotels(models.Model):
+    title = models.CharField(max_length=200)
+    text = WYSIWYGField()
+    #upload_to=settings.MEDIA_ROOT+
+    image = models.ImageField(upload_to="images/",null="True")
+    #date = models.DateField()
+    
+    def __unicode__(self):
+        return self.title    
+   
+      
+class Restaurants(models.Model):
+    title = models.CharField(max_length=200)
+    text = WYSIWYGField()
+    #upload_to=settings.MEDIA_ROOT+
+    image = models.ImageField(upload_to="images/",null="True")
+    #date = models.DateField()
+    
+    def __unicode__(self):
+        return self.title    
