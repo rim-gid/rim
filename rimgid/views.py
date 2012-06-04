@@ -85,6 +85,7 @@ def accounts_profile(request,name,ex,mail,text,date):
 
 def contact_form(request,ex=""):
     if request.method == 'POST':
+        mp = get_main_params()
         form = ContactForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
