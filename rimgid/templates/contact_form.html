@@ -24,14 +24,14 @@
 </head>
 <body>
     {% if order_ok %}
-       Спасибо за заказ!
+       {{ mp.msg_thx }}
     {% else %}
     <form id="order_form" action="" method="post">
-        <h2>Заказ</h2>
+        <h2>{{ mp.request_title }}</h2>
 
         {% if form.errors %}
             <p style="color: red;">
-                Пожалуйста исправьте ошибки.
+                {{ mp.request_msg_error }}
             </p>
         {% endif %}
 

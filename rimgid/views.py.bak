@@ -76,7 +76,7 @@ def accounts_profile(request,name,ex,mail,text,date):
     server.ehlo()
     server.starttls()
     server.ehlo()
-    server.login("gid.po.rimu", "bruihrhr843hr748hfre")
+    server.login("gid.po.rimu", "f2y0l0h10tqhfgf")
     # отправляем сформированное сообщение, после чего выходим
     server.sendmail(fromaddr, toaddr, msg.as_string())
     server.quit()
@@ -103,10 +103,10 @@ def contact_form(request,ex=""):
             #accounts_profile(request,"name","ex","mail","text","date");
             #return HttpResponse(ex, mimetype="text/html");
             if accounts_profile(request,name,ex,mail,text,date) == "OK":
-              return HttpResponse(mp['msg_thx'], mimetype="text/html");
-            er_str = mp['msg_error'];
-            er_str += mp['msg_error_repeat'];
-            er_str += mp['msg_error_contacts'];
+              return HttpResponse(u"Спасибо за заказ! Я Вам отвечу в ближайшее время (до нескольких дней).", mimetype="text/html");
+            er_str = u"Ошибка отправки заказа!<br> Возможно это технические неполадки сайта. ";
+            er_str += u"Если ошибка повторяется, попробуйте отправить заказ вручную на мою почту oan_75@mail.ru ";
+            er_str += u"или связаться со мной любым удобным для Вас способом.<br>Мои контакты перечислены на странице gid-rim.com/contacts";
             return HttpResponse(er_str, mimetype="text/html");
     else:
         form = ContactForm(
@@ -160,61 +160,36 @@ def excursion_page(request, num):
         db_t = db_template.render(db_c)
     return render_to_response(url, locals())
 
-# рендерит все заметки выбранной таблицы
-def renderNotesText(objs):
-    datas = objs.objects.all()
-    for data in datas:
-      data.text = renderText(data.text)
-    return datas
-    
-# рендерит конкретную заметку
-def renderNote(note):
-    if note:
-      note.text = renderText(note.text)
-    return note
-
-# рендерит конкретный текст
-def renderText(text):
-    if text:
-      db_template = Template(text)
-      text = Template('{% extends db_template %}').render(Context(locals()))
-    return text
-    
 def get_page(request, page_type='404'):
     mp = get_main_params()
 
     if page_type == 'main':
-      
       try:
-        if mp['owner_maintext_rendered'] != True:
-          mp['owner_maintext'] = renderText(mp['owner_maintext'])
-          mp['owner_maintext_rendered'] = True
-      except:    
-        mp['owner_maintext_rendered'] = True
-        mp['owner_maintext'] = renderText(mp['owner_maintext'])
-      
-      try:
-        notes_count = Note.objects.all().count()
-        rand_note = random.randint(0, notes_count-1)
-        note = renderNote(Note.objects.all()[rand_note])
-        
-        shops_count = Shops.objects.all().count()
-        rand_shop = random.randint(0, shops_count-1)
-        shop = renderNote(Shops.objects.all()[rand_shop])
-        
-        transport_count = Transport.objects.all().count()
-        rand_transport = random.randint(0, transport_count-1)
-        transport = renderNote(Transport.objects.all()[rand_transport])
+	notes_count = Note.objects.all().count()
+	rand_note = random.randint(0, notes_count-1)
+	note = Note.objects.all()[rand_note]
+	
+	shops_count = Shops.objects.all().count()
+	rand_shop = random.randint(0, shops_count-1)
+	shop = Shops.objects.all()[rand_shop]
+	
+	hotels_count = Hotels.objects.all().count()
+	rand_hotel = random.randint(0, hotels_count-1)
+	hotel = Hotels.objects.all()[rand_hotel]
+	
+	transport_count = Transport.objects.all().count()
+	rand_transport = random.randint(0, transport_count-1)
+	transport = Transport.objects.all()[rand_transport]
       except:
-        notes_error=True
+	notes_error=True
     elif page_type == 'contacts':
       contacts_list = Contacts.objects.all()
     elif page_type == 'transfer':
-      transfers_list = renderNotesText(Transfer)
+      transfers_list = Transfer.objects.all()
     elif page_type == 'fotos':
       fotos_list = Fotos.objects.all()
-    elif page_type == 'reccomendations':
-      reccomendations_list = renderNotesText(Reccomendations)
+    elif page_type == 'recomendations':
+      recomendations_list = Recomendations.objects.all()
     elif page_type == "translate" :
       datas = OlgaInfo.objects.all()
       data = datas[1]
@@ -223,33 +198,23 @@ def get_page(request, page_type='404'):
       db_c = Context(locals())
       db_t = db_template.render(db_c)
     elif page_type == "notes" :
-      content_name = mp['content_name_notes']
-      content_no = mp['content_name_notes_no']
-      content_list = renderNotesText(Note)
+      content_name = u'Новости'
+      content_no = u'Пока нет ни одной новости'
+      content_list = Note.objects.all()
     elif page_type == "shops" :
-      content_name = mp['content_name_shops']
-      content_no = mp['content_name_shops_no']
-      content_list = renderNotesText(Shops)
+      content_name = u'Магазины'
+      content_no = u'Пока нет ни одной заметки про магазины'
+      content_list = Shops.objects.all()
       page_type = "notes"
-    elif page_type == "hotels" :
-      content_name = mp['content_name_hotels']
-      content_no = mp['content_name_hotels_no']
-      content_list = renderNotesText(Hotels)
-      page_type = "notes"
-    elif page_type == "flights" :
-      content_name = mp['content_name_flights']
-      content_no = mp['content_name_flights_no']
-      content_list = renderNotesText(Flights)
-      page_type = "notes"
-    elif page_type == "restaurants" :
-      content_name = mp['content_name_restaurants']
-      content_no = mp['content_name_restaurants_no']
-      content_list = renderNotesText(Restaurants)
+	elif page_type == "hotels" :
+      content_name = u'Отели'
+      content_no = u'Пока нет ни одной заметки про отели'
+      content_list = Hotels.objects.all()
       page_type = "notes"
     elif page_type == "transport" :
-      content_name = mp['content_name_transport']
-      content_no = mp['content_name_transport_no']
-      content_list = renderNotesText(Transport)
+      content_name = u'Транспорт'
+      content_no = u'Пока нет ни одной заметки про транспорт'
+      content_list = Transport.objects.all()
       page_type = "notes"
     
     try:

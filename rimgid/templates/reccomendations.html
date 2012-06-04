@@ -1,0 +1,15 @@
+{% extends "base_with_ex.html" %}
+
+{% block content_down %}
+{% if reccomendations_list %}
+  {% for reccomendation in reccomendations_list %}
+    <div id="content-down" align="justify">  
+      {% if reccomendation.image != "0" %}
+      <img src="{{ reccomendation.image }}" width="150px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
+      {% endif %}
+      <h1>{{ reccomendation.name }}</h1><div class="note_place">Reccomentations</div>
+      <span style="font-weight:bold;">{{ reccomendation.date }}</span> - {{ reccomendation.text }}
+    </div>
+  {% endfor %}
+{% endif %}
+{% endblock %}
