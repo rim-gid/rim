@@ -213,8 +213,8 @@ def get_page(request, page_type='404'):
       transfers_list = renderNotesText(Transfer)
     elif page_type == 'fotos':
       fotos_list = Fotos.objects.all()
-    elif page_type == 'recomendations':
-      recomendations_list = renderNotesText(Recomendations)
+    elif page_type == 'reccomendations':
+      reccomendations_list = renderNotesText(Reccomendations)
     elif page_type == "translate" :
       datas = OlgaInfo.objects.all()
       data = datas[1]
@@ -223,16 +223,31 @@ def get_page(request, page_type='404'):
       db_c = Context(locals())
       db_t = db_template.render(db_c)
     elif page_type == "notes" :
-      content_name = u'Новости'
+      content_name = mp['content_name_notes']
       content_no = u'Пока нет ни одной новости'
       content_list = renderNotesText(Note)
     elif page_type == "shops" :
-      content_name = u'Магазины'
+      content_name = mp['content_name_shops']
       content_no = u'Пока нет ни одной заметки про магазины'
       content_list = renderNotesText(Shops)
       page_type = "notes"
+    elif page_type == "hotels" :
+      content_name = mp['content_name_hotels']
+      content_no = u'Пока нет ни одной заметки про отели'
+      content_list = renderNotesText(Hotels)
+      page_type = "notes"
+    elif page_type == "flights" :
+      content_name = mp['content_name_flights']
+      content_no = u'Пока нет ни одной заметки про авиа'
+      content_list = renderNotesText(Flights)
+      page_type = "notes"
+    elif page_type == "restaurants" :
+      content_name = mp['content_name_restaurants']
+      content_no = u'Пока нет ни одной заметки про рестораны'
+      content_list = renderNotesText(Restaurants)
+      page_type = "notes"
     elif page_type == "transport" :
-      content_name = u'Транспорт'
+      content_name = mp['content_name_transport']
       content_no = u'Пока нет ни одной заметки про транспорт'
       content_list = renderNotesText(Transport)
       page_type = "notes"

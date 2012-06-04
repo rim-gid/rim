@@ -18,7 +18,7 @@
 	<div style="background:url('2.png');width:260px;float:right;padding:5px;border-radius:10px;">
 	  <p style="margin: 10px 10px 0;color:#fff;text-align:right;"><span style="font-weight:bold;">{{ mp.owner_phone_title }}:</span> {{ mp.owner_phone }}</p>
 	  <p style="margin: 0 10px;color:#fff;text-align:right;"><span style="font-weight:bold;">Skype:</span> {{ mp.owner_skype }}</p>
-	  <p style="margin: 0 10px;color:#fff;text-align:right;"><span style="font-weight:bold;">E-mail:</span> <a href="mailto:oan_75@mail.ru" style="color:#009900;font-size:20px;">{{ mp.owner_email }}</a></p>
+	  <p style="margin: 0 10px;color:#fff;text-align:right;"><span style="font-weight:bold;">E-mail:</span> <a href="mailto:{{ mp.owner_email }}" style="color:#009900;font-size:20px;">{{ mp.owner_email }}</a></p>
 	</div>
       </div>
     </div>
@@ -29,14 +29,14 @@
     </ul>
     <ul class="mainmenu_2">
       <li><a href="/fotos">{{ mp.url_name_fotos }}</a></li>
-      <li><a href="/recomendations">{{ mp.url_name_recomendations }}</a></li>
+      <li><a href="/reccomendations">{{ mp.url_name_reccomendations }}</a></li>
       <li><a href="/contacts">{{ mp.url_name_contacts }}</a></li>
     </ul>
     <ul id="second_info" class="second_info shadowed">
-      <li><a href="#">{{ mp.url_name_flights }}</a></li>
+      <li><a href="/flights">{{ mp.url_name_flights }}</a></li>
       <li><a href="/transfer">{{ mp.url_name_transfer }}</a></li>
-      <li><a href="#">{{ mp.url_name_hotels }}</a></li>
-      <li><a href="#">{{ mp.url_name_restaurants }}</a></li>
+      <li><a href="/hotels">{{ mp.url_name_hotels }}</a></li>
+      <li><a href="/restaurants">{{ mp.url_name_restaurants }}</a></li>
       <li><a href="/shops">{{ mp.url_name_shops }}</a></li>
       <li><a href="/transport">{{ mp.url_name_transport }}</a></li>
     </ul>
