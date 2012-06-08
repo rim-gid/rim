@@ -1,53 +1,6 @@
 {% extends "base_with_ex.html" %}
 
-{% block style %}
-  #main {
-    width5: 100%;
-    left5: 0px;
-    margin-left5: 0px;
-    margin-right5: 0px;
-  }
-  #content-down {
-    margin-left6: 10px;
-    padding-left6; 10px;
-  }
-  #header-left, #header-right, #header {
-    border-radius8: 0px;
-    -moz-border-radius8: 0px;
-    -webkit-border-radius8: 0px;
-  }
-  #header {
-    margin-top5: 0px;
-  }
-  #list ul li a, #list ul li a:visited {
-   border-radius5: 10px 0 0 10px;
-    -moz-border-radius5: 10px 0 0 10px;  /* для firefox */
-    -webkit-border-radius5: 10px 0 0 10px;  /* для Safari и Chrome */
-  }
-  #list ul li a:hover {
-    width: 340px;
-  }
-  #footer {
-    margin-bottom0: 0px;
-    border-radius0: 0px;
-    -moz-border-radius0: 0px;
-    -webkit-border-radius0: 0px;
-  }
-  .abzac {
-    float: left;
-    width: 100%;
-    padding-right: 20px;
-    padding-bottom: 20px;
-  }
-  .abimg {
-    float: left;
-    width: 250px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-  }
-  #content img { width: 100px; }
-  .ex_div {padding-left:10px;padding-right:10px;padding-bottom:20px;background:#999 url('/paper_yellow_alpha.png');border-radius:10px;color:#fff;}
-{% endblock %}
+{% block style %}{% endblock %}
 
 {% block right10 %}
   {% if excursion_list %}
@@ -72,53 +25,6 @@
   <iframe id="order_form" src="/contact_form/{{ excursion.title }}/">
   </iframe>
 </div>
-
-<!--form id="orderform" method="post" action="" onsubmit="return orderExcursion('{{ excursion.title }}',mail.text,comment.text);" style="border-radius:10px;border:1px solid #363636;width:500px;display:inline-block;padding:20px;margin:20px;">
-  {% csrf_token %}
-  <p id="orderform_result">vfdv</p>
-  <div>Для заказа этой экскурсии введите свой адрес электронной почты. На этот адрес я вышлю ответ.</div>
-  <input style="width:460px;height:30px;border-radius:4px;border:1px solid #363636;margin:5px;padding:5px;" type="text" placeholder="адрес почты..." size="35" maxlength="50" name="mail" id="mail" /> 
-  <input style="width:460px;height:30px;border-radius:4px;border:1px solid #363636;margin:5px;padding:5px;" type="text" placeholder="дата..."  size="35" maxlength="50" name="phone" id="phone" /> 
-  <textarea id="comment" style="width:460px;height:200px;float2:left;border-radius:4px;border:1px solid #363636;margin:5px;padding:5px;" placeholder="комментарий к заказу..."></textarea>
-  <input type="submit" id="ordersubmit" value="Заказать" />
-  <script>
-    /* Создание нового объекта XMLHttpRequest для общения с Web-сервером */
-    var xmlHttp = false;
-    /*@cc_on @*/
-    /*@if (@_jscript_version >= 5)
-    try {
-      xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-    } catch (e) {
-      try {
-        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-      } catch (e2) {
-        xmlHttp = false;
-      }
-    }
-    @end @*/
-    if (!xmlHttp && typeof XMLHttpRequest != 'undefined') {
-      xmlHttp = new XMLHttpRequest();
-    }
-    function orderExcursion(ex,mail_s,text) {
-      var url = "/order_excursion/"+ex+"/"+mail_s+"/"+text+"/";
-      xmlHttp.open("GET", url, true);
-      xmlHttp.onreadystatechange = getOrderAnswer;
-      xmlHttp.send(null);
-      orderform_result.innerHTML = "Ждем ответа...";
-      return true;
-    }
-    function getOrderAnswer() {
-      if (xmlHttp.readyState == 4) {
-        if (xmlHttp.responseText=="OK") {
-          orderform_result.innerHTML = "ОК!";
-        } else {
-          orderform_result.innerHTML = "FALSE!";
-        }
-      }
-    }
-  </script>
-</form-->
-
 
     <table border="0" width="100%" cellspacing="0" cellpadding="0" style="background-color: #007700; border-style: solid; border-width: 1px 0px 1px 0px; border-color: url(100, 100, 100);"><tr>
       <td width="2%">&nbsp;</td>

@@ -242,7 +242,7 @@ dd: #fb9904;
   width: 100%;
   text-decoration: none;
   font-weight: bold;
-  background: #aaa url("ex-li-fon-2.png");
+  background5: #aaa url("ex-li-fon-2.png");
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
@@ -500,3 +500,45 @@ cc:#4682B4;
   position: fixed;
   overflow: hidden;
 }
+
+
+#right #list ul li a {
+  color: #fff;
+  height: auto;
+}
+
+.lefted {margin-left:-5px;padding-left:10px;}
+.papered {background: url('/paper_yellow_alpha.png');}
+.time {padding:0px;background-color:#090;padding-left:5px;padding-right:5px;}
+
+#friends ul li a {
+  height: 50;
+}
+
+#header-contacts {
+  background:url('2.png');width:260px;float:right;padding:5px;border-radius:10px;
+}
+
+#header-contacts p {
+  margin: 0 10px;color:#fff;text-align:right;
+}
+
+#list ul li a:hover {
+  width: 340px;
+}
+.abzac {
+  float: left;
+  width: 100%;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+.abimg {
+  float: left;
+  width: 250px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+#content img { width: 100px; }
+.ex_div {padding-left:10px;padding-right:10px;padding-bottom:20px;background:#999 url('/paper_yellow_alpha.png');border-radius:10px;color:#fff;}
+
+

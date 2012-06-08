@@ -154,6 +154,9 @@ def excursion_page(request, num):
     if num > 0 :
       if len(excursion_list) > t_num:
         excursion = excursion_list[t_num]
+        if excursion.special != 0:
+          mp['page_title'] = excursion.special
+          mp['page_keywords'] = excursion.special
         db_template = Template(excursion.text_full)
         db_rez_template = Template('{% extends db_template %}')
         db_c = Context(locals())
