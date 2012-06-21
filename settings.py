@@ -77,7 +77,7 @@ MEDIA_ROOT = '/usr/local/www/rim/rimgid/'
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/rimgid/'
 
-DEFAULT_CHARSET = 'utf8'
+DEFAULT_CHARSET = 'UTF-8'
 
 from project_params import *
 

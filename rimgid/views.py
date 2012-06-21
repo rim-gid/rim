@@ -151,6 +151,8 @@ def excursion_page(request, num):
     excursion_list = Excursion.objects.all()
     t_num = int(num)-1;
     ex_num = str(t_num);
+    tmp1 = mp['page_title']
+    tmp2 = mp['page_keywords']
     if num > 0 :
       if len(excursion_list) > t_num:
         excursion = excursion_list[t_num]
@@ -161,7 +163,10 @@ def excursion_page(request, num):
         db_rez_template = Template('{% extends db_template %}')
         db_c = Context(locals())
         db_t = db_template.render(db_c)
-    return render_to_response(url, locals())
+    rtr = render_to_response(url, locals())
+    mp['page_title'] = tmp1
+    mp['page_keywords'] = tmp2
+    return rtr
 
 # рендерит все заметки выбранной таблицы
 def renderNotesText(objs):
