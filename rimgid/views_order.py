@@ -12,38 +12,6 @@ from django.core.mail import send_mail
 from django.shortcuts import render_to_response
 from rimgid.forms import ContactForm
 
-def excursion_order(request,ex,mail,text):
-  """
-    запрос отправки заказа
-  """
-    rez = accounts_profile(request,ex,mail,text);
-    return HttpResponse(str(rez), mimetype="text/html")
-
-def contact_form(request,ex=""):
-  """
-    вывод формы заказа
-  """
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            order_ok = "True";
-            mail = cd.get('email', '-');
-            date = cd.get('subject', '-');
-            text = cd.get('message', '-');
-            name = cd.get('name', '-');
-            if accounts_profile(request,name,ex,mail,text,date) == "OK":
-              return HttpResponse(u"Спасибо за заказ! Я Вам отвечу в ближайшее время (до нескольких дней).", mimetype="text/html");
-            er_str = u"Ошибка отправки заказа!<br> Возможно это технические неполадки сайта. ";
-            er_str += u"Если ошибка повторяется, попробуйте отправить заказ вручную на мою почту oan_75@mail.ru ";
-            er_str += u"или связаться со мной любым удобным для Вас способом.<br>Мои контакты перечислены на странице gid-rim.com/contacts";
-            return HttpResponse(er_str, mimetype="text/html");
-    else:
-        form = ContactForm(
-            #initial={'subject': 'I love your site!'}
-        )
-    return render_to_response('contact_form.html', locals())
-
 def accounts_profile(request,name,ex,mail,text,date):
   """
     отправка заказа
@@ -91,3 +59,36 @@ def accounts_profile(request,name,ex,mail,text,date):
     server.sendmail(fromaddr, toaddr, msg.as_string())
     server.quit()
     return "OK"
+
+def excursion_order(request,ex,mail,text):
+  """
+    запрос отправки заказа
+  """
+    rez = accounts_profile(request,ex,mail,text);
+    return HttpResponse(str(rez), mimetype="text/html")
+
+def contact_form(request,ex=""):
+  """
+    вывод формы заказа
+  """
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            order_ok = "True";
+            mail = cd.get('email', '-');
+            date = cd.get('subject', '-');
+            text = cd.get('message', '-');
+            name = cd.get('name', '-');
+            if accounts_profile(request,name,ex,mail,text,date) == "OK":
+              return HttpResponse(u"Спасибо за заказ! Я Вам отвечу в ближайшее время (до нескольких дней).", mimetype="text/html");
+            er_str = u"Ошибка отправки заказа!<br> Возможно это технические неполадки сайта. ";
+            er_str += u"Если ошибка повторяется, попробуйте отправить заказ вручную на мою почту oan_75@mail.ru ";
+            er_str += u"или связаться со мной любым удобным для Вас способом.<br>Мои контакты перечислены на странице gid-rim.com/contacts";
+            return HttpResponse(er_str, mimetype="text/html");
+    else:
+        form = ContactForm(
+            #initial={'subject': 'I love your site!'}
+        )
+    return render_to_response('contact_form.html', locals())
+
