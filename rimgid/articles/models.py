@@ -47,7 +47,7 @@ class Foto(models.Model):
         return self.title
 
 class Article(FlatPage):
-    atype = models.ForeignKeyField(ArticleType)
+    atype = models.ForeignKey(ArticleType)
     specials = models.ManyToManyField(ArticleSpecial, null="True", blank="True")
     
     datetime = models.DatetimeField(blank="True")
