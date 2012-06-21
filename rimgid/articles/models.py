@@ -39,7 +39,7 @@ class Foto(models.Model):
     url = models.CharField(max_length=200)
     text = WYSIWYGField(blank="True")
     image = models.ImageField(upload_to="fotos/",null="True", blank="True")
-    datetime = models.DatetimeField(blank="True")
+    datetime = models.DateTimeField(blank="True")
     
     stype = "article"
     
