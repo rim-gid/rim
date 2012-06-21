@@ -19,8 +19,8 @@ class ArticleSpecial(models.Model):
     def __unicode__(self):
         return self.title
 
-class ArticleTypeSpecial(ArticleSpecial, stype = "articleType"):
-    pass
+class ArticleTypeSpecial(ArticleSpecial):
+    stype = "articleType"
 
 class ArticleType(models.Model):
     title = models.CharField(max_length=200)
