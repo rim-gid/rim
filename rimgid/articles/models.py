@@ -27,7 +27,7 @@ class ArticleType(models.Model):
     text = WYSIWYGField(null="True", blank="True")
    
     url_prefix = models.CharField(max_length=200, blank="True")
-    url_prefix_needed = models.BooleanField(value="True")
+    url_prefix_needed = models.BooleanField(True)
     
     specials = models.ManyToManyField(ArticleTypeSpecial, null="True", blank="True")
     
