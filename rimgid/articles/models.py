@@ -50,7 +50,7 @@ class Article(FlatPage):
     atype = models.ForeignKey(ArticleType)
     specials = models.ManyToManyField(ArticleSpecial, null="True", blank="True")
     
-    datetime = models.DatetimeField(blank="True")
+    datetime = models.DateTimeField(blank="True")
     
     #def __unicode__(self):
     #    return self.title
