@@ -6,10 +6,11 @@ from django.conf import settings
 from django.contrib import auth
 import datetime, random, os, time
 from rimgid.books.models import *
-from rimgid.views_order.py import *
-from rimgid.views_yandex.py import *
-from rimgid.views_render.py import *
-from rimgid.views_static.py import *
+from rimgid.views_order import *
+from rimgid.views_yandex import *
+from rimgid.views_render import *
+from rimgid.views_static import *
+from settings import get_main_params
 
 #from django.core.mail import send_mail
 from django.shortcuts import render_to_response

@@ -18,12 +18,11 @@ urlpatterns = patterns('',
     
     # админка------------------:
     (r'^admin/', include(admin.site.urls)),
-    (r'^/?admin_excursions/?$',edit_excursions),
     # админка end------------------:
     
     # общие страницы------------------:
     ('^/?$', get_page, {'page_type':'main'}),
-    ('^/?(?P<page_type>\w+)?/?$', get_page),
+    #('^/?(?P<page_type>\w+)?/?$', get_page),
     # общие страницы end------------------:
     
     # экскурсии------------------:

@@ -16,3 +16,29 @@ def method_splitter(request, GET=None, POST=None):
 
 def get_page(request, url='404'):
     pass
+
+
+#from django.contrib.flatpages.models import FlatPage
+from models import Article
+from django.template import loader, RequestContext
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
+from django.core.xheaders import populate_xheaders
+from django.utils.safestring import mark_safe
+from django.views.decorators.csrf import csrf_protect
+
+from django.contrib.flatpages.views import render_flatpage
+
+DEFAULT_TEMPLATE = 'flatpages/default.html'
+
+def article(request, url):
+    """
+    метод используется для использования вместо объекта FlatPage объекта Article
+    """
+    if not url.endswith('/') and settings.APPEND_SLASH:
+        return HttpResponseRedirect("%s/" % request.path)
+    if not url.startswith('/'):
+        url = "/" + url
+    f = get_object_or_404(Article, url__exact=url, sites__id__exact=settings.SITE_ID)
+    return render_flatpage(request, f)
