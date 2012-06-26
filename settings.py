@@ -59,9 +59,9 @@ TIME_ZONE = 'Europe/Rome'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'ru-RU'
+#LANGUAGE_CODE = 'ru-RU' ****Определяется в project_params.py****
 
-SITE_ID = 1
+#SITE_ID = 1 ****Определяется в project_params.py****
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -129,4 +129,5 @@ INSTALLED_APPS = (
     'rimgid',
     'rimgid.books',
     'rimgid.articles',
+    'rimgid.templatetags',
 )

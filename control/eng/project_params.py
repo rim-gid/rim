@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # ENG VERSION
 
+LANGUAGE_CODE = 'en-US'
+SITE_ID = 2
+
 AAA_SITE_PARAMS = { 'site_name':u'Guide in Rome',
       'site_footer':'© 2012 Guide in Rome, gidinrome.com. All rights reserved.',
       'page_title':'Individual guide in Rome. gidinrome.com',

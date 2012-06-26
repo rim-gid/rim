@@ -22,6 +22,8 @@ def method_splitter(request, GET=None, POST=None):
     elif request.method == 'POST' and POST is not None:
         return POST(request)
     raise Http404
+  
+from rimgid.articles.models import fill_excursions
 
 def excursion_page(request, num):
     mp = get_main_params()
@@ -29,7 +31,8 @@ def excursion_page(request, num):
     if len(footer_list) > 0:
       footer = footer_list[0]
     url = 'excursion.html'
-    excursion_list = Excursion.objects.all()
+    excursion_list = Excursion.objects.all()  
+      
     t_num = int(num)-1;
     ex_num = str(t_num);
     tmp1 = mp['page_title']

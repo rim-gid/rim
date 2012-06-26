@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.template import Template, Context
+from django.template.loader import get_template
 from django.shortcuts import render_to_response
 from django.conf import settings
 from django.contrib import auth
@@ -22,7 +23,7 @@ def get_page(request, url='404'):
 from models import Article
 from django.template import loader, RequestContext
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.conf import settings
 from django.core.xheaders import populate_xheaders
 from django.utils.safestring import mark_safe
@@ -40,5 +41,10 @@ def article(request, url):
         return HttpResponseRedirect("%s/" % request.path)
     if not url.startswith('/'):
         url = "/" + url
+    #try:
     f = get_object_or_404(Article, url__exact=url, sites__id__exact=settings.SITE_ID)
+    if f.is_only_in_list():
+        raise Http404('No %s matches the given query.' % f.url)
+    #except MultipleObjectsReturned:    
     return render_flatpage(request, f)
+    

@@ -1,0 +1,29 @@
+{% extends "articles/base_with_ex.html" %}
+
+{% load project_options %}
+{% load articles_tags %}
+
+{% block content_up %}
+<div id="content-up" align="justify" style="margin-top=-10px;border='solid 10px #333';">
+  <div id="olga_info" style="margin-top:-15px;">
+    <div class="foto_with_podpis"><div class="rounded_up" style="background:url('/olga.png');width:200px;height:220px;margin-top=10px;"></div><div class="podpis" style="width:180px;width=200px;">{{ mp.owner_name }} - <span style="font-weight:normal;font-size:8pt;">{{ mp.owner_status }}</span></div></div>
+    <h1 style="text-align: center;">{{ flatpage.title }}</h1>{{ flatpage.content|safe }}
+    <div style="margin:10;">
+      <div style="float:left;"><a class="light" href="/guida_turistica.pdf">
+        <img src="/pdf.png" width="36" style="width:36px;" alt="{% project_option "url_name_license" %}" /> {% project_option "url_name_license" %}</a></div>
+      <div style="float:left;margin:10;">
+        <a class="light" href="/italy">- {% project_option "url_name_italy" %}</a><br>
+        <a class="light" href="/translate">- {% project_option "url_name_translate" %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content_down %}
+
+{% last_article "note" %}
+{% random_article "shop" %}
+{% random_article "transport" %}
+
+{% endblock %}
