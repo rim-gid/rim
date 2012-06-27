@@ -128,7 +128,10 @@ class ImageWithThumbsFieldFile(ImageFieldFile):
                 if not thumb_name == thumb_name_:
                     raise ValueError('There is already a file named %s' % thumb_name)
         """
-        self.save(self.name, self.file, True, False) #FIXME только для создания
+        try:
+          self.save(self.name, self.file, True, False) #FIXME только для создания
+        except:
+          print "saving... error"
         return
         #**************
         

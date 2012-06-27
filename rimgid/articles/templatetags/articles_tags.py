@@ -34,6 +34,15 @@ def articles_list(token):
     except:
         return ""
 
+TEMP_ARTICLE_TITLE = ""
+
+@register.simple_tag
+def set_article_title(token):
+    print "set_article_title", token
+    global TEMP_ARTICLE_TITLE
+    TEMP_ARTICLE_TITLE = token
+    return ""
+
 """
 @register.simple_tag
 def articles_view(token):
@@ -51,9 +60,9 @@ def do_articles_view(token):
         return ""
 
 @register.filter(name="fotos_view")
-def do_articles_view(token):
+def do_fotos_view(token):
     try: 
-        return views.articles_list(order_by="-datetime",url=token)
+        return views.fotos_list(order_by="-datetime",url=token)
     except:
         return ""
 

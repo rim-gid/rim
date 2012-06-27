@@ -48,3 +48,6 @@ def article(request, url):
     #except MultipleObjectsReturned:    
     return render_flatpage(request, f)
     
+def file_text(template):
+    t = get_template(template)
+    return t.render(Context({}))

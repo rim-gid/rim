@@ -12,10 +12,13 @@ def articles_list(name,template="articles/articles_list.html",order_by='id'):
                     atype__title__exact = name, #фильтруется по atype.title
                     sites__id__exact=settings.SITE_ID
                 ).order_by(order_by)
+                
+    #print name, " count = ", str(len(articles))
+                
     t = get_template(template)
     return t.render(Context({'articles': articles}))
     
-def articles_list(template="articles/fotos_view.html",order_by='id',url=""):
+def fotos_list(template="articles/fotos_view.html",order_by='id',url=""):
     """
     вывод фотографий
     """

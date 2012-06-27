@@ -1,0 +1,38 @@
+{% load articles_tags %}
+{% set_article_title "Стоимость услуг русскоговорящего сопровождения на трансферах" %}
+<div id="content-down" align="justify">
+  <table width="710px">
+    <tr>
+      <td>Услуги</td>
+      <td>Цены/евро</td>
+    </tr>
+    <tr>
+      <td>Ж.-д. вокзал – гостиница в центре</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <td>Аэропорт «Fiumicino» – гостиница в центре</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>Аэропорт «Ciampino» – гостиница в центре</td>
+      <td>120</td>
+    </tr>
+    <tr>
+      <td>Рим – порт «Civitavecchia»</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <td>Рим – Флоренция – 286 км</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <td>Рим – Неаполь – 230 км</td>
+      <td>500</td>
+    </tr>
+    <tr>
+      <td>Дополнительный час</td>
+      <td>40</td>
+    </tr>
+  </table>
+</div>

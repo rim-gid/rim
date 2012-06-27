@@ -28,6 +28,15 @@ class ArticleType(models.Model):
    
     #url_prefix = models.CharField(max_length=200, blank="True")
     #url_prefix_needed = models.BooleanField(default=True)
+    def type_name_postfix(self):
+        try:
+            sp = self.specials.get(name="type_name_postfix")
+            return sp.text
+        except:
+            return ""
+            
+    def title_with_postfix(self):
+        return self.title + self.type_name_postfix()
     
     specials = models.ManyToManyField(ArticleTypeSpecial, null="True", blank="True")
     
@@ -69,7 +78,7 @@ class Foto(models.Model):
     """
     
     def __unicode__(self):
-        return self.title
+        return self.title + " - " + self.image.url_200x200
 
 class Article(FlatPage):
     atype = models.ForeignKey(ArticleType)
@@ -98,6 +107,17 @@ class Article(FlatPage):
                 return True
         return False
     
+    """
+    def atype_url(self):
+        try:
+            self.atype.title
+            sp = self.atype.specials.get(name='only_in_list')
+        except:
+            pass
+        else:
+            if sp.text == "True":
+                return True
+    """
     def __init__(self, *args, **kwargs):
         super(FlatPage, self).__init__( *args, **kwargs)
         if len(self.template_name)>0:
@@ -191,10 +211,19 @@ def add_special(a,name,text):
     a.specials.add(ar)
     a.save()
         
+from views import file_text
+        
+from rimgid.articles.templatetags import articles_tags
+        
 # специальная функция для заполнения экскурсий
-def fill_table(obj,type_name,trans_name):
+def fill_table(obj,type_name,trans_name,type_name_postfix="s",files=False):
     ex_type = get_article_type(type_name,True,False,trans_name)
     site = Site.objects.get(id=settings.SITE_ID)
+    
+    if len(type_name_postfix) > 0:
+        print "adding atype postfix", ex_type.title, type_name_postfix
+        ex_type.specials.add(get_article_type_special("type_name_postfix",type_name_postfix))
+        ex_type.save()
     
     k = 1
     exs = obj.objects.order_by('id')
@@ -203,7 +232,10 @@ def fill_table(obj,type_name,trans_name):
         try:
             a = Article(title=ex.title, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k)+"/")
         except:
-            a = Article(title=ex.name, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k)+"/")
+            try:
+                a = Article(title=ex.name, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k)+"/")
+            except:
+                a = Article(title=ex.name, atype=ex_type, content=ex.value, url="/"+type_name+"_"+str(k)+"/")
         a.save()
         a.sites.add(site)
         a.save()
@@ -231,11 +263,23 @@ def fill_table(obj,type_name,trans_name):
         except:
             pass
     
+    if files:
+        for f in files:
+            #global TEMP_ARTICLE_TITLE
+            content = file_text(f)
+            print "read_TEMP_ARTICLE_TITLE", articles_tags.TEMP_ARTICLE_TITLE
+            title = articles_tags.TEMP_ARTICLE_TITLE
+            a = Article(title=title, atype=ex_type, content=content, url="/"+type_name+"_"+str(k)+"/")
+            a.save()
+            a.sites.add(site)
+            a.save()
+            k += 1
+            articles_tags.TEMP_ARTICLE_TITLE = ""
+    
     ex_type = get_article_type("notes_page",False,"articles/notes.html",u"Список статей")
     #mp = get_main_params()
-    
     #print ex.title, ex.title_time, ex.text_full, ex.cost
-    a = Article(title=trans_name, atype=ex_type, content=type_name, url="/"+type_name+"s/")
+    a = Article(title=trans_name, atype=ex_type, content=type_name, url="/"+type_name + type_name_postfix+"/") #type_name_postfix добавляет s в конце
     a.save()
     add_site_pole(a)
         
@@ -312,8 +356,13 @@ def fill_all():
     fill_excursions()
     fill_table(Note,"note",u"Новости")
     fill_table(Shops,"shop",u"Магазины")
-    fill_table(Transport,"transport",u"Транспорт")
+    fill_table(Transport,"transport",u"Транспорт",type_name_postfix="")
     fill_table(Reccomendations,"reccomendation",u"Отзывы")
+    fill_table(Flights,"flight",u"Авиаперелеты")
+    fill_table(Hotels,"hotel",u"Отели")
+    fill_table(Restaurants,"restaurant",u"Рестораны")
+    fill_table(Contacts,"contact",u"Контакты")
+    fill_table(Transfer,"transfer",u"Трансфер",type_name_postfix="",files=["articles/transfer_1","articles/transfer_2"])
     fill_main_page()
     fill_fotos()
     #fill_main_params()
