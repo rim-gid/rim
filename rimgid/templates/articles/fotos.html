@@ -1,0 +1,9 @@
+{% extends "articles/notes.html" %}
+
+{% load articles_tags %}
+
+{% block list_content %}
+<p><h1 style="text-align:center;">{{ flatpage.title }}<!-- if excursion.title_time != '0' %7} - {7{ excursion.title_time }7}{7% endif --></h1>
+    {{ flatpage.url_200x200|fotos_view }}
+</p>
+{% endblock %}

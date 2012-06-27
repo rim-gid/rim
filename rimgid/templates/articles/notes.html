@@ -6,9 +6,11 @@
 
 {% block content_down %}
   <div class="ex_div bordered">
+  {% block list_content %}
   <p><h1 style="text-align:center;">{{ flatpage.title }}<!-- if excursion.title_time != '0' %7} - {7{ excursion.title_time }7}{7% endif --></h1>
       {{ flatpage.content|articles_view }}
   </p>
+  {% endblock %}
 
 <!--div id="order_form_pole">
   <iframe id="order_form" src="/contact_form/{{ flatpage.title }}/">

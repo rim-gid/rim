@@ -46,7 +46,14 @@ def articles_view(token):
 @register.filter(name="articles_view")
 def do_articles_view(token):
     try: 
-        return views.articles_list(token,"articles/articles_list_view.html")
+        return views.articles_list(token,"articles/articles_list_view.html",order_by="-datetime")
+    except:
+        return ""
+
+@register.filter(name="fotos_view")
+def do_articles_view(token):
+    try: 
+        return views.articles_list(order_by="-datetime",url=token)
     except:
         return ""
 

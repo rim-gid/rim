@@ -130,4 +130,5 @@ INSTALLED_APPS = (
     'rimgid.books',
     'rimgid.articles',
     'rimgid.templatetags',
+    'rimgid.added',
 )

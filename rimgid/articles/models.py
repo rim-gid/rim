@@ -4,6 +4,7 @@ from django.conf import settings
 from rimgid.wysiwyg import WYSIWYGField
 from django.contrib.flatpages.models import FlatPage
 import datetime
+from django.contrib.sites.models import Site
 
 class ArticleSpecial(models.Model):
     name = models.CharField(max_length = 200,blank = "True")
@@ -12,7 +13,11 @@ class ArticleSpecial(models.Model):
     stype = "article"
     
     def __unicode__(self):
-        return self.name + " - " + self.text
+        try:
+            atype = self.article_set.all()[0].atype.title
+        except:
+            atype = ""
+        return self.name + "["+atype+"] - " + self.text
 
 class ArticleTypeSpecial(ArticleSpecial):
     stype = "articleType"
@@ -33,12 +38,35 @@ class ArticleType(models.Model):
         except:
             return self.title
 
+from rimgid.added.thumbs import ImageWithThumbsField
+
 class Foto(models.Model):
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     text = WYSIWYGField(blank="True")
-    image = models.ImageField(upload_to="fotos/",null="True", blank="True")
+    #image = models.ImageField(upload_to="fotos/",null="True", blank="True")
+    image = ImageWithThumbsField(upload_to='images', sizes=((200,200),))
+
     datetime = models.DateTimeField(blank="True")
+    sites = models.ManyToManyField(Site)
+    
+    """
+    def mini_img(self):
+        #if self.image.width <= 200:
+        #    return self.image
+        aspect = self.image.height / self.image.width
+        new_hei = 200*aspect
+        new_sz = '200x'+str(new_hei)
+        
+        image_path = thumbnail(self.image, new_sz) # создается миниатюра
+        
+        #self.image.
+        
+        #image_path = image_path.replace('\\','/') # Windows-Fix
+        #return '<a href="'+ str(self.id) +'/"><img src="'+ 
+        #  str(image_path) +'"/></a>'
+        return image_path
+    """
     
     def __unicode__(self):
         return self.title
@@ -48,16 +76,10 @@ class Article(FlatPage):
     specials = models.ManyToManyField(ArticleSpecial, null="True", blank="True")
     datetime = models.DateTimeField(blank="True",default=datetime.datetime.now) #auto_now_add=True
     
-    def special(self):
-        #print "special", self.name
+    def special(self):#FIXME не нужна
         sp = self.specials.objects.values("name","text")
         print str(sp)
         return sp
-        #return "----"
-        #try:
-        #    return sp.text
-        #except:
-        #    return False
         
     def image(self):
         try:
@@ -159,8 +181,15 @@ def fill_excursions():
         
         k += 1
 
+def add_site_pole(a):
+    site = Site.objects.get(id=settings.SITE_ID)
+    a.sites.add(site)
+    a.save()
 
-
+def add_special(a,name,text):
+    ar = get_article_special(name, text)
+    a.specials.add(ar)
+    a.save()
         
 # специальная функция для заполнения экскурсий
 def fill_table(obj,type_name,trans_name):
@@ -171,11 +200,20 @@ def fill_table(obj,type_name,trans_name):
     exs = obj.objects.order_by('id')
     for ex in exs:
         #print ex.title, ex.title_time, ex.text_full, ex.cost
-        a = Article(title=ex.title, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k)+"/")
+        try:
+            a = Article(title=ex.title, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k)+"/")
+        except:
+            a = Article(title=ex.name, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k)+"/")
         a.save()
         a.sites.add(site)
         a.save()
         k += 1
+        
+        try:
+            mail = ex.mail
+            add_special(a,"mail",mail)
+        except:
+            pass
         
         try:
             a.datetime = ex.date
@@ -184,32 +222,22 @@ def fill_table(obj,type_name,trans_name):
             pass
         
         try:
-            im = ex.image.url()
-            ar = get_article_special("image", im)
-            a.specials.add(ar)
-            a.save()
+            im = str(ex.image)
+            if im == "0":
+                continue
+            if im[0] != '/':
+                im = "/" + im
+            add_special(a,"image",im)
         except:
-            try:
-                im = ex.image
-                
-                if im == "0":
-                    continue
-                if im[0] != '/':
-                    im = "/" + im
-                ar = get_article_special("image", im)
-                a.specials.add(ar)
-                a.save()
-            except:
-                pass
+            pass
     
     ex_type = get_article_type("notes_page",False,"articles/notes.html",u"Список статей")
-    mp = get_main_params()
+    #mp = get_main_params()
     
     #print ex.title, ex.title_time, ex.text_full, ex.cost
     a = Article(title=trans_name, atype=ex_type, content=type_name, url="/"+type_name+"s/")
     a.save()
-    a.sites.add(site)
-    a.save()
+    add_site_pole(a)
         
 from settings import get_main_params
 from rimgid.templatetags.models import ProjectOption
@@ -235,28 +263,59 @@ def fill_main_params():
             po.sites.add(site)
             po.save()
         print m, mp[m]
+        
+def fill_fotos():
+  
+    fotos = Fotos.objects.all()
+    for f in fotos:
+      
+      #title = models.CharField(max_length=200)
+      #text = WYSIWYGField()
+      #upload_to=settings.MEDIA_ROOT+
+      #image = models.ImageField(upload_to="images/",null="True")
+      #date = models.DateField()
+      im = str(f.image)
+      try:
+        if im[0] != '/':
+          im = "/"+im
+      except:
+        pass
+  
+      foto = Foto(title=f.title, url="***", text=f.text, image=im, datetime=f.date)
+      foto.save()
+      add_site_pole(foto)
+      #title = models.CharField(max_length=200)
+      #url = models.CharField(max_length=200)
+      #text = WYSIWYGField(blank="True")
+      #image = models.ImageField(upload_to="fotos/",null="True", blank="True")
+      #datetime = models.DateTimeField(blank="True")
+      
+    ex_type = get_article_type("fotogallery",False,"articles/fotos.html",u"Фотогалерея")
+    a = Article(title=u"Фото", atype=ex_type, content="foto", url="/fotos/")
+    a.save()
+    add_site_pole(a)
 
 def fill_main_page():
-    site = Site.objects.get(id=settings.SITE_ID)
-    
     ex_type = get_article_type("simple_page",False,"articles/main.html",u"Простая страница")
     mp = get_main_params()
     
     #print ex.title, ex.title_time, ex.text_full, ex.cost
     a = Article(title=mp['owner_maintitle'], atype=ex_type, content=mp['owner_maintext'], url="/main/")
     a.save()
-    a.sites.add(site)
-    a.save()
+    add_site_pole(a)
 
 def fill_all():
     ArticleSpecial.objects.all().delete()
     Article.objects.all().delete()
     ArticleType.objects.all().delete()
+    Foto.objects.all().delete()
     fill_excursions()
     fill_table(Note,"note",u"Новости")
     fill_table(Shops,"shop",u"Магазины")
     fill_table(Transport,"transport",u"Транспорт")
+    fill_table(Reccomendations,"reccomendation",u"Отзывы")
     fill_main_page()
+    fill_fotos()
     #fill_main_params()
 
 fill_all()
