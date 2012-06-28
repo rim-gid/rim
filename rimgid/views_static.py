@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.template import Template, Context
 from django.shortcuts import render_to_response
 from django.conf import settings
@@ -8,12 +8,29 @@ import datetime, random, os, time
 from rimgid.forms import ContactForm
 
 def get_css(request,name):
-    url = "css/" + name + ".css"
-    return render_to_response(url, locals())
+    f = "css/" + name + ".css"
+    return render_to_response(f, locals())
 
 def get_js(request,name):
-    url = "js/" + name + ".js"
-    return render_to_response(url, locals())
+    f = "js/" + name + ".js"
+    return render_to_response(f, locals())
+    
+def get_from_wysiwyg(request,name,tp):
+    url = settings.MEDIA_ROOT + "wysiwyg/" + name + "." + tp
+    try:
+      ufile = open(url, "rb").read()
+    except:
+      raise Http404('No %s matches the given query.' % url)
+    
+    if tp == "js":
+      return HttpResponse(ufile, mimetype="text/javascript")
+    elif tp == "css":
+      return HttpResponse(ufile, mimetype="text/css")
+    elif tp == "gif":
+      return HttpResponse(ufile, mimetype="image/gif")
+    else:
+      raise Http404('No %s matches the given query.' % url)
+      
     
 def get_htc(request,name):
     url = settings.MEDIA_ROOT + "templates/htc/" + name + ".htc"
@@ -36,5 +53,8 @@ def get_image(request,name,tp,papka):
     try:
       image_data = open(settings.MEDIA_ROOT+image_name, "rb").read()
     except IOError:
-      image_data = open("rimgid/"+image_name, "rb").read()
+      try:
+        image_data = open("rimgid/"+image_name, "rb").read()
+      except:
+        raise Http404('No %s matches the given query.' % ("rimgid/"+image_name))
     return HttpResponse(image_data, mimetype="image/"+tp)

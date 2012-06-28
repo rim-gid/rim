@@ -11,9 +11,9 @@ urlpatterns = patterns('',
     
     # PAGES---------------:
     # для яндекса------------------:
-    ('^/?robots.txt', robots),
-    ('^/?yandex_61b9f126eb948082.txt', yandex_61b9f126eb948082_txt),
-    ('^/?1be09f3f8a74.html', html_1be09f3f8a74_html),
+    #('^/?robots.txt', robots),
+    #('^/?yandex_61b9f126eb948082.txt', yandex_61b9f126eb948082_txt),
+    #('^/?1be09f3f8a74.html', html_1be09f3f8a74_html),
     # для яндекса end------------------:
     
     # админка------------------:
@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     # админка end------------------:
     
     # общие страницы------------------:
-    ('^/?$', get_page, {'page_type':'main'}),
+    #('^/?$', get_page, {'page_type':'main'}),
     #('^/?(?P<page_type>\w+)?/?$', get_page),
     # общие страницы end------------------:
     
@@ -34,9 +34,11 @@ urlpatterns = patterns('',
     
     # STATIC------------------:
     ('^/?(?P<name>\w+).css/?$', get_css),
+    
+    ('^/?rimgid/wysiwyg/(?P<name>[^.]+)\.(?P<tp>\w+)/?$', get_from_wysiwyg),
     ('^/?(?P<name>\w+).js/?$', get_js),
     ('^/?(images/)?((?P<papka>\w+)/)?(?P<name>[^/]+)\.(?P<tp>\w+)/?$', get_image),
-    ('^/?ds_stamper.ttf/$', get_image, {'tp':'ttf'}),
+    ('^/?ds_stamper.ttf/?$', get_image, {'tp':'ttf'}),
     # STATIC end------------------:
     
 )

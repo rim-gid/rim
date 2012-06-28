@@ -61,21 +61,6 @@
     <a style="position:absolute;top:100px;right:50px;width:20px;height:20px;" href="http://vkontakte.ru/id2981077" Title="{{ mp.site_name }}">
   <img src="/vk.png" width="20px" height="20px" alt="моя страница вконтакте"/> </a>
   </div>
-  {% if mp.local.yandex_needed %}
-  <!-- Yandex.Metrika counter -->
-  <div style="display:none;"><script type="text/javascript">
-  (function(w, c) {
-      (w[c] = w[c] || []).push(function() {
-    try {
-        w.yaCounter11554360 = new Ya.Metrika({id:11554360, enableAll: true});
-    }
-    catch(e) { }
-      });
-  })(window, "yandex_metrika_callbacks");
-  </script></div>
-  <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
-  <noscript><div><img src="//mc.yandex.ru/watch/11554360" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
-  {% endif %}
+  {% project_option "yandex_metrika" %}
 </body>
 </html>

@@ -2,9 +2,9 @@
 from django.db import models
 from django.conf import settings
 from rimgid.wysiwyg import WYSIWYGField
-from django.contrib.flatpages.models import FlatPage
 import datetime
 from django.contrib.sites.models import Site
+from django.contrib.flatpages.models import FlatPage
 
 class ArticleSpecial(models.Model):
     name = models.CharField(max_length = 200,blank = "True")
@@ -180,7 +180,7 @@ def fill_excursions():
     exs = Excursion.objects.order_by('id')
     for ex in exs:
         #print ex.title, ex.title_time, ex.text_full, ex.cost
-        a = Article(title=ex.title, atype=ex_type, content=ex.text_full, url="/excursion_"+str(k)+"/")
+        a = Article(title=ex.title, atype=ex_type, content=ex.text_full, url="/excursion/"+str(k))
         a.save()
         a.sites.add(site)
         
@@ -230,12 +230,12 @@ def fill_table(obj,type_name,trans_name,type_name_postfix="s",files=False):
     for ex in exs:
         #print ex.title, ex.title_time, ex.text_full, ex.cost
         try:
-            a = Article(title=ex.title, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k)+"/")
+            a = Article(title=ex.title, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k))
         except:
             try:
-                a = Article(title=ex.name, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k)+"/")
+                a = Article(title=ex.name, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k))
             except:
-                a = Article(title=ex.name, atype=ex_type, content=ex.value, url="/"+type_name+"_"+str(k)+"/")
+                a = Article(title=ex.name, atype=ex_type, content=ex.value, url="/"+type_name+"_"+str(k))
         a.save()
         a.sites.add(site)
         a.save()
@@ -269,7 +269,7 @@ def fill_table(obj,type_name,trans_name,type_name_postfix="s",files=False):
             content = file_text(f)
             print "read_TEMP_ARTICLE_TITLE", articles_tags.TEMP_ARTICLE_TITLE
             title = articles_tags.TEMP_ARTICLE_TITLE
-            a = Article(title=title, atype=ex_type, content=content, url="/"+type_name+"_"+str(k)+"/")
+            a = Article(title=title, atype=ex_type, content=content, url="/"+type_name+"_"+str(k))
             a.save()
             a.sites.add(site)
             a.save()
@@ -279,7 +279,7 @@ def fill_table(obj,type_name,trans_name,type_name_postfix="s",files=False):
     ex_type = get_article_type("notes_page",False,"articles/notes.html",u"Список статей")
     #mp = get_main_params()
     #print ex.title, ex.title_time, ex.text_full, ex.cost
-    a = Article(title=trans_name, atype=ex_type, content=type_name, url="/"+type_name + type_name_postfix+"/") #type_name_postfix добавляет s в конце
+    a = Article(title=trans_name, atype=ex_type, content=type_name, url="/"+type_name + type_name_postfix) #type_name_postfix добавляет s в конце
     a.save()
     add_site_pole(a)
         
@@ -340,19 +340,78 @@ def fill_fotos():
     add_site_pole(a)
 
 def fill_main_page():
-    ex_type = get_article_type("simple_page",False,"articles/main.html",u"Простая страница")
+    ex_type = get_article_type("simple_page",False,"articles/main.html",u"Заглавная страница")
     mp = get_main_params()
     
     #print ex.title, ex.title_time, ex.text_full, ex.cost
-    a = Article(title=mp['owner_maintitle'], atype=ex_type, content=mp['owner_maintext'], url="/main/")
+    a = Article(title=mp['owner_maintitle'], atype=ex_type, content=mp['owner_maintext'], url="/")
     a.save()
     add_site_pole(a)
+    
+def fill_yandex():
+    ex_type = get_article_type("for_yandex",False,"articles/empty.html",u"Для Яндекса")
+    mp = get_main_params()
+    site = Site.objects.get(id=1)
+  
+    def add_simple_page(ext_type, mp, template, url, site):
+        content = file_text(template)
+        a = Article(title=mp['owner_maintitle'], atype=ex_type, content=content, url=url)
+        a.save()
+        a.sites.add(site)
+        a.save()
+      
+    add_simple_page(ex_type, mp, "yandex_61b9f126eb948082.txt", "/yandex_61b9f126eb948082.txt", site)
+    add_simple_page(ex_type, mp, "robots.txt", "/robots.txt", site)
+    add_simple_page(ex_type, mp, "1be09f3f8a74.html", "/1be09f3f8a74.html", site)
+  
+    y_name = "yandex_metrika"
+    y_value = file_text("articles/yandex_metrika")
+    try:
+        po = ProjectOption.objects.get(name=y_name, value=y_value)
+    except:
+        po = ProjectOption(name=y_name, value=y_value)
+        po.save()
+    else:
+        pass
+  
+    try:
+        po.sites.get(id=site)
+    except:
+        po.sites.add(site)
+        po.save()
+    print y_name, " - OK!"
+    
+
+def fill_translate():
+    ex_type = get_article_type("translate",False,"articles/excursion.html",u"Услуги перевода")
+    mp = get_main_params()
+    
+    datas = OlgaInfo.objects.all()
+    data = datas[1].hello_text
+    #db_template = Template(data.hello_text)
+    #db_rez_template = Template('{% extends db_template %}')
+    #db_c = Context(locals())
+    #db_t = db_template.render(db_c)
+    
+    #print ex.title, ex.title_time, ex.text_full, ex.cost
+    a = Article(title=u"Услуги перевода", atype=ex_type, content=data, url="/translate")
+    a.save()
+    add_site_pole(a)
+    
+filled = False
 
 def fill_all():
+    global filled
+    
+    if filled:
+      return
+    ProjectOption.objects.all().delete()
     ArticleSpecial.objects.all().delete()
     Article.objects.all().delete()
     ArticleType.objects.all().delete()
     Foto.objects.all().delete()
+    
+    fill_main_params()
     fill_excursions()
     fill_table(Note,"note",u"Новости")
     fill_table(Shops,"shop",u"Магазины")
@@ -365,6 +424,12 @@ def fill_all():
     fill_table(Transfer,"transfer",u"Трансфер",type_name_postfix="",files=["articles/transfer_1","articles/transfer_2"])
     fill_main_page()
     fill_fotos()
-    #fill_main_params()
+    fill_yandex()
+    fill_translate()
+    
+    filled = True
 
 fill_all()
+
+
+
