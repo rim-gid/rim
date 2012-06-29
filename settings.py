@@ -21,7 +21,7 @@ def get_main_params():
     mp['local']=settings.AAA_SITE_LOCAL_PARAMS
     return mp
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
