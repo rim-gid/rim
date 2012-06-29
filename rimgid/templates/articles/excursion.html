@@ -1,30 +1,7 @@
-{% extends "articles/base_with_ex.html" %}
-
-{% block style %}{% endblock %}
-
-{% block content_down %}
-  <div class="ex_div bordered">
-  <p><h1>{{ flatpage.title }}<!-- if excursion.title_time != '0' %7} - {7{ excursion.title_time }7}{7% endif --></h1>
-      {{ flatpage.content|safe }}
-  </p>
-
+{% extends "articles/simple_page.html" %}
+{% block content_down_adding %}
 <div id="order_form_pole">
   <iframe id="order_form" src="/contact_form/{{ flatpage.title }}/">
   </iframe>
 </div>
-
-    <table border="0" width="100%" cellspacing="0" cellpadding="0" style="background-color: #007700; border-style: solid; border-width: 1px 0px 1px 0px; border-color: url(100, 100, 100);"><tr>
-      <td width="2%">&nbsp;</td>
-      <td align="center"><a href="/" class=menu style="color:#fff;"><div class="menu_url">&nbsp; На главную &nbsp;</div></a></td>
-      <!--td align="center" style="visibility:hidden;"><a href="" class=menu style="color:#fff;"><div class="menu_url">&nbsp; Заказать &nbsp;</div></a></td>
-      <td align="center"><a href="" class=menu style="color:#fff;"><div class="menu_url">&nbsp; {{ excursion.cost }} &nbsp;</div></a></td-->
-      <td width="2%">&nbsp;</td>
-      </tr>
-    </table>
-  </div>
-
-  <div style="padding-left:20px;padding-bottom:20px;text-align:center;">
-      
-  </div>
-
-{% endblock %}
+{% endblock%}

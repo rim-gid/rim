@@ -1,0 +1,70 @@
+{% load articles_tags %}
+{% set_article_title "Transfers" %}
+<div>
+  Dear guests!
+  We offer you car rent and drivers services in Rome and all Italy.
+  You can book transfer to any city, town, resort.
+  All transfers are done with English - speaking drivers
+  for your assistance during business trip in Italy.
+  The below indicated rates are one ways rates.
+</div>
+<div id="content-down" align="justify">
+  <table cellpadding="4" cellspacing="1">
+    <tr>
+      <td>Direction</td>
+      <td>Mercedes E class max. 2 pers.</td>
+      <td>Mini bus Мercedes V 3-8 pers.</td>
+      <td>Mercedes S320 max. 2 pers.</td>
+      <td>Bus 8-15 pers.</td>
+    </tr>
+    <tr>
+      <td>Termini station - hotel in the centre of Rome</td>
+      <td>50 euro</td>
+      <td>70 euro</td>
+      <td>170 euro</td>
+      <td>170 euro</td>
+    </tr>
+    <tr>
+      <td>Fiumicino airport - hotel in the centre of Rome</td>
+      <td>70 euro</td>
+      <td>90 euro</td>
+      <td>230 euro</td>
+      <td>230 euro</td>
+    </tr>
+    <tr>
+      <td>Airport Ciampino - hotel in the centre of Rome</td>
+      <td>90 euro</td>
+      <td>150 euro</td>
+      <td>230 euro</td>
+      <td>250 euro</td>
+    </tr>
+    <tr>
+      <td>Rome - Civitavecchia port</td>
+      <td>160 euro</td>
+      <td>180 euro</td>
+      <td>350 euro</td>
+      <td>350 euro</td>
+    </tr>
+    <tr>
+      <td>Rome - Florence – 286 km</td>
+      <td>650 euro</td>
+      <td>700 euro</td>
+      <td>1500 euro</td>
+      <td>900 euro</td>
+    </tr>
+    <tr>
+      <td>Rome - Naples – 230 km</td>
+      <td>600 euro</td>
+      <td>650 euro</td>
+      <td>1350 euro</td>
+      <td>800 euro</td>
+    </tr>
+    <tr>
+      <td>Rome - Florence with stop over in Siena</td>
+      <td>800 euro</td>
+      <td>900 euro</td>
+      <td>1500 euro</td>
+      <td>1000 euro</td>
+    </tr>
+  </table>
+</div>

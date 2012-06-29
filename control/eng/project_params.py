@@ -63,6 +63,7 @@ AAA_SITE_PARAMS = { 'site_name':u'Guide in Rome',
       'form_label_comments':"Comments:",
       'form_input_comments':"Write your wishes about tour...",
       'request_button_text':"Send",
+      'to_main_text':"To main page",
       'site_version':"eng",      
 	    }
 
