@@ -82,9 +82,18 @@ class ImageWithThumbsFieldFile(ImageFieldFile):
             for size in self.field.sizes:
                 (w,h) = size
                 setattr(self, 'url_%sx%s' % (w,h), get_size(self, size))
-        print "***INIT 2***"        
+           
         #if self.url_200x200 == self.url:
         #    self.save(self.name,)
+        return
+        
+        try:
+          print "saving..."
+          self.save(self.name, self.file, True, False) #FIXME только для создания
+        except:
+          print "saving... error"
+          
+        print "***INIT 2***"     
                 
     def save(self, name, content, save=True, manipulate_main_instanse=True):
         print "saving...", name
@@ -128,6 +137,7 @@ class ImageWithThumbsFieldFile(ImageFieldFile):
                 if not thumb_name == thumb_name_:
                     raise ValueError('There is already a file named %s' % thumb_name)
         """
+        return
         try:
           self.save(self.name, self.file, True, False) #FIXME только для создания
         except:
