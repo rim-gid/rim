@@ -4,6 +4,6 @@
   <img src="{{ article.image }}" width="150px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;border='solid 1px #333;'" alt="{{ article.title }}"/>
   {% endif %}
   <h1>{{ article.title }}</h1><div class="note_place"><a href="/{{ article.atype.title_with_postfix }}">{{ article.atype }}</a></div>
-  {{ article.datetime }} - {{ article.content }}
+  {{ article.datetime }} - {{ article.content|safe }}
 </div>
 {% endif %}
