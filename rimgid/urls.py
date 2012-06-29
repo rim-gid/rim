@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     # общие страницы end------------------:
     
     # экскурсии------------------:
-    ('^/?excursion/(?P<num>\d+)/?$', excursion_page),
+    #('^/?excursion/(?P<num>\d+)/?$', excursion_page),
     ('^/?order_excursion/(?P<ex>\w+)/(?P<mail>\w+)/(?P<text>\w+)/?$', excursion_order),
     #('^/?ex_list.html', ex_list),
     # экскурсии end------------------:
