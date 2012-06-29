@@ -195,11 +195,11 @@ def get_site(site_id=settings.SITE_ID):
   
     return Site.objects.get(id=site_id)
     
-get_site()
+#get_site()
 
 # специальная функция для заполнения экскурсий
 def fill_excursions():
-    ex_type = get_article_type("excursion",False,"articles/excursion.html","Экскурсии|Excursions")#ArticleType.objects.get(title="Excursion")
+    ex_type = get_article_type("excursion",False,"articles/excursion.html",u"Экскурсии|Excursions")#ArticleType.objects.get(title="Excursion")
     site = Site.objects.get(id=settings.SITE_ID)
     
     #ArticleSpecial(name="small_text",text=ex.text)
@@ -255,11 +255,18 @@ def add_site_to(obj,site_id=settings.SITE_ID):
         
 def add_option(name,value,site_id=settings.SITE_ID):
     try:
+        value = str(value)
+    except:
+        print "option FALSE! ", name
+    try:
         po = ProjectOption.objects.get(name=value, value=value)
     except:
-        po = ProjectOption(name=name, value=value)
-        po.save()
-        add_site_to(po,site_id)
+	try:
+            po = ProjectOption(name=name, value=value)
+            po.save()
+            add_site_to(po,site_id)
+        except:
+            print "option ERROR! ", name
 
 def get_article(title,atype,content,url,site_id=settings.SITE_ID):
     try:
@@ -549,6 +556,7 @@ def fill_all():
     
     filled = True
 
+get_site()
 fill_all()
 
 
