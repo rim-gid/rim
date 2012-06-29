@@ -48,3 +48,19 @@ class ContactForm(forms.Form):
         },
       ),
     )
+"""
+TODO to delete - it is from gidinrome.com
+
+    name = forms.CharField(required=False,label=mp['form_label_name'],
+      widget=forms.TextInput(attrs={'placeholder' : mp['form_input_name'], 'id' : 'order_name'},),)
+    subject = forms.CharField(required=False,label=mp['form_label_date'],
+      #initial=datetime.date.today,input_formats=('%d-%m-%Y',),
+      #widget=SelectDateWidget(input_format='%d-%B-%Y', years=range(year, year-101, -1)),)
+      widget=forms.TextInput(attrs={'placeholder' : mp['form_input_date'], 'id' : 'order_date'},),)
+    email = forms.EmailField(required=True, label=mp['form_label_email'],widget=forms.TextInput(
+      attrs={'placeholder' : mp['form_input_email'], 'id' : 'order_mail'},
+      ),)
+    message = forms.CharField(required=False, label=mp['form_label_comments'],widget=forms.Textarea(
+      attrs={'placeholder' : mp['form_input_comments'], 'id' : 'order_text'},
+      ),)
+"""

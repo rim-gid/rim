@@ -15,6 +15,8 @@ from settings import get_main_params
 #from django.core.mail import send_mail
 from django.shortcuts import render_to_response
 from rimgid.forms import ContactForm
+from rimgid.articles.models import fill_excursions
+
 
 def method_splitter(request, GET=None, POST=None):
     if request.method == 'GET' and GET is not None:
@@ -22,8 +24,6 @@ def method_splitter(request, GET=None, POST=None):
     elif request.method == 'POST' and POST is not None:
         return POST(request)
     raise Http404
-  
-from rimgid.articles.models import fill_excursions
 
 def excursion_page(request, num):
     mp = get_main_params()
@@ -96,31 +96,31 @@ def get_page(request, page_type='404'):
       db_t = db_template.render(db_c)
     elif page_type == "notes" :
       content_name = mp['content_name_notes']
-      content_no = u'Пока нет ни одной новости'
+      content_no = mp['content_name_notes_no']
       content_list = renderNotesText(Note)
     elif page_type == "shops" :
       content_name = mp['content_name_shops']
-      content_no = u'Пока нет ни одной заметки про магазины'
+      content_no = mp['content_name_shops_no']
       content_list = renderNotesText(Shops)
       page_type = "notes"
     elif page_type == "hotels" :
       content_name = mp['content_name_hotels']
-      content_no = u'Пока нет ни одной заметки про отели'
+      content_no = mp['content_name_hotels_no']
       content_list = renderNotesText(Hotels)
       page_type = "notes"
     elif page_type == "flights" :
       content_name = mp['content_name_flights']
-      content_no = u'Пока нет ни одной заметки про авиа'
+      content_no = mp['content_name_flights_no']
       content_list = renderNotesText(Flights)
       page_type = "notes"
     elif page_type == "restaurants" :
       content_name = mp['content_name_restaurants']
-      content_no = u'Пока нет ни одной заметки про рестораны'
+      content_no = mp['content_name_restaurants_no']
       content_list = renderNotesText(Restaurants)
       page_type = "notes"
     elif page_type == "transport" :
       content_name = mp['content_name_transport']
-      content_no = u'Пока нет ни одной заметки про транспорт'
+      content_no = mp['content_name_transport_no']
       content_list = renderNotesText(Transport)
       page_type = "notes"
     

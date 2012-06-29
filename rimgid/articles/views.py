@@ -39,6 +39,9 @@ def article(request, url):
     """
     #if not url.endswith('/') and settings.APPEND_SLASH:
     #    return HttpResponseRedirect("%s/" % request.path)
+    if url.startswith('http://'):
+        return HttpResponseRedirect("%s" % request.path)
+    
     if url.endswith('/') and len(url) > 1: #and settings.APPEND_SLASH:
         return HttpResponseRedirect("%s" % request.path[0:len(request.path)-1])
     if not url.startswith('/'):

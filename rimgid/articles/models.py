@@ -43,7 +43,11 @@ class ArticleType(models.Model):
     def __unicode__(self):
         try:
             sp = self.specials.get(name="name")
-            return sp.text
+            try:
+                sps = sp.text.split("|")
+                return sps[settings.SITE_ID-1]
+            except:
+                return sp.text
         except:
             return self.title
 
@@ -135,6 +139,10 @@ class Article(FlatPage):
         else:
             self.title = a_t.text
             
+# *************************************************************
+#  Далее функционал для перегона таблиц из старой версии в новую
+# *************************************************************
+            
 from rimgid.books.models import *
 from django.contrib.sites.models import Site
 
@@ -169,9 +177,29 @@ def get_article_type(name,only_li=True,ar_t_template=False,type_name=False):
         a.save()
     return a
 
+site_repaired = False
+
+def get_site(site_id=settings.SITE_ID):
+    global site_repaired
+    if not site_repaired:
+        print "Sites repairing..."
+        sts = ['rim-gid.com','gidinrome.com']
+        sites = Site.objects.all().delete()
+        k = 1
+        for s in sts:
+            si = Site(name=s,domain=s,id=k)
+            si.save()
+            print si.name, ' site_id=', si.id    
+            k += 1
+        site_repaired = True
+  
+    return Site.objects.get(id=site_id)
+    
+#get_site()
+
 # специальная функция для заполнения экскурсий
 def fill_excursions():
-    ex_type = get_article_type("excursion",False,"articles/excursion.html","Экскурсии")#ArticleType.objects.get(title="Excursion")
+    ex_type = get_article_type("excursion",False,"articles/excursion.html",u"Экскурсии|Excursions")#ArticleType.objects.get(title="Excursion")
     site = Site.objects.get(id=settings.SITE_ID)
     
     #ArticleSpecial(name="small_text",text=ex.text)
@@ -215,54 +243,97 @@ from views import file_text
         
 from rimgid.articles.templatetags import articles_tags
         
+from settings import get_main_params
+from rimgid.templatetags.models import ProjectOption
+        
+def add_site_to(obj,site_id=settings.SITE_ID):
+    try:
+        obj.sites.get(id=site_id)
+    except:
+        obj.sites.add(get_site(site_id))
+        obj.save()
+        
+def add_option(name,value,site_id=settings.SITE_ID):
+    try:
+        value = str(value)
+    except:
+        print "option FALSE! ", name
+    try:
+        po = ProjectOption.objects.get(name=value, value=value)
+    except:
+	try:
+            po = ProjectOption(name=name, value=value)
+            po.save()
+            add_site_to(po,site_id)
+        except:
+            print "option ERROR! ", name
+
+def get_article(title,atype,content,url,site_id=settings.SITE_ID):
+    try:
+        a = Article.objects.get(title=title, atype=atype, content=content, url=url)
+    except:
+        a = Article(title=title, atype=atype, content=content, url=url)
+        a.save()
+        add_site_to(a,site_id)
+    return a
+        
 # специальная функция для заполнения экскурсий
-def fill_table(obj,type_name,trans_name,type_name_postfix="s",files=False):
-    ex_type = get_article_type(type_name,True,False,trans_name)
-    site = Site.objects.get(id=settings.SITE_ID)
+def fill_table(obj,type_name,trans_name,type_name_postfix="s",files=False,massive=False,site_id=settings.SITE_ID,only_in_list=True,create_list_page=True):
+    ex_type = get_article_type(type_name,only_in_list,False,trans_name)
+    site = Site.objects.get(id=site_id)
+    
+    try:
+        trans_name = trans_name.split("|")[settings.SITE_ID-1]
+    except:
+        pass
     
     if len(type_name_postfix) > 0:
         print "adding atype postfix", ex_type.title, type_name_postfix
         ex_type.specials.add(get_article_type_special("type_name_postfix",type_name_postfix))
         ex_type.save()
     
-    k = 1
-    exs = obj.objects.order_by('id')
-    for ex in exs:
-        #print ex.title, ex.title_time, ex.text_full, ex.cost
+    def add_image_special(a,img):#ex.image
         try:
-            a = Article(title=ex.title, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k))
-        except:
-            try:
-                a = Article(title=ex.name, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k))
-            except:
-                a = Article(title=ex.name, atype=ex_type, content=ex.value, url="/"+type_name+"_"+str(k))
-        a.save()
-        a.sites.add(site)
-        a.save()
-        k += 1
-        
-        try:
-            mail = ex.mail
-            add_special(a,"mail",mail)
-        except:
-            pass
-        
-        try:
-            a.datetime = ex.date
-            a.save()
-        except:
-            pass
-        
-        try:
-            im = str(ex.image)
+            im = str(img)
             if im == "0":
-                continue
+                return
             if im[0] != '/':
                 im = "/" + im
             add_special(a,"image",im)
         except:
             pass
     
+    k = 1
+    if obj:
+        exs = obj.objects.order_by('id')
+        for ex in exs:
+            #print ex.title, ex.title_time, ex.text_full, ex.cost
+            try:
+                a = Article(title=ex.title, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k))
+            except:
+                try:
+                    a = Article(title=ex.name, atype=ex_type, content=ex.text, url="/"+type_name+"_"+str(k))
+                except:
+                    a = Article(title=ex.name, atype=ex_type, content=ex.value, url="/"+type_name+"_"+str(k))
+            a.save()
+            a.sites.add(site)
+            a.save()
+            k += 1
+            
+            try:
+                mail = ex.mail
+                add_special(a,"mail",mail)
+            except:
+                pass
+            
+            try:
+                a.datetime = ex.date
+                a.save()
+            except:
+                pass
+            
+            add_image_special(a,ex.image)
+        
     if files:
         for f in files:
             #global TEMP_ARTICLE_TITLE
@@ -275,16 +346,30 @@ def fill_table(obj,type_name,trans_name,type_name_postfix="s",files=False):
             a.save()
             k += 1
             articles_tags.TEMP_ARTICLE_TITLE = ""
-    
-    ex_type = get_article_type("notes_page",False,"articles/notes.html",u"Список статей")
-    #mp = get_main_params()
-    #print ex.title, ex.title_time, ex.text_full, ex.cost
-    a = Article(title=trans_name, atype=ex_type, content=type_name, url="/"+type_name + type_name_postfix) #type_name_postfix добавляет s в конце
-    a.save()
-    add_site_pole(a)
+            
+    #[ ["http://www.interhome.ru","/interhome.jpg",u"Tourist company"] ]
+    if massive:
+        for ma in massive:
+            content = ma[2]
+            title = ma[2]
+            a = Article(title=title, atype=ex_type, content=content, url=ma[0])
+            a.save()
+            a.sites.add(site)
+            sp = get_article_special("button_image", ma[1])
+            a.specials.add(sp)
+            a.save()
+            k += 1
+            
+    if create_list_page:
+        ex_type = get_article_type("notes_page",False,"articles/notes.html",u"Список статей|List of pages")
+        #mp = get_main_params()
+        #print ex.title, ex.title_time, ex.text_full, ex.cost
+        #a = Article(title=trans_name, atype=ex_type, content=type_name, url="/"+type_name + type_name_postfix) #type_name_postfix добавляет s в конце
+        #a.save()
+        #add_site_pole(a)
+        get_article(title=trans_name, atype=ex_type, content=type_name, url="/"+type_name + type_name_postfix, site_id=settings.SITE_ID)
         
-from settings import get_main_params
-from rimgid.templatetags.models import ProjectOption
+
         
 def fill_main_params():
     site = Site.objects.get(id=settings.SITE_ID)
@@ -293,20 +378,15 @@ def fill_main_params():
     for m in mp:
         if m == "local":
             continue
-        try:
-            po = ProjectOption.objects.get(name=m, value=mp[m])
-        except:
-            po = ProjectOption(name=m, value=mp[m])
-            po.save()
-        else:
-            pass
-      
-        try:
-            po.sites.get(id=settings.SITE_ID)
-        except:
-            po.sites.add(site)
-            po.save()
+        add_option(m,mp[m])
         print m, mp[m]
+        
+    my_vk = [u"Моя страница вконтакте","my page in vk.com"]
+    k = 1
+    for m in my_vk:
+        add_option("my_vkontakte_page",m,k)
+        k += 1
+    
         
 def fill_fotos():
   
@@ -334,13 +414,14 @@ def fill_fotos():
       #image = models.ImageField(upload_to="fotos/",null="True", blank="True")
       #datetime = models.DateTimeField(blank="True")
       
-    ex_type = get_article_type("fotogallery",False,"articles/fotos.html",u"Фотогалерея")
-    a = Article(title=u"Фото", atype=ex_type, content="foto", url="/fotos")
+    ex_type = get_article_type("fotogallery",False,"articles/fotos.html",u"Фотогалерея|Photogallery")
+    fts = [u"Фото","Photo"]
+    a = Article(title=fts[settings.SITE_ID-1], atype=ex_type, content="foto", url="/fotos")
     a.save()
     add_site_pole(a)
 
 def fill_main_page():
-    ex_type = get_article_type("simple_page",False,"articles/main.html",u"Заглавная страница")
+    ex_type = get_article_type("main_page",False,"articles/main.html",u"Заглавная страница|Main page")
     mp = get_main_params()
     
     #print ex.title, ex.title_time, ex.text_full, ex.cost
@@ -353,16 +434,16 @@ def fill_yandex():
     mp = get_main_params()
     site = Site.objects.get(id=1)
   
-    def add_simple_page(ext_type, mp, template, url, site):
+    def add_empty_page(ext_type, mp, template, url, site):
         content = file_text(template)
         a = Article(title=mp['owner_maintitle'], atype=ex_type, content=content, url=url)
         a.save()
         a.sites.add(site)
         a.save()
       
-    add_simple_page(ex_type, mp, "yandex_61b9f126eb948082.txt", "/yandex_61b9f126eb948082.txt", site)
-    add_simple_page(ex_type, mp, "robots.txt", "/robots.txt", site)
-    add_simple_page(ex_type, mp, "1be09f3f8a74.html", "/1be09f3f8a74.html", site)
+    add_empty_page(ex_type, mp, "yandex_61b9f126eb948082.txt", "/yandex_61b9f126eb948082.txt", site)
+    add_empty_page(ex_type, mp, "robots.txt", "/robots.txt", site)
+    add_empty_page(ex_type, mp, "1be09f3f8a74.html", "/1be09f3f8a74.html", site)
   
     y_name = "yandex_metrika"
     y_value = file_text("articles/yandex_metrika")
@@ -380,25 +461,68 @@ def fill_yandex():
         po.sites.add(site)
         po.save()
     print y_name, " - OK!"
-    
+   
+"""
+def add_simple_page(ex_type, template, url, site_id=settings.SITE_ID):
+    content = file_text(template)
+    print "read_TEMP_ARTICLE_TITLE", articles_tags.TEMP_ARTICLE_TITLE
+    title = articles_tags.TEMP_ARTICLE_TITLE
+    a = get_article(title=title, atype=ex_type, content=content, url=url, site_id=site_id)    
+    articles_tags.TEMP_ARTICLE_TITLE = ""
+"""
+
+def get_article_from_file(ex_type, file_, url, site_id=settings.SITE_ID):
+    content = file_text(file_)
+    print "read_TEMP_ARTICLE_TITLE", articles_tags.TEMP_ARTICLE_TITLE
+    title = articles_tags.TEMP_ARTICLE_TITLE
+    a = get_article(title=title, atype=ex_type, content=content, url=url, site_id=site_id)    
+    articles_tags.TEMP_ARTICLE_TITLE = ""
+    return a
+
+def fill_articles_from_files_sitable(ex_type, files, url):
+    k = 1
+    for f in files:
+        get_article_from_file(ex_type, f, url, k)
+        k += 1
+
+"""
+def add_simple_pages(ex_type, mp, template, url, site_id=settings.SITE_ID)
+    k = 1
+    for tr in trs:
+        add_simple_page(ext_type, template, url, site)
+        #get_article(title=tr, atype=ex_type, content=data, url="/translate",site_id=k)
+        k += 1
+"""
 
 def fill_translate():
-    ex_type = get_article_type("translate",False,"articles/excursion.html",u"Услуги перевода")
+    ex_type = get_article_type("translate",False,"articles/excursion.html",u"Услуги перевода|Translations")
     mp = get_main_params()
     
     datas = OlgaInfo.objects.all()
     data = datas[1].hello_text
-    #db_template = Template(data.hello_text)
-    #db_rez_template = Template('{% extends db_template %}')
-    #db_c = Context(locals())
-    #db_t = db_template.render(db_c)
-    
-    #print ex.title, ex.title_time, ex.text_full, ex.cost
-    a = Article(title=u"Услуги перевода", atype=ex_type, content=data, url="/translate")
-    a.save()
-    add_site_pole(a)
-    
+    trs = [u"Услуги перевода","Translations"]
+    site_id = settings.SITE_ID
+    a = get_article(title=trs[site_id-1], atype=ex_type, content=data, url="/translate", site_id=site_id)
+
 filled = False
+
+def fill_transfer():
+    ex_type = get_article_type("simple_page",False,"articles/simple_page.html",u"Простая страница|Simple page")
+    mp = get_main_params()
+    site = get_site()
+      
+    files = ["articles/transfer_1_ru","articles/transfer_1_eng"]
+    fill_articles_from_files_sitable(ex_type, files, "/transfer")
+    #add_simple_pages(ex_type, files[site.id-1], "/transfer", site)
+    
+def fill_friends():
+    m_ru = [ ["http://www.florenceguide.ru/","tatiana_matushko.jpg",u"Татьяна Матюшко - Экскурсии по Флоренции"],
+      ["http://www.russianflorence.com/","tatiana_usova.jpg",u"Татьяна Усова - Экскурсии по Флоренции"],
+      ["http://www.guidaavenezia.com/ru/contatti_ru.htm","guida_turistica.jpg","Гид в Венеции"],
+      ["http://www.interhome.ru","interhome.jpg",u"Туристическая компания"], ]
+    m_eng = [ ["http://www.interhome.ru","interhome.jpg",u"Tourist company"], ]
+    fill_table(False,"friend",u"Друзья|Friends",type_name_postfix="s",site_id=1, massive=m_ru,create_list_page=False)
+    fill_table(False,"friend",u"Друзья|Friends",type_name_postfix="s",site_id=2, massive=m_eng,create_list_page=False)
 
 def fill_all():
     global filled
@@ -413,22 +537,26 @@ def fill_all():
     
     fill_main_params()
     fill_excursions()
-    fill_table(Note,"note",u"Новости")
-    fill_table(Shops,"shop",u"Магазины")
-    fill_table(Transport,"transport",u"Транспорт",type_name_postfix="")
-    fill_table(Reccomendations,"reccomendation",u"Отзывы")
-    fill_table(Flights,"flight",u"Авиаперелеты")
-    fill_table(Hotels,"hotel",u"Отели")
-    fill_table(Restaurants,"restaurant",u"Рестораны")
-    fill_table(Contacts,"contact",u"Контакты")
-    fill_table(Transfer,"transfer",u"Трансфер",type_name_postfix="",files=["articles/transfer_1","articles/transfer_2"])
+    fill_table(Note,"note",u"Новости|Notes")
+    fill_table(Shops,"shop",u"Магазины|Shops")
+    fill_table(Transport,"transport",u"Транспорт|Transport",type_name_postfix="")
+    fill_table(Reccomendations,"reccomendation",u"Отзывы|Reccomendations")
+    fill_table(Flights,"flight",u"Авиаперелеты|Flights")
+    fill_table(Hotels,"hotel",u"Отели|Hotels")
+    fill_table(Restaurants,"restaurant",u"Рестораны|Restaurants")
+    fill_table(Contacts,"contact",u"Контакты|Contacts")
+    #fill_table(Transfer,"transfer",u"Трансфер",type_name_postfix="",files=["articles/transfer_1","articles/transfer_2"])
     fill_main_page()
     fill_fotos()
     fill_yandex()
     fill_translate()
+    fill_transfer()
+    fill_table(False,"italy",u"Другие города Италии|Other Italy cities",type_name_postfix="")
+    fill_friends()
     
     filled = True
 
+#get_site()
 #fill_all()
 
 

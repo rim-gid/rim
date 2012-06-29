@@ -1,25 +1,12 @@
-{% extends "base_with_ex.html" %}
-
-{% block style %}{% endblock %}
-
-{% block content_down %}
-{% if transfers_list %}
-  {% for transfer in transfers_list %}
-    <div id="content-down" align="justify">  
-      <img src="{{ note.image }}" width="150px" height="auto" align="left" vspace="5" style="margin-top:24px;margin-right:10px;"/>
-      <h1>{{ transfer.title }}</h1><div class="note_place">Transfers</div>
-      {{ transfer.date }} - {{ transfer.text }}
-    </div>
-  {% endfor %}
-{% endif %}
-<h1>Transfers</h1>
+{% load articles_tags %}
+{% set_article_title "Transfers" %}
 <div>
-	Dear guests!
-	We offer you car rent and drivers services in Rome and all Italy.
-	You can book transfer to any city, town, resort.
-	All transfers are done with English - speaking drivers
-	for your assistance during business trip in Italy.
-	The below indicated rates are one ways rates.
+  Dear guests!
+  We offer you car rent and drivers services in Rome and all Italy.
+  You can book transfer to any city, town, resort.
+  All transfers are done with English - speaking drivers
+  for your assistance during business trip in Italy.
+  The below indicated rates are one ways rates.
 </div>
 <div id="content-down" align="justify">
   <table cellpadding="4" cellspacing="1">
@@ -81,4 +68,3 @@
     </tr>
   </table>
 </div>
-{% endblock %}

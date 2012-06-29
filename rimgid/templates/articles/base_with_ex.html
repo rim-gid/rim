@@ -15,10 +15,7 @@
 
 <span style="font-weight:bold;">{% project_option "owner_friends_title" %}:</span>
 <div id="friends"><ul>
-  <li><a class="bordered" href="http://www.florenceguide.ru/" style="background-image: url('/tatiana_matushko.jpg');color:#fff;"><span class="lefted papered">Татьяна Матюшко - Экскурсии по Флоренции</span></a></li>
-  <li><a class="bordered" href="http://www.russianflorence.com/" style="background-image: url('/tatiana_usova.jpg');color:#fff;"><span class="lefted papered">Татьяна Усова - Экскурсии по Флоренции</span></a></li>
-  <li><a class="bordered" href="http://www.guidaavenezia.com/ru/contatti_ru.htm" style="background-image: url('/guida_turistica.jpg');color:#fff;"><span class="lefted papered">Гид в Венеции</span></a></li>
-  <li><a class="bordered" href="http://www.interhome.ru" style="background-image: url('/interhome.jpg');color:#fff;"><span class="lefted papered">Туристическая компания</span></a></li>
+  {% articles_list "friend" %}
 </ul></div>
 </div>
 {% endblock %}

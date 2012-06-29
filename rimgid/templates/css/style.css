@@ -413,7 +413,7 @@ dd: #fb9904;
   width: 100%;
   text-decoration: none;
   font-weight: bold;
-  background: #aaa url("ex-li-fon-2.png");
+  background4: #aaa url("ex-li-fon-2.png");
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
