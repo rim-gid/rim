@@ -335,7 +335,7 @@ def fill_fotos():
       #datetime = models.DateTimeField(blank="True")
       
     ex_type = get_article_type("fotogallery",False,"articles/fotos.html",u"Фотогалерея")
-    a = Article(title=u"Фото", atype=ex_type, content="foto", url="/fotos/")
+    a = Article(title=u"Фото", atype=ex_type, content="foto", url="/fotos")
     a.save()
     add_site_pole(a)
 
