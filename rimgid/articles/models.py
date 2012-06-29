@@ -556,8 +556,8 @@ def fill_all():
     
     filled = True
 
-get_site()
-fill_all()
+#get_site()
+#fill_all()
 
 
 
