@@ -2,6 +2,7 @@
 from django import template
 import views, settings, random
 from rimgid import articles
+import settings
 
 register = template.Library()
 
@@ -90,13 +91,12 @@ def do_special_string(node, arg):
 
 @register.inclusion_tag("articles/article_preview.html")
 def last_article(type_name):
-    #print "random_article", type_name
+    print "random_article", type_name
     try:
         ar = articles.models.ArticleType.objects.get(title=type_name)
-    
-        count = ar.article_set.count()
+        ar_set = ar.article_set.filter(sites__id=settings.SITE_ID)
+        count = ar_set.count()
         article = ar.article_set.all()[count-1]
-        
         return {'article': article}
     except:
         return {'article': False}
@@ -106,11 +106,10 @@ def random_article(type_name):
     #print "random_article", type_name
     try:
         ar = articles.models.ArticleType.objects.get(title=type_name)
-    
-        count = ar.article_set.count()
+        ar_set = ar.article_set.filter(sites__id=settings.SITE_ID)
+        count = ar_set.count()
         rand_num = random.randint(0, count-1)
-        article = ar.article_set.all()[rand_num]
-        
+        article = ar_set[rand_num]
         return {'article': article}
     except:
         return {'article': False}

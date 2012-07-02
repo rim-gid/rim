@@ -15,7 +15,7 @@ from settings import get_main_params
 #from django.core.mail import send_mail
 from django.shortcuts import render_to_response
 from rimgid.forms import ContactForm
-from rimgid.articles.models import fill_excursions
+#from rimgid.articles.models import fill_excursions
 
 
 def method_splitter(request, GET=None, POST=None):

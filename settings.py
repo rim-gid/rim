@@ -40,15 +40,39 @@ DATABASES = {
         'PASSWORD': 'uR1zdiC7',
         'HOST': 'localhost',
         'PORT': '3306'
-    }
+    },
+    'pointed': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'aaveter_1',
+        'USER': 'aaveter_0',
+        'PASSWORD': 'uR1zdiC7',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'rus': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'aaveter_rus',
+        'USER': 'aaveter_0',
+        'PASSWORD': 'uR1zdiC7',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
+    'eng': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'aaveter_eng',
+        'USER': 'aaveter_0',
+        'PASSWORD': 'uR1zdiC7',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    },
 }
 
-DATABASE_ENGINE = 'django.db.backends.mysql'          # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'aaveter_0'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'aaveter_0'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'uR1zdiC7'         # Not used with sqlite3.
-DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = '3306'             # Set to empty string for default. Not used with sqlite3.
+#DATABASE_ENGINE = 'django.db.backends.mysql'          # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+#DATABASE_NAME = 'aaveter_0'             # Or path to database file if using sqlite3.
+#DATABASE_USER = 'aaveter_0'             # Not used with sqlite3.
+#DATABASE_PASSWORD = 'uR1zdiC7'         # Not used with sqlite3.
+#DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
+#DATABASE_PORT = '3306'             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -80,6 +104,7 @@ MEDIA_URL = '/rimgid/'
 DEFAULT_CHARSET = 'UTF-8'
 
 from project_params import *
+#from project_params_2 import AAA_SITE_PARAMS as mp2
 
 #STATIC = '/home/a/aaveter/public_html///rim/rimgid/'
 
