@@ -17,10 +17,13 @@ def PointedSaver(cls):
         #except:
         #    super(cls,self).save(using="pointed", *args, **kwargs)
         #    print "PointedSaver ERROR"
+    def dublicate_me_using_base(self,**kwargs):
+        return cls.objects.using(uss).get_or_create(**kwargs)
     def duplicate_using(self,uss):
-        obj = cls.objects.using(uss).get_or_create(
-            cls.duplicate_params(self)
-        )
+        #obj = cls.objects.using(uss).get_or_create(
+        #    cls.duplicate_params(self)
+        #)
+        self.dublicate_me_using(uss)
         self.duplicate_objects_using(self,obj,uss)
         obj.save(using=uss)
         return obj
@@ -43,15 +46,15 @@ def PointedSaver(cls):
     cls.duplicate_using = duplicate_using
     cls.fill_sites = fill_sites
     cls.fill_specials = fill_specials
+    cls.dublicate_me_using_base = dublicate_me_using_base
     return cls
         
 @PointedSaver
 class ArticleSpecial(models.Model):
-    def duplicate_params(self):
-        kwargs = {}
+    def dublicate_me_using(self,**kwargs):
         kwargs['name'] = self.name
         kwargs['text'] = self.text
-        return kwargs
+        return self.dublicate_me_using_base(**kwargs)
     def duplicate_objects_using(self,obj,uss):
         pass
   
@@ -72,11 +75,15 @@ class ArticleTypeSpecial(ArticleSpecial):
 
 @PointedSaver
 class ArticleType(models.Model):
-    def duplicate_params(self):
-        kwargs = {}
+    def dublicate_me_using(self,**kwargs):
         kwargs['title'] = self.title
         kwargs['text'] = self.text
-        return kwargs
+        return self.dublicate_me_using_base(**kwargs)
+    #def duplicate_params(self):
+    #    kwargs = {}
+    #    kwargs['title'] = self.title
+    #    kwargs['text'] = self.text
+    #    return kwargs
     def duplicate_objects_using(self, obj, uss):
         self.fill_specials(ArticleTypeSpecial, obj, uss)
   
@@ -112,13 +119,12 @@ from rimgid.added.thumbs import ImageWithThumbsField
 
 @PointedSaver
 class Foto(models.Model):
-    def duplicate_params(self):
-        kwargs = {}
+    def dublicate_me_using(self,**kwargs):
         kwargs['url'] = self.url
         kwargs['title'] = self.title
         kwargs['text'] = self.text
         kwargs['image'] = self.image
-        return kwargs
+        return self.dublicate_me_using_base(**kwargs)
     def duplicate_objects_using(self, obj, uss):
         self.fill_sites(obj, uss)
             
@@ -135,11 +141,10 @@ class Foto(models.Model):
 
 @PointedSaver
 class Article(FlatPage):
-    def duplicate_params(self):
-        kwargs = {}
+    def dublicate_me_using(self,**kwargs):
         kwargs['url'] = self.url
         kwargs['title'] = self.title
-        return kwargs
+        return self.dublicate_me_using_base(**kwargs)
     def duplicate_objects_using(self,obj,uss):
         #at, at_created = ArticleType.objects.using(uss).get_or_create(title=self.atype.title,text=self.atype.text)
         obj.atype = self.atype.duplicate_using(uss)
