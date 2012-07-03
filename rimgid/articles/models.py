@@ -11,7 +11,7 @@ def PointedSaver(cls):
     def save(self, *args, **kwargs):
         print "----saving----"
         super(cls,self).save(*args, **kwargs)
-        duplicate_using(resource=self,uss="pointed")
+        duplicate_using(resource=self,uss="pointed",**kwargs)
     
     def dublicate_me_using_base(resource,uss,**kwargs):
         try:
@@ -22,17 +22,17 @@ def PointedSaver(cls):
         return obj
         #return cls.objects.using(uss).get_or_create(using=uss,**kwargs)
     
-    def duplicate_using(resource,uss):
-        obj = resource.dublicate_me_using(uss)
-        resource.duplicate_objects_using(obj,uss)
+    def duplicate_using(resource,uss,**kwargs):
+        obj = resource.dublicate_me_using(uss,**kwargs)
+        resource.duplicate_objects_using(obj,uss,**kwargs)
         super(cls,obj).save(using=uss)
         return obj
     
     #если нужно
-    def fill_sites(self,obj, uss):
+    def fill_sites(self,obj, uss, **kwargs):
         
         sites = self.sites.all()
-        obj.sites.add(sites)
+        obj.sites.add(kwargs)
         
         return
         for s in self.sites.all():
@@ -71,7 +71,7 @@ class ArticleSpecial(models.Model):
         kwargs['name'] = self.name
         kwargs['text'] = self.text
         return self.dublicate_me_using_base(uss,**kwargs)
-    def duplicate_objects_using(self,obj,uss):
+    def duplicate_objects_using(self,obj,uss,**kwargs):
         pass
   
     name = models.CharField(max_length = 200,blank = "True")
@@ -100,7 +100,7 @@ class ArticleType(models.Model):
     #    kwargs['title'] = self.title
     #    kwargs['text'] = self.text
     #    return kwargs
-    def duplicate_objects_using(self, obj, uss):
+    def duplicate_objects_using(self, obj, uss,**kwargs):
         self.fill_specials(ArticleTypeSpecial, obj, uss)
   
     title = models.CharField(max_length=200)
@@ -130,6 +130,25 @@ class ArticleType(models.Model):
                 return sp.text
         except:
             return self.title
+   
+"""
+def update_sites(sender, instance, created, **kwargs):
+    if created and instance.status == 1:
+        title = instance.title.encode('utf-8') # у меня на одном из проектов ругался на кодировку
+        for item in Subscrib.objects.all():
+            to_email = item.email
+            subject = 'Новая новость на сайте'
+            html_content = '<p><i>Здравствуйте</i></p>'
+            html_content += 'Новая новость: <a href="http://developtolive.com/news/%s/">%s</a>' % (instance.id, title)
+            html_content +='<p><i>Отписаться от рассылки можно по <a href="http://developtolive.com/send/sub/no/?email=%s">ссылке</a></i></p>' % (item.id)
+            html_content += '<p><i>Всего доброго.</i></p>'
+            from_email = 'i@developtolive.com'
+            msg = EmailMessage(subject, html_content, from_email, [to_email])
+            msg.content_subtype = "html"
+            msg.send()
+            
+signals.post_save.connect(go_subscrib, sender=News)
+"""
 
 from rimgid.added.thumbs import ImageWithThumbsField
 
@@ -141,7 +160,7 @@ class Foto(models.Model):
         kwargs['text'] = self.text
         kwargs['image'] = self.image
         return self.dublicate_me_using_base(uss,**kwargs)
-    def duplicate_objects_using(self, obj, uss):
+    def duplicate_objects_using(self, obj, uss,**kwargs):
         self.fill_sites(obj, uss)
             
     title = models.CharField(max_length=200)
@@ -165,11 +184,11 @@ class Article(FlatPage):
         #sis = self.sites.objects
         
         return self.dublicate_me_using_base(uss,**kwargs)
-    def duplicate_objects_using(self,obj,uss):
+    def duplicate_objects_using(self,obj,uss,**kwargs):
         #at, at_created = ArticleType.objects.using(uss).get_or_create(title=self.atype.title,text=self.atype.text)
         #obj.atype = self.atype.duplicate_using(uss)
-        self.fill_sites(obj, uss)
-        self.fill_specials(ArticleSpecial, obj, uss)
+        self.fill_sites(obj, uss, **kwargs)
+        self.fill_specials(ArticleSpecial, obj, uss, **kwargs)
         obj.datetime = self.datetime
         obj.content = self.content
 
