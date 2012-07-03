@@ -30,7 +30,10 @@ def PointedSaver(cls):
     
     #если нужно
     def fill_sites(self,obj, uss):
-        #return
+        
+        obj.sites.add(self.sites.all())
+        
+        return
         for s in self.sites.all():
             try:
                 new_s = Site.objects.using(uss).get(id=s.id)
