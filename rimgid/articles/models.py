@@ -67,7 +67,7 @@ class Foto(models.Model):
         return self.title + " - " + self.image.url_200x200
 
 #декоратор класса
-class PointedSaver(cls):
+def PointedSaver(cls):
     def save(self, *args, **kwargs):
         print "----saving----"
         super(self).save(*args, **kwargs)
