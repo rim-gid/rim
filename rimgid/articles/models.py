@@ -19,7 +19,7 @@ def PointedSaver(cls):
         #    print "PointedSaver ERROR"
     def duplicate_using(self,uss):
         obj = cls.objects.using(uss).get_or_create(
-            self.duplicate_params()
+            cls.duplicate_params(self)
         )
         self.duplicate_objects_using(self,obj,uss)
         obj.save(using=uss)
