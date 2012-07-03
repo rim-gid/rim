@@ -78,7 +78,7 @@ def PointedSaver(cls):
             print "PointedSaver ERROR"
     cls.save = save
         
-@PointedSaver
+#@PointedSaver
 class Article(FlatPage):
     #__metaclass__ = PointedSaver
 
