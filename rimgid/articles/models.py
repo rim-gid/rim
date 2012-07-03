@@ -77,8 +77,9 @@ def PointedSaver(cls):
             super(self).save(using="pointed", *args, **kwargs)
             print "PointedSaver ERROR"
     cls.save = save
+    return cls
         
-#@PointedSaver
+@PointedSaver
 class Article(FlatPage):
     #__metaclass__ = PointedSaver
 
