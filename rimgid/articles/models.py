@@ -87,7 +87,7 @@ class ArticleType(models.Model):
     def dublicate_me_using(self,uss,**kwargs):
         kwargs['title'] = self.title
         kwargs['text'] = self.text
-        return self.dublicate_me_using_base(**kwargs)
+        return self.dublicate_me_using_base(uss,**kwargs)
     #def duplicate_params(self):
     #    kwargs = {}
     #    kwargs['title'] = self.title
@@ -133,7 +133,7 @@ class Foto(models.Model):
         kwargs['title'] = self.title
         kwargs['text'] = self.text
         kwargs['image'] = self.image
-        return self.dublicate_me_using_base(**kwargs)
+        return self.dublicate_me_using_base(uss,**kwargs)
     def duplicate_objects_using(self, obj, uss):
         self.fill_sites(obj, uss)
             
@@ -153,7 +153,7 @@ class Article(FlatPage):
     def dublicate_me_using(self,uss,**kwargs):
         kwargs['url'] = self.url
         kwargs['title'] = self.title
-        return self.dublicate_me_using_base(**kwargs)
+        return self.dublicate_me_using_base(uss,**kwargs)
     def duplicate_objects_using(self,obj,uss):
         #at, at_created = ArticleType.objects.using(uss).get_or_create(title=self.atype.title,text=self.atype.text)
         obj.atype = self.atype.duplicate_using(uss)
