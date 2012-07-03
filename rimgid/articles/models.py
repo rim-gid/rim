@@ -11,7 +11,7 @@ def PointedSaver(cls):
     def save(self, *args, **kwargs):
         print "----saving----"
         super(cls,self).save(*args, **kwargs)
-        duplicate_using(resource=self,uss="pointed",**kwargs)
+        duplicate_using(self,"pointed",*args,**kwargs)
     
     def dublicate_me_using_base(resource,uss,**kwargs):
         try:
@@ -22,17 +22,17 @@ def PointedSaver(cls):
         return obj
         #return cls.objects.using(uss).get_or_create(using=uss,**kwargs)
     
-    def duplicate_using(resource,uss,**kwargs):
+    def duplicate_using(resource,uss,*args,**kwargs):
         obj = resource.dublicate_me_using(uss,**kwargs)
-        resource.duplicate_objects_using(obj,uss,**kwargs)
+        resource.duplicate_objects_using(obj,uss,*args,**kwargs)
         super(cls,obj).save(using=uss)
         return obj
     
     #если нужно
-    def fill_sites(self,obj, uss, **kwargs):
+    def fill_sites(self,obj, uss, *args, **kwargs):
         
         sites = self.sites.all()
-        obj.sites.add(kwargs)
+        obj.sites.add(args)
         
         return
         for s in self.sites.all():
@@ -71,7 +71,7 @@ class ArticleSpecial(models.Model):
         kwargs['name'] = self.name
         kwargs['text'] = self.text
         return self.dublicate_me_using_base(uss,**kwargs)
-    def duplicate_objects_using(self,obj,uss,**kwargs):
+    def duplicate_objects_using(self,obj,uss,*args,**kwargs):
         pass
   
     name = models.CharField(max_length = 200,blank = "True")
@@ -100,7 +100,7 @@ class ArticleType(models.Model):
     #    kwargs['title'] = self.title
     #    kwargs['text'] = self.text
     #    return kwargs
-    def duplicate_objects_using(self, obj, uss,**kwargs):
+    def duplicate_objects_using(self, obj, uss,*args,**kwargs):
         self.fill_specials(ArticleTypeSpecial, obj, uss)
   
     title = models.CharField(max_length=200)
@@ -160,7 +160,7 @@ class Foto(models.Model):
         kwargs['text'] = self.text
         kwargs['image'] = self.image
         return self.dublicate_me_using_base(uss,**kwargs)
-    def duplicate_objects_using(self, obj, uss,**kwargs):
+    def duplicate_objects_using(self, obj, uss,*args,**kwargs):
         self.fill_sites(obj, uss)
             
     title = models.CharField(max_length=200)
@@ -180,14 +180,11 @@ class Article(FlatPage):
         kwargs['url'] = self.url
         kwargs['title'] = self.title
         kwargs['atype'] = self.atype.duplicate_using(uss)
-        
-        #sis = self.sites.objects
-        
         return self.dublicate_me_using_base(uss,**kwargs)
-    def duplicate_objects_using(self,obj,uss,**kwargs):
+    def duplicate_objects_using(self,obj,uss,*args,**kwargs):
         #at, at_created = ArticleType.objects.using(uss).get_or_create(title=self.atype.title,text=self.atype.text)
         #obj.atype = self.atype.duplicate_using(uss)
-        self.fill_sites(obj, uss, **kwargs)
+        self.fill_sites(obj, uss, *args, **kwargs)
         self.fill_specials(ArticleSpecial, obj, uss, **kwargs)
         obj.datetime = self.datetime
         obj.content = self.content
