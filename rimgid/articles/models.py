@@ -6,34 +6,12 @@ import datetime
 from django.contrib.sites.models import Site
 from django.contrib.flatpages.models import FlatPage
 
-
-class PointedSaver():
-    def __save__(self, *args, **kwargs):
-        print "----saving----"
-        self.save(*args, **kwargs)
-        try:
-            self.save(using="pointed", force_insert=True, *args, **kwargs)
-        except:
-	    self.save(using="pointed", *args, **kwargs)
-            print "PointedSaver ERROR"
-
 class ArticleSpecial(models.Model):
     name = models.CharField(max_length = 200,blank = "True")
     text = WYSIWYGField(blank="True")
     
     stype = "article"
-    
-    """
-    def save_to_file(self,f):
-        f.write(self.name)
-        f.write(self.text)
-        
-    @staticmethod
-    def load_from_file(f)
-        name = f.readline()
-        text = f.readline()
-    """ 
-    
+
     def __unicode__(self):
         try:
             atype = self.article_set.all()[0].atype.title
@@ -84,35 +62,30 @@ class Foto(models.Model):
 
     datetime = models.DateTimeField(blank="True")
     sites = models.ManyToManyField(Site)
-    
-    """
-    def mini_img(self):
-        #if self.image.width <= 200:
-        #    return self.image
-        aspect = self.image.height / self.image.width
-        new_hei = 200*aspect
-        new_sz = '200x'+str(new_hei)
-        
-        image_path = thumbnail(self.image, new_sz) # создается миниатюра
-        
-        #self.image.
-        
-        #image_path = image_path.replace('\\','/') # Windows-Fix
-        #return '<a href="'+ str(self.id) +'/"><img src="'+ 
-        #  str(image_path) +'"/></a>'
-        return image_path
-    """
-    
+
     def __unicode__(self):
         return self.title + " - " + self.image.url_200x200
 
+#декоратор класса
+class PointedSaver(cls):
+    def save(self, *args, **kwargs):
+        print "----saving----"
+        super(self).save(*args, **kwargs)
+        try:
+            super(self).save(using="pointed", force_insert=True, *args, **kwargs)
+        except:
+            super(self).save(using="pointed", *args, **kwargs)
+            print "PointedSaver ERROR"
+    cls.save = save
+        
+@PointedSaver
 class Article(FlatPage):
     #__metaclass__ = PointedSaver
 
 
 
 
-    def save(self):
+    def save123(self):
         print "----saving----"
         #self.save(*args, **kwargs)
         super(Article, self).save()
