@@ -18,7 +18,7 @@ def PointedSaver(cls):
         #    super(cls,self).save(using="pointed", *args, **kwargs)
         #    print "PointedSaver ERROR"
     
-    def dublicate_me_using_base(uss,**kwargs):
+    def dublicate_me_using_base(resource,uss,**kwargs):
         try:
             obj = cls.objects.using(uss).get(**kwargs)
         except:
