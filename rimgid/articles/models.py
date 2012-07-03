@@ -19,15 +19,15 @@ def PointedSaver(cls):
         #    print "PointedSaver ERROR"
     def duplicate_using(self,uss):
         obj = cls.objects.using(uss).get_or_create(
-            super(cls,self).duplicate_params()
+            self.duplicate_params()
         )
-        super(cls,self).duplicate_objects_using(self,obj,uss)
+        self.duplicate_objects_using(self,obj,uss)
         obj.save(using=uss)
         return obj
     
     #если нужно
     def fill_sites(self,obj, uss):
-        for s in super(cls,self).sites.all():
+        for s in self.sites.all():
             new_s, created = Site.objects.using(uss).get_or_create(id=s.id)
             if created:
                 new_s.name = s.name
@@ -35,7 +35,7 @@ def PointedSaver(cls):
         obj.sites.add(new_s)
     #если нужно
     def fill_specials(self,sp_type, obj, uss):
-        for s in super(cls,self).specials.all():
+        for s in self.specials.all():
             new_s, created = sp_type.objects.using(uss).get_or_create(name=s.name,text=s.text)
         obj.specials.add(new_s)
         
