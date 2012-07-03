@@ -30,6 +30,7 @@ def PointedSaver(cls):
     
     #если нужно
     def fill_sites(self,obj, uss):
+        #return
         for s in self.sites.all():
             try:
                 new_s = Site.objects.using(uss).get(id=s.id)
@@ -37,13 +38,16 @@ def PointedSaver(cls):
                 new_s = Site(name=s.name,domain=s.domain,id=s.id)
                 #new_s.name = s.name
                 #new_s.domain = s.domain
-                new_s.save(using=uss)
+                #new_s.save(using=uss)
             #new_s, created = Site.objects.using(uss).get_or_create(id=s.id)
             #if created:
             #    new_s.name = s.name
             #    new_s.domain = s.domain
-            obj.sites.add(new_s)
-        super(cls,obj).save(using=uss)
+            
+            #obj.sites.add(new_s)
+            new_s.article_set.add(obj)
+            new_s.save(using=uss)
+        #super(cls,obj).save(using=uss)
     #если нужно
     def fill_specials(self,sp_type, obj, uss):
         for s in self.specials.all():
@@ -153,6 +157,9 @@ class Article(FlatPage):
         kwargs['url'] = self.url
         kwargs['title'] = self.title
         kwargs['atype'] = self.atype.duplicate_using(uss)
+        
+        #sis = self.sites.objects
+        
         return self.dublicate_me_using_base(uss,**kwargs)
     def duplicate_objects_using(self,obj,uss):
         #at, at_created = ArticleType.objects.using(uss).get_or_create(title=self.atype.title,text=self.atype.text)
@@ -215,7 +222,7 @@ class Article(FlatPage):
                 return True
     """
     def __init__(self, *args, **kwargs):
-        super(FlatPage, self).__init__( *args, **kwargs)
+        super(Article, self).__init__( *args, **kwargs)
         if len(self.template_name)>0:
             return
         try:
