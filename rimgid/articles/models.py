@@ -23,7 +23,7 @@ def PointedSaver(cls):
             obj = cls.objects.using(uss).get(**kwargs)
         except:
             obj = cls(**kwargs)
-            obj.save(using=uss)
+            super(cls,obj).save(using=uss)
         return obj
         
         #return cls.objects.using(uss).get_or_create(using=uss,**kwargs)
@@ -34,7 +34,7 @@ def PointedSaver(cls):
         #)
         obj = resource.dublicate_me_using(uss)
         resource.duplicate_objects_using(obj,uss)
-        obj.save(using=uss)
+        super(cls,obj).save(using=uss)
         return obj
     
     #если нужно
