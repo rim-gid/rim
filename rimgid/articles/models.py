@@ -44,7 +44,7 @@ def PointedSaver(cls):
             if created:
                 new_s.name = s.name
                 new_s.domain = s.domain
-        obj.sites.add(new_s)
+            obj.sites.add(new_s)
     #если нужно
     def fill_specials(self,sp_type, obj, uss):
         for s in self.specials.all():
