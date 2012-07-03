@@ -70,11 +70,11 @@ class Foto(models.Model):
 def PointedSaver(cls):
     def save(self, *args, **kwargs):
         print "----saving----"
-        super(self).save(*args, **kwargs)
+        super(cls,self).save(*args, **kwargs)
         try:
-            super(self).save(using="pointed", force_insert=True, *args, **kwargs)
+            super(cls,self).save(using="pointed", force_insert=True, *args, **kwargs)
         except:
-            super(self).save(using="pointed", *args, **kwargs)
+            super(cls,self).save(using="pointed", *args, **kwargs)
             print "PointedSaver ERROR"
     cls.save = save
     return cls
