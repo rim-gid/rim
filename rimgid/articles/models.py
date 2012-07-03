@@ -73,10 +73,10 @@ class ArticleTypeSpecial(ArticleSpecial):
 @PointedSaver
 class ArticleType(models.Model):
     def duplicate_params(self):
-        return {
-            'title': self.title,
-            'text': self.text,
-        }
+        kwargs = {}
+        kwargs['title'] = self.title
+        kwargs['text'] = self.text
+        return kwargs
     def duplicate_objects_using(self, obj, uss):
         self.fill_specials(ArticleTypeSpecial, obj, uss)
   
@@ -113,12 +113,12 @@ from rimgid.added.thumbs import ImageWithThumbsField
 @PointedSaver
 class Foto(models.Model):
     def duplicate_params(self):
-        return {
-            'title': self.title,
-            'url': self.url,
-            'text': self.text,
-            'image': self.image,
-        }
+        kwargs = {}
+        kwargs['url'] = self.url
+        kwargs['title'] = self.title
+        kwargs['text'] = self.text
+        kwargs['image'] = self.image
+        return kwargs
     def duplicate_objects_using(self, obj, uss):
         self.fill_sites(obj, uss)
             
@@ -136,10 +136,10 @@ class Foto(models.Model):
 @PointedSaver
 class Article(FlatPage):
     def duplicate_params(self):
-        return {
-            'url': self.url,
-            'title': self.title,
-        }
+        kwargs = {}
+        kwargs['url'] = self.url
+        kwargs['title'] = self.title
+        return kwargs
     def duplicate_objects_using(self,obj,uss):
         #at, at_created = ArticleType.objects.using(uss).get_or_create(title=self.atype.title,text=self.atype.text)
         obj.atype = self.atype.duplicate_using(uss)
