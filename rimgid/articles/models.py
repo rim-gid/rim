@@ -63,10 +63,10 @@ def PointedSaver(cls):
         
 @PointedSaver
 class ArticleSpecial(models.Model):
-    def dublicate_me_using(self,**kwargs):
+    def dublicate_me_using(self,uss,**kwargs):
         kwargs['name'] = self.name
         kwargs['text'] = self.text
-        return self.dublicate_me_using_base(**kwargs)
+        return self.dublicate_me_using_base(uss,**kwargs)
     def duplicate_objects_using(self,obj,uss):
         pass
   
@@ -87,7 +87,7 @@ class ArticleTypeSpecial(ArticleSpecial):
 
 @PointedSaver
 class ArticleType(models.Model):
-    def dublicate_me_using(self,**kwargs):
+    def dublicate_me_using(self,uss,**kwargs):
         kwargs['title'] = self.title
         kwargs['text'] = self.text
         return self.dublicate_me_using_base(**kwargs)
@@ -131,7 +131,7 @@ from rimgid.added.thumbs import ImageWithThumbsField
 
 @PointedSaver
 class Foto(models.Model):
-    def dublicate_me_using(self,**kwargs):
+    def dublicate_me_using(self,uss,**kwargs):
         kwargs['url'] = self.url
         kwargs['title'] = self.title
         kwargs['text'] = self.text
@@ -153,7 +153,7 @@ class Foto(models.Model):
 
 @PointedSaver
 class Article(FlatPage):
-    def dublicate_me_using(self,**kwargs):
+    def dublicate_me_using(self,uss,**kwargs):
         kwargs['url'] = self.url
         kwargs['title'] = self.title
         return self.dublicate_me_using_base(**kwargs)
