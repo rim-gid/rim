@@ -8,15 +8,16 @@ from django.contrib.flatpages.models import FlatPage
 
 
 class PointedSaver():
-    def __save__(self):
+    def __save__(self, *args, **kwargs):
         print "----saving----"
-        self.save()
+        self.save(*args, **kwargs)
         try:
-            self.save(using="pointed", force_insert=True)
+            self.save(using="pointed", force_insert=True, *args, **kwargs)
         except:
+	    self.save(using="pointed", *args, **kwargs)
             print "PointedSaver ERROR"
 
-class ArticleSpecial(models.Model, PointedSaver):
+class ArticleSpecial(models.Model):
     name = models.CharField(max_length = 200,blank = "True")
     text = WYSIWYGField(blank="True")
     
@@ -40,10 +41,10 @@ class ArticleSpecial(models.Model, PointedSaver):
             atype = ""
         return self.name + "["+atype+"] - " + self.text
 
-class ArticleTypeSpecial(ArticleSpecial, PointedSaver):
+class ArticleTypeSpecial(ArticleSpecial):
     stype = "articleType"
 
-class ArticleType(models.Model, PointedSaver):
+class ArticleType(models.Model):
     title = models.CharField(max_length=200)
     text = WYSIWYGField(null="True", blank="True")
    
@@ -74,7 +75,7 @@ class ArticleType(models.Model, PointedSaver):
 
 from rimgid.added.thumbs import ImageWithThumbsField
 
-class Foto(models.Model, PointedSaver):
+class Foto(models.Model):
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     text = WYSIWYGField(blank="True")
@@ -105,7 +106,27 @@ class Foto(models.Model, PointedSaver):
     def __unicode__(self):
         return self.title + " - " + self.image.url_200x200
 
-class Article(FlatPage, PointedSaver):
+class Article(FlatPage):
+    #__metaclass__ = PointedSaver
+
+
+
+
+    def save(self):
+        print "----saving----"
+        #self.save(*args, **kwargs)
+        super(Article, self).save()
+        try:
+            super(Article, self).save(using="pointed", force_insert=True)
+        except:
+            super(Article, self).save(using="pointed")
+            print "PointedSaver ERROR"
+
+
+
+
+
+
     atype = models.ForeignKey(ArticleType)
     specials = models.ManyToManyField(ArticleSpecial, null="True", blank="True")
     datetime = models.DateTimeField(blank="True",default=datetime.datetime.now) #auto_now_add=True
@@ -163,7 +184,7 @@ class Article(FlatPage, PointedSaver):
 # *************************************************************
 #  Далее функционал для перегона таблиц из старой версии в новую
 # *************************************************************
-
+"""
 from rimgid.books.models import *
 from django.contrib.sites.models import Site
 from views import file_text
@@ -173,7 +194,7 @@ from rimgid.articles.templatetags import articles_tags
 from settings import get_main_params
 from rimgid.templatetags.models import ProjectOption
 
-from project_params_2 import AAA_SITE_PARAMS as mp2
+#from project_params_2 import AAA_SITE_PARAMS as mp2
 
 site_repaired = False
 
@@ -550,13 +571,22 @@ def fill_all():
     fill_tables("eng",2)
     
     filled = True
-
+"""
 #get_site()
 #fill_all()
 #ProjectOption.objects.all().delete()
 #fill_main_params()
 
 print "SITE_ID = ", settings.SITE_ID
+
+
+def ttt():
+    aa = Article.objects.using("pointed").all()
+    for a in aa:
+      print a.title
+
+#ttt()
+
 
 import pickle
 def save_articles():

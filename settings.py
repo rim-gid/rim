@@ -43,10 +43,10 @@ DATABASES = {
     },
     'pointed': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aaveter_1',
-        'USER': 'aaveter_0',
-        'PASSWORD': 'uR1zdiC7',
-        'HOST': 'localhost',
+        'NAME': 'aaveter_0',
+        'USER': 'gidinrome',
+        'PASSWORD': 'byd738ddu3289eud',
+        'HOST': '141.8.193.148',
         'PORT': '3306'
     },
     'rus': {
