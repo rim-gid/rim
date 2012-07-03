@@ -12,11 +12,6 @@ def PointedSaver(cls):
         print "----saving----"
         super(cls,self).save(*args, **kwargs)
         duplicate_using(resource=self,uss="pointed")
-        #try:
-        #    super(cls,self).save(using="pointed", force_insert=True, *args, **kwargs)
-        #except:
-        #    super(cls,self).save(using="pointed", *args, **kwargs)
-        #    print "PointedSaver ERROR"
     
     def dublicate_me_using_base(resource,uss,**kwargs):
         try:
@@ -25,13 +20,9 @@ def PointedSaver(cls):
             obj = cls(**kwargs)
             super(cls,obj).save(using=uss)
         return obj
-        
         #return cls.objects.using(uss).get_or_create(using=uss,**kwargs)
     
     def duplicate_using(resource,uss):
-        #obj = cls.objects.using(uss).get_or_create(
-        #    cls.duplicate_params(self)
-        #)
         obj = resource.dublicate_me_using(uss)
         resource.duplicate_objects_using(obj,uss)
         super(cls,obj).save(using=uss)
@@ -45,6 +36,7 @@ def PointedSaver(cls):
                 new_s.name = s.name
                 new_s.domain = s.domain
             obj.sites.add(new_s)
+        super(cls,obj).save(using=uss)
     #если нужно
     def fill_specials(self,sp_type, obj, uss):
         for s in self.specials.all():
