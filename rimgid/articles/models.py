@@ -49,7 +49,7 @@ def PointedSaver(cls):
     def fill_specials(self,sp_type, obj, uss):
         for s in self.specials.all():
             new_s, created = sp_type.objects.using(uss).get_or_create(name=s.name,text=s.text)
-        obj.specials.add(new_s)
+            obj.specials.add(new_s)
         
     cls.save = save
     cls.duplicate_using = duplicate_using
