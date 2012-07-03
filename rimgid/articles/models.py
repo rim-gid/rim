@@ -48,10 +48,10 @@ def PointedSaver(cls):
 @PointedSaver
 class ArticleSpecial(models.Model):
     def duplicate_params(self):
-        return {
-            'name': self.name,
-            'text': self.text,
-        }
+        kwargs = {}
+        kwargs['name'] = self.name
+        kwargs['text'] = self.text
+        return kwargs
     def duplicate_objects_using(self,obj,uss):
         pass
   
