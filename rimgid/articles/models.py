@@ -17,13 +17,13 @@ def PointedSaver(cls):
         #except:
         #    super(cls,self).save(using="pointed", *args, **kwargs)
         #    print "PointedSaver ERROR"
-    def dublicate_me_using_base(self,**kwargs):
-        return cls.objects.using(uss).get_or_create(**kwargs)
+    def dublicate_me_using_base(self,uss,**kwargs):
+        return cls.objects.using(uss).get_or_create(using=uss,**kwargs)
     def duplicate_using(self,uss):
         #obj = cls.objects.using(uss).get_or_create(
         #    cls.duplicate_params(self)
         #)
-        self.dublicate_me_using(uss)
+        obj = self.dublicate_me_using(uss)
         self.duplicate_objects_using(self,obj,uss)
         obj.save(using=uss)
         return obj
