@@ -31,7 +31,8 @@ def PointedSaver(cls):
     #если нужно
     def fill_sites(self,obj, uss):
         
-        obj.sites.add(self.sites.all())
+        sites = self.sites.all()
+        obj.sites.add(sites)
         
         return
         for s in self.sites.all():
