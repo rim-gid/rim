@@ -31,10 +31,17 @@ def PointedSaver(cls):
     #если нужно
     def fill_sites(self,obj, uss):
         for s in self.sites.all():
-            new_s, created = Site.objects.using(uss).get_or_create(id=s.id)
-            if created:
-                new_s.name = s.name
-                new_s.domain = s.domain
+            try:
+                new_s = cls.objects.using(uss).get(id=s.id)
+            except:
+                new_s = cls(name=s.name,domain=s.domain,id=s.id)
+                #new_s.name = s.name
+                #new_s.domain = s.domain
+                super(cls,new_s).save(using=uss)
+            #new_s, created = Site.objects.using(uss).get_or_create(id=s.id)
+            #if created:
+            #    new_s.name = s.name
+            #    new_s.domain = s.domain
             obj.sites.add(new_s)
         super(cls,obj).save(using=uss)
     #если нужно
