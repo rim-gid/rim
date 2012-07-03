@@ -6,7 +6,55 @@ import datetime
 from django.contrib.sites.models import Site
 from django.contrib.flatpages.models import FlatPage
 
+#декоратор класса
+def PointedSaver(cls):
+    def save(self, *args, **kwargs):
+        print "----saving----"
+        super(cls,self).save(*args, **kwargs)
+        self.duplicate_using(uss="pointed")
+        #try:
+        #    super(cls,self).save(using="pointed", force_insert=True, *args, **kwargs)
+        #except:
+        #    super(cls,self).save(using="pointed", *args, **kwargs)
+        #    print "PointedSaver ERROR"
+    def duplicate_using(self,uss):
+        obj = cls.objects.using(uss).get_or_create(
+            super(cls,self).duplicate_params()
+        )
+        super(cls,self).duplicate_objects_using(self,obj,uss)
+        obj.save(using=uss)
+        return obj
+    
+    #если нужно
+    def fill_sites(self,obj, uss):
+        for s in super(cls,self).sites.all():
+            new_s, created = Site.objects.using(uss).get_or_create(id=s.id)
+            if created:
+                new_s.name = s.name
+                new_s.domain = s.domain
+        obj.sites.add(new_s)
+    #если нужно
+    def fill_specials(self,sp_type, obj, uss):
+        for s in super(cls,self).specials.all():
+            new_s, created = sp_type.objects.using(uss).get_or_create(name=s.name,text=s.text)
+        obj.specials.add(new_s)
+        
+    cls.save = save
+    cls.duplicate_using = duplicate_using
+    cls.fill_sites = fill_sites
+    cls.fill_specials = fill_specials
+    return cls
+        
+@PointedSaver
 class ArticleSpecial(models.Model):
+    def duplicate_params(self):
+        return {
+            'name': self.name,
+            'text': self.text,
+        }
+    def duplicate_objects_using(self,obj,uss):
+        pass
+  
     name = models.CharField(max_length = 200,blank = "True")
     text = WYSIWYGField(blank="True")
     
@@ -22,7 +70,16 @@ class ArticleSpecial(models.Model):
 class ArticleTypeSpecial(ArticleSpecial):
     stype = "articleType"
 
+@PointedSaver
 class ArticleType(models.Model):
+    def duplicate_params(self):
+        return {
+            'title': self.title,
+            'text': self.text,
+        }
+    def duplicate_objects_using(self, obj, uss):
+        self.fill_specials(ArticleTypeSpecial, obj, uss)
+  
     title = models.CharField(max_length=200)
     text = WYSIWYGField(null="True", blank="True")
    
@@ -53,12 +110,22 @@ class ArticleType(models.Model):
 
 from rimgid.added.thumbs import ImageWithThumbsField
 
+@PointedSaver
 class Foto(models.Model):
+    def duplicate_params(self):
+        return {
+            'title': self.title,
+            'url': self.url,
+            'text': self.text,
+            'image': self.image,
+        }
+    def duplicate_objects_using(self, obj, uss):
+        self.fill_sites(obj, uss)
+            
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     text = WYSIWYGField(blank="True")
-    #image = models.ImageField(upload_to="fotos/",null="True", blank="True")
-    image = ImageWithThumbsField(upload_to='images', sizes=((200,200),))
+    image = ImageWithThumbsField(upload_to='images', sizes=((200,200),))    #image = models.ImageField(upload_to="fotos/",null="True", blank="True")
 
     datetime = models.DateTimeField(blank="True")
     sites = models.ManyToManyField(Site)
@@ -66,25 +133,20 @@ class Foto(models.Model):
     def __unicode__(self):
         return self.title + " - " + self.image.url_200x200
 
-#декоратор класса
-def PointedSaver(cls):
-    def save(self, *args, **kwargs):
-        print "----saving----"
-        super(cls,self).save(*args, **kwargs)
-        try:
-            super(cls,self).save(using="pointed", force_insert=True, *args, **kwargs)
-        except:
-            super(cls,self).save(using="pointed", *args, **kwargs)
-            print "PointedSaver ERROR"
-    cls.save = save
-    return cls
-        
 @PointedSaver
 class Article(FlatPage):
-    #__metaclass__ = PointedSaver
-
-
-
+    def duplicate_params(self):
+        return {
+            'url': self.url,
+            'title': self.title,
+        }
+    def duplicate_objects_using(self,obj,uss):
+        #at, at_created = ArticleType.objects.using(uss).get_or_create(title=self.atype.title,text=self.atype.text)
+        obj.atype = self.atype.duplicate_using(uss)
+        self.fill_sites(obj, uss)
+        self.fill_specials(ArticleSpecial, obj, uss)
+        obj.datetime = self.datetime
+        obj.content = self.content
 
     def save123(self):
         print "----saving----"
