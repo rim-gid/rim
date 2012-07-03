@@ -153,10 +153,11 @@ class Article(FlatPage):
     def dublicate_me_using(self,uss,**kwargs):
         kwargs['url'] = self.url
         kwargs['title'] = self.title
+        kwargs['atype'] = self.atype.duplicate_using(uss)
         return self.dublicate_me_using_base(uss,**kwargs)
     def duplicate_objects_using(self,obj,uss):
         #at, at_created = ArticleType.objects.using(uss).get_or_create(title=self.atype.title,text=self.atype.text)
-        obj.atype = self.atype.duplicate_using(uss)
+        #obj.atype = self.atype.duplicate_using(uss)
         self.fill_sites(obj, uss)
         self.fill_specials(ArticleSpecial, obj, uss)
         obj.datetime = self.datetime
