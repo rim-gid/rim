@@ -19,6 +19,10 @@ class WysiwygAdmin(admin.ModelAdmin):
             field.widget.attrs['class'] = 'wysiwygEditor'
         return field
   
+    #formfield_overrides = {
+    #    models.TextField: {'widget': WYSIWYGField},
+    #}
+  
     # Подключение js/css
     class Media:
         js = (
@@ -26,18 +30,30 @@ class WysiwygAdmin(admin.ModelAdmin):
             MEDIA_URL+'wysiwyg/textareas.js',
             )
 
+from django.forms.util import flatatt, ErrorDict, ErrorList
+
 class ArticleForm(forms.ModelForm):
     url = forms.RegexField(label=_("URL"), max_length=100, regex=r'^[-\w/]+$',
-        help_text = _("Example: '/about/contact/'. Make sure to have leading"
-                      " and trailing slashes."),
+        help_text = "Example: '/excursion_3'. Be carefull: 1) '/' is needed; 2) don't change url, once saved. 3) don't use url, once used.",
+                    #_("Example: '/about/contact/'. Make sure to have leading"
+                    #  " and trailing slashes."),
         error_message = _("This value must contain only letters, numbers,"
                           " underscores, dashes or slashes."))
                           
-    image = forms.ImageField(initial='Do you want to add image?')
+    image = forms.ImageField(initial="empty",label='Main image',help_text = "You can add main image by this button (or by specials),"
+                                                             " but only here you will upload image to server.")
     
     #def save(self,*args,**kwargs):
     #    print "SAAAAVING Form"
     #    super(ArticleForm,self).save(*args,**kwargs)
+    """
+    def __init__(self, data=None, files=None, auto_id='id_%s', prefix=None,
+                 initial=None, error_class=ErrorList, label_suffix=':',
+                 empty_permitted=False):
+        print "ArticleForm __init__"
+        print "errors:", error_class
+        super(ArticleForm,self).__init__(data, files, auto_id, prefix, initial, error_class, label_suffix, empty_permitted)
+    """
 
     class Meta:
         model = Article
@@ -45,16 +61,27 @@ class ArticleForm(forms.ModelForm):
 class ArticleAdmin(WysiwygAdmin):
     form = ArticleForm
     fieldsets = (
-        (None, {'fields': ('url', 'title', 'atype', 'content', 'sites', 'image')}),
-        (_('Advanced options'), {'classes': ('collapse',), 'fields': ('specials','enable_comments', 'registration_required', 'template_name')}),
+        (None, {'fields': ( 'url', ('title', 'atype'), 'content', ('sites', 'image'))}),
+        (_('Advanced options'), {'classes': ('collapse',), 'fields': ('specials', ('enable_comments', 'registration_required'), 'template_name')}),
     )
     list_display = ('url', 'atype', 'title')
     list_filter = ('atype', 'enable_comments', 'registration_required')
     search_fields = ('url', 'title')
+    filter_horizontal = ('specials',)
+
+from settings import get_main_params
 
 class WysiwygFlatPageAdmin(ArticleAdmin, WysiwygAdmin):
     def save_model(self, request, obj, form, change):
+        print "kkk"
+        #print self.instance
         super(WysiwygFlatPageAdmin,self).save_model(request, obj, form, change)
+        print "kkk2"
+        mp = get_main_params()
+        if 'no_duplicating' in mp['local']:
+            if mp['local']['no_duplicating']:
+                return
+        #'no_duplicating'
         obj.user = request.user
         sites = []
         specials = []

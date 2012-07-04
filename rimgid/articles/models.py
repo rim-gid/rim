@@ -5,6 +5,8 @@ from rimgid.wysiwyg import WYSIWYGField
 import datetime
 from django.contrib.sites.models import Site
 from django.contrib.flatpages.models import FlatPage
+from django.utils.text import truncate_words
+from django.utils.html import strip_tags
 
 #декоратор класса
 def PointedSaver(cls):
@@ -90,7 +92,12 @@ class ArticleSpecial(models.Model):
             atype = self.article_set.all()[0].atype.title
         except:
             atype = ""
-        return self.name + "["+atype+"] - " + self.text
+        txt = strip_tags(self.text)
+        txt = self.name + "["+atype+"] - " + txt
+        k = 50
+        if len(txt) > k:
+            txt = txt[:k-3] + "..."
+        return txt
 
 class ArticleTypeSpecial(ArticleSpecial):
     stype = "articleType"
@@ -204,7 +211,12 @@ class Article(FlatPage):
         self.fill_specials(ArticleSpecial, obj, uss, *args, **kwargs)
         obj.datetime = self.datetime
         obj.content = self.content
-
+        
+    #def save_m2m(self):
+    #    print "----saving_m2m----"
+    #    super(Article, self).save_m2m()
+    
+    """
     def save123(self):
         print "----saving----"
         #self.save(*args, **kwargs)
@@ -214,7 +226,7 @@ class Article(FlatPage):
         except:
             super(Article, self).save(using="pointed")
             print "PointedSaver ERROR"
-
+    """
 
 
 
