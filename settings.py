@@ -41,7 +41,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306'
     },
-    'pointed': {
+    'rus': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'aaveter_0',
         'USER': 'gidinrome',
@@ -49,7 +49,7 @@ DATABASES = {
         'HOST': '141.8.193.148',
         'PORT': '3306'
     },
-    'rus': {
+    'pointed': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'aaveter_rus',
         'USER': 'aaveter_0',
