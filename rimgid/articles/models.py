@@ -9,11 +9,14 @@ from django.contrib.flatpages.models import FlatPage
 #декоратор класса
 def PointedSaver(cls):
     def save(self, *args, **kwargs):
-        ppp = *args
-        super(cls,*args).save(*args, **kwargs)
-        print "----saving----"
-        super(cls,self).save(*args, **kwargs)
-        duplicate_using(self,"pointed",*args,**kwargs)
+        if args or kwargs:
+            print "----duplicating----"
+            if "duplicate" in kwargs:
+                del kwargs["duplicate"]
+            duplicate_using(self,"pointed",*args,**kwargs)
+        else:
+            print "----saving----"
+            super(cls,self).save(*args, **kwargs)
     
     def dublicate_me_using_base(resource,uss,**kwargs):
         try:
@@ -32,30 +35,31 @@ def PointedSaver(cls):
     
     #если нужно
     def fill_sites(self,obj, uss, *args, **kwargs):
-        
-        sites = self.sites.all()
-        obj.sites.add(args)
-        
-        return
-        for s in self.sites.all():
-            try:
-                new_s = Site.objects.using(uss).get(id=s.id)
-            except:
-                new_s = Site(name=s.name,domain=s.domain,id=s.id)
-                #new_s.name = s.name
-                #new_s.domain = s.domain
+        if "sites" in kwargs:
+            sites = kwargs["sites"]
+            print sites
+            for s in sites:
+                try:
+                    new_s = Site.objects.using(uss).get(id=int(s))
+                except:
+                    new_s = Site(name="new",domain="new",id=int(s))
+                    #new_s.name = s.name
+                    #new_s.domain = s.domain
+                    #new_s.save(using=uss)
+                #new_s, created = Site.objects.using(uss).get_or_create(id=s.id)
+                #if created:
+                #    new_s.name = s.name
+                #    new_s.domain = s.domain
+                
+                obj.sites.add(new_s)
+                #new_s.article_set.add(obj)
                 #new_s.save(using=uss)
-            #new_s, created = Site.objects.using(uss).get_or_create(id=s.id)
-            #if created:
-            #    new_s.name = s.name
-            #    new_s.domain = s.domain
-            
-            #obj.sites.add(new_s)
-            new_s.article_set.add(obj)
-            new_s.save(using=uss)
         #super(cls,obj).save(using=uss)
     #если нужно
-    def fill_specials(self,sp_type, obj, uss):
+    def fill_specials(self,sp_type, obj, uss, *args, **kwargs):
+        if "specials" in kwargs:
+            specials = kwargs["specials"]
+            print specials
         for s in self.specials.all():
             new_s, created = sp_type.objects.using(uss).get_or_create(name=s.name,text=s.text)
             obj.specials.add(new_s)
@@ -103,7 +107,7 @@ class ArticleType(models.Model):
     #    kwargs['text'] = self.text
     #    return kwargs
     def duplicate_objects_using(self, obj, uss,*args,**kwargs):
-        self.fill_specials(ArticleTypeSpecial, obj, uss)
+        self.fill_specials(ArticleTypeSpecial, obj, uss,*args,**kwargs)
   
     title = models.CharField(max_length=200)
     text = WYSIWYGField(null="True", blank="True")
@@ -179,15 +183,25 @@ class Foto(models.Model):
 @PointedSaver
 class Article(FlatPage):
     def dublicate_me_using(self,uss,**kwargs):
+        sites = []
+        specials = []
+        if 'sites' in kwargs:
+            sites += kwargs['sites']
+            del kwargs['sites']
+        if 'specials' in kwargs:
+            specials += kwargs['specials']
+            del kwargs['specials']
         kwargs['url'] = self.url
         kwargs['title'] = self.title
         kwargs['atype'] = self.atype.duplicate_using(uss)
-        return self.dublicate_me_using_base(uss,**kwargs)
+        me = self.dublicate_me_using_base(uss,**kwargs)
+        kwargs['sites']=sites
+        kwargs['specials']=specials
+        #duplicate_objects_using(self, obj, uss, **kwargs)
+        return me
     def duplicate_objects_using(self,obj,uss,*args,**kwargs):
-        #at, at_created = ArticleType.objects.using(uss).get_or_create(title=self.atype.title,text=self.atype.text)
-        #obj.atype = self.atype.duplicate_using(uss)
         self.fill_sites(obj, uss, *args, **kwargs)
-        self.fill_specials(ArticleSpecial, obj, uss, **kwargs)
+        self.fill_specials(ArticleSpecial, obj, uss, *args, **kwargs)
         obj.datetime = self.datetime
         obj.content = self.content
 

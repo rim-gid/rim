@@ -41,31 +41,34 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306'
     },
-    'rus': {
+    'pointed': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'aaveter_0',
         'USER': 'gidinrome',
         'PASSWORD': 'byd738ddu3289eud',
         'HOST': '141.8.193.148',
         'PORT': '3306'
-    },
-    'pointed': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aaveter_rus',
-        'USER': 'aaveter_0',
-        'PASSWORD': 'uR1zdiC7',
-        'HOST': 'localhost',
-        'PORT': '3306'
-    },
-    'eng': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aaveter_eng',
-        'USER': 'aaveter_0',
-        'PASSWORD': 'uR1zdiC7',
-        'HOST': 'localhost',
-        'PORT': '3306'
-    },
+    }
 }
+
+"""
+'rus': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'aaveter_rus',
+    'USER': 'aaveter_0',
+    'PASSWORD': 'uR1zdiC7',
+    'HOST': 'localhost',
+    'PORT': '3306'
+},
+'eng': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'aaveter_eng',
+    'USER': 'aaveter_0',
+    'PASSWORD': 'uR1zdiC7',
+    'HOST': 'localhost',
+    'PORT': '3306'
+},
+"""
 
 #DATABASE_ENGINE = 'django.db.backends.mysql'          # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 #DATABASE_NAME = 'aaveter_0'             # Or path to database file if using sqlite3.

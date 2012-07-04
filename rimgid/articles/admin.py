@@ -35,9 +35,9 @@ class ArticleForm(forms.ModelForm):
                           
     image = forms.ImageField(initial='Do you want to add image?')
     
-    def save(self,*args,**kwargs):
-        print "SAAAAVING Form"
-        super(ArticleForm,self).save(*args,**kwargs)
+    #def save(self,*args,**kwargs):
+    #    print "SAAAAVING Form"
+    #    super(ArticleForm,self).save(*args,**kwargs)
 
     class Meta:
         model = Article
@@ -53,7 +53,21 @@ class ArticleAdmin(WysiwygAdmin):
     search_fields = ('url', 'title')
 
 class WysiwygFlatPageAdmin(ArticleAdmin, WysiwygAdmin):
-  
+    def save_model(self, request, obj, form, change):
+        super(WysiwygFlatPageAdmin,self).save_model(request, obj, form, change)
+        obj.user = request.user
+        sites = []
+        specials = []
+        try:
+            sites += request.POST.pop('sites')
+        except:
+            pass
+        try:
+            specials += request.POST.pop('specials')
+        except:
+            pass
+        obj.save(duplicate=True,sites=sites,specials=specials)
+    
     class Meta:
         wysiwyg_fields = ('content')
 
