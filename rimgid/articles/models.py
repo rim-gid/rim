@@ -9,6 +9,8 @@ from django.contrib.flatpages.models import FlatPage
 #декоратор класса
 def PointedSaver(cls):
     def save(self, *args, **kwargs):
+        ppp = *args
+        super(cls,*args).save(*args, **kwargs)
         print "----saving----"
         super(cls,self).save(*args, **kwargs)
         duplicate_using(self,"pointed",*args,**kwargs)
