@@ -1,0 +1,3 @@
+
+1. Добавляем поле image в модель ArticleSpecial:
+ALTER TABLE articles_articlespecial ADD COLUMN image VARCHAR(100) NULL AFTER text;

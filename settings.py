@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for application project.
 
-import sys
+import sys, os
 sys.path.append('/usr/local/www/rim')
 sys.path.append('/usr/local/www/rim_version')
 sys.path.append('../rim_version')
@@ -13,7 +13,6 @@ ADMIN_MEDIA_ROOT = '/admin-media/'
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 from project_local_params import *
-
 from django.conf import settings
 
 def get_main_params():
@@ -21,7 +20,10 @@ def get_main_params():
     mp['local']=settings.AAA_SITE_LOCAL_PARAMS
     return mp
 
-DEBUG = True
+DEBUG = False
+if "DEBUG" in AAA_SITE_LOCAL_PARAMS:
+    if AAA_SITE_LOCAL_PARAMS['DEBUG']:
+        DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib import admin
-from rimgid.articles.models import *
-from settings import MEDIA_URL
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.admin import FlatpageForm
 from django.utils.translation import ugettext_lazy as _
+from django.forms.util import flatatt, ErrorDict, ErrorList
+from models import *
+from settings import MEDIA_URL
+from decorators import PointedSaverSaveModel
 
 class WysiwygAdmin(admin.ModelAdmin):
+    """
+    Класс, упрощающий замещение текстовых полей wysiwyg редактором
+    """
     class Meta:
         # Список полей для которых нужно включить визуальный редактор    
         wysiwyg_fields = ()
@@ -30,18 +35,19 @@ class WysiwygAdmin(admin.ModelAdmin):
             MEDIA_URL+'wysiwyg/textareas.js',
             )
 
-from django.forms.util import flatatt, ErrorDict, ErrorList
-
 class ArticleForm(forms.ModelForm):
+    """
+    настраиваем форму редактирования статьи
+    """
     url = forms.RegexField(label=_("URL"), max_length=100, regex=r'^[-\w/]+$',
         help_text = "Example: '/excursion_3'. Be carefull: 1) '/' is needed; 2) don't change url, once saved. 3) don't use url, once used.",
                     #_("Example: '/about/contact/'. Make sure to have leading"
                     #  " and trailing slashes."),
         error_message = _("This value must contain only letters, numbers,"
                           " underscores, dashes or slashes."))
-                          
-    image = forms.ImageField(initial="empty",label='Main image',help_text = "You can add main image by this button (or by specials),"
-                                                             " but only here you will upload image to server.")
+    
+    #image = forms.ImageField(initial="empty",label='Main image',help_text = "You can add main image by this button (or by specials),"
+    #                                                         " but only here you will upload image to server.")
     
     #def save(self,*args,**kwargs):
     #    print "SAAAAVING Form"
@@ -58,30 +64,26 @@ class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
 
+@PointedSaverSaveModel
 class ArticleAdmin(WysiwygAdmin):
+    """
+    Класс настройки интерфейса администратора модели Article.
+    """
     form = ArticleForm
     fieldsets = (
-        (None, {'fields': ( 'url', ('title', 'atype'), 'content', ('sites', 'image'))}),
+        (None, {'fields': ( 'url', ('title', 'atype'), 'content', 'sites')}), #('sites', 'image'))}),
         (_('Advanced options'), {'classes': ('collapse',), 'fields': ('specials', ('enable_comments', 'registration_required'), 'template_name')}),
     )
     list_display = ('url', 'atype', 'title')
     list_filter = ('atype', 'enable_comments', 'registration_required')
     search_fields = ('url', 'title')
     filter_horizontal = ('specials',)
-
-from settings import get_main_params
-
-class WysiwygFlatPageAdmin(ArticleAdmin, WysiwygAdmin):
-    def save_model(self, request, obj, form, change):
-        print "kkk"
-        #print self.instance
-        super(WysiwygFlatPageAdmin,self).save_model(request, obj, form, change)
-        print "kkk2"
-        mp = get_main_params()
-        if 'no_duplicating' in mp['local']:
-            if mp['local']['no_duplicating']:
-                return
-        #'no_duplicating'
+        
+    def duplicate_model(self, request, obj, form, change):
+        """
+        Используется методом save_model, определенным в PointedSaverSaveModel. Добавляет
+        данные для дублирования - из полей sites и specials
+        """
         obj.user = request.user
         sites = []
         specials = []
@@ -102,4 +104,4 @@ admin.site.register(ArticleSpecial)
 admin.site.register(ArticleTypeSpecial)
 admin.site.register(ArticleType)
 admin.site.register(Foto)
-admin.site.register(Article, WysiwygFlatPageAdmin)
+admin.site.register(Article, ArticleAdmin)
