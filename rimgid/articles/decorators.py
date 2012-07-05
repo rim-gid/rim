@@ -85,14 +85,41 @@ def PointedSaverSaveModel(cls):
         если не задано не использовать дублирование.
         """
         mp = get_main_params()
-        if 'no_saving' in mp['local']:
-            if mp['local']['no_saving']:
-                return
+        
+        def is_right(name):
+            if name in mp['local']:
+                if mp['local'][name]:
+                    return True
+            return False
+            
+        if is_right('no_saving'):
+            return
         #print "request:", request
         super(cls,self).save_model(request, obj, form, change)
-        if 'no_duplicating' in mp['local']:
-            if mp['local']['no_duplicating']:
-                return
+        
+        if not is_right('no_auto_git'):
+            #!/usr/local/bin/python
+            import pexpect
+
+            child = pexpect.spawn('su')
+
+            child.expect("id_rsa': ")
+            child.sendline(u'друзья')
+
+            child.sendline('exit')
+            child.expect(pexpect.EOF)
+
+            child = pexpect.spawn('git push origin refactor')
+
+            child.expect("id_rsa': ")
+            child.sendline(u'друзья')
+
+            child.sendline('exit')
+            child.expect(pexpect.EOF)
+
+        #print child.before
+        if is_right('no_duplicating'):
+            return
         self.duplicate_model(request, obj, form, change)
   
     cls.save_model = save_model
