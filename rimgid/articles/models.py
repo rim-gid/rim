@@ -24,6 +24,7 @@ class ArticleSpecial(models.Model):
     def duplicate_files(self):
         print "image.path=", self.image.path
         self.git_add(self.image.path)
+        self.git_push()
   
     name = models.CharField(max_length = 200, blank = "True")
     text = WYSIWYGField(blank="True")

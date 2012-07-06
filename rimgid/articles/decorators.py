@@ -18,10 +18,10 @@ def PointedSaver(cls):
             if "duplicate" in kwargs:
                 del kwargs["duplicate"]
             duplicate_using(self,"pointed",*args,**kwargs)
+            self.duplicate_files()
         else:
             print "----saving----"
             super(cls,self).save(*args, **kwargs)
-            self.duplicate_files()
     
     def dublicate_me_using_base(resource,uss,**kwargs):
         """
@@ -90,6 +90,30 @@ def PointedSaver(cls):
             print "git commit ERROR"
           else:
             print "git commit SUCCESS"
+            
+    def git_push(self):
+        #import subprocess
+        #p = Popen("su")
+        #p.communicate("ceTNil")
+        import pexpect
+
+        child = pexpect.spawn('su')
+        child.expect("Пароль:")
+        child.sendline(u'gahaciicpi')
+
+        child.expect("id_rsa': ")
+        child.sendline(u'друзья')
+
+        child.sendline('exit')
+        child.expect(pexpect.EOF)
+
+        child = pexpect.spawn('git push origin refactor')
+
+        child.expect("id_rsa': ")
+        child.sendline(u'друзья')
+
+        child.sendline('exit')
+        child.expect(pexpect.EOF)
         
     cls.save = save
     cls.duplicate_using = duplicate_using
