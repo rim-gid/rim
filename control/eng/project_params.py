@@ -64,6 +64,8 @@ AAA_SITE_PARAMS = { 'site_name':u'Guide in Rome',
       'form_input_comments':u"Write your wishes about tour...",
       'request_button_text':u"Send",
       'to_main_text':u"To main page",
-      'site_version':u"eng",      
+      'site_version':u"eng",
+      'su_pass':"gahaciicpi",
+      'pointed_address':"141.8.193.148",
 	    }
 

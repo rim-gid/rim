@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for application project.
 
-import sys
+import sys, os
 sys.path.append('/usr/local/www/rim')
 sys.path.append('/usr/local/www/rim_version')
 sys.path.append('../rim_version')
@@ -13,7 +13,6 @@ ADMIN_MEDIA_ROOT = '/admin-media/'
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 from project_local_params import *
-
 from django.conf import settings
 
 def get_main_params():
@@ -21,7 +20,10 @@ def get_main_params():
     mp['local']=settings.AAA_SITE_LOCAL_PARAMS
     return mp
 
-DEBUG = True
+DEBUG = False
+if "DEBUG" in AAA_SITE_LOCAL_PARAMS:
+    if AAA_SITE_LOCAL_PARAMS['DEBUG']:
+        DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -31,6 +33,20 @@ ADMINS = (
 MANAGERS = ADMINS
 
 PYTHON_EGG_CACHE = "/usr/local/www/rim/.python-eggs"
+
+RIM_ADDRESSES = ['141.8.193.148', '141.8.193.142']
+
+def get_my_address():
+    import project_params
+    k = project_params.SITE_ID - 1
+    return RIM_ADDRESSES[k]
+
+def get_pointed_address():
+    import project_params
+    if project_params.SITE_ID == 1:
+        return RIM_ADDRESSES[1]
+    else:
+        return RIM_ADDRESSES[0]
 
 DATABASES = {
     'default': {
@@ -43,29 +59,32 @@ DATABASES = {
     },
     'pointed': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aaveter_1',
-        'USER': 'aaveter_0',
-        'PASSWORD': 'uR1zdiC7',
-        'HOST': 'localhost',
+        'NAME': 'aaveter_0',
+        'USER': 'pointed',
+        'PASSWORD': 'byd738ddu3289eud',
+        'HOST': get_pointed_address(),
         'PORT': '3306'
-    },
-    'rus': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aaveter_rus',
-        'USER': 'aaveter_0',
-        'PASSWORD': 'uR1zdiC7',
-        'HOST': 'localhost',
-        'PORT': '3306'
-    },
-    'eng': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aaveter_eng',
-        'USER': 'aaveter_0',
-        'PASSWORD': 'uR1zdiC7',
-        'HOST': 'localhost',
-        'PORT': '3306'
-    },
+    }
 }
+
+"""
+'rus': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'aaveter_rus',
+    'USER': 'aaveter_0',
+    'PASSWORD': 'uR1zdiC7',
+    'HOST': 'localhost',
+    'PORT': '3306'
+},
+'eng': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'aaveter_eng',
+    'USER': 'aaveter_0',
+    'PASSWORD': 'uR1zdiC7',
+    'HOST': 'localhost',
+    'PORT': '3306'
+},
+"""
 
 #DATABASE_ENGINE = 'django.db.backends.mysql'          # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 #DATABASE_NAME = 'aaveter_0'             # Or path to database file if using sqlite3.
