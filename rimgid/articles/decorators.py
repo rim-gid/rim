@@ -147,6 +147,8 @@ def PointedSaverSaveModel(cls):
         """
         mp = get_main_params()
         
+        #print "!!!!!"
+        
         def is_right(name):
             if name in mp['local']:
                 if mp['local'][name]:

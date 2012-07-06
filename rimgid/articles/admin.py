@@ -99,8 +99,31 @@ class ArticleAdmin(WysiwygAdmin):
     
     class Meta:
         wysiwyg_fields = ('content')
+        
+@PointedSaverSaveModel
+class ArticleSpecialAdmin(WysiwygAdmin):
+    """
+    Класс настройки интерфейса администратора модели ArticleSpecial.
+    """
+    #form = ArticleForm
+    fieldsets = (
+        (None, {'fields': ( ('name', 'image'), 'text')}),
+    )
+    #list_display = ('url', 'atype', 'title')
+    list_filter = ('name', 'text', 'image')
+    search_fields = ('name', 'text', 'image')
+        
+    def duplicate_model(self, request, obj, form, change):
+        """
+        Используется методом save_model, определенным в PointedSaverSaveModel.
+        """
+        obj.user = request.user
+        obj.save(duplicate=True)
+    
+    class Meta:
+        wysiwyg_fields = ('content')
 
-admin.site.register(ArticleSpecial)
+admin.site.register(ArticleSpecial, ArticleSpecialAdmin)
 admin.site.register(ArticleTypeSpecial)
 admin.site.register(ArticleType)
 admin.site.register(Foto)
