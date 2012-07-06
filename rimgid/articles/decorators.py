@@ -81,18 +81,31 @@ def PointedSaver(cls):
         #p.communicate("ceTNil")
         #return
         try:
-          subprocess.check_call("git add "+file_path, cwd=pre, shell=True)
+            subprocess.check_call("git add "+file_path, cwd=pre, shell=True)
         except:
-          print "git add ERROR"
+            print "git add ERROR"
         else:
-          print "git add SUCCESS"
-          try:
-            s = '''git commit -a -m "*** added file '"'''+file_path+'''"' ***"'''
-            subprocess.check_call(s, cwd=pre, shell=True)
-          except:
-            print "git commit ERROR"
-          else:
-            print "git commit SUCCESS"
+            print "git add SUCCESS"
+            try:
+                mp = get_main_params()
+                import pexpect
+
+                child = pexpect.spawn('su')
+                child.expect("Пароль:")
+                child.sendline(mp['su_pass'])
+                
+                child.expect(":")
+                s = '''git commit -a -m "*** added file '"'''+file_path+'''"' ***"'''
+                child.sendline(s)
+
+                child.sendline('exit')
+                child.expect(pexpect.EOF)
+                
+                #subprocess.check_call(s, cwd=pre, shell=True)
+            except:
+                print "git commit ERROR"
+            else:
+                print "git commit SUCCESS"
             
     def git_push(self):
         #return
@@ -105,27 +118,26 @@ def PointedSaver(cls):
             return out[1:]
         branch = get_branch_name()
         #print "out =", out
-        
-        mp = get_main_params()
-        import pexpect
+        try:
+            mp = get_main_params()
+            import pexpect
 
-        child = pexpect.spawn('su')
-        child.expect("Пароль:")
-        child.sendline(mp['su_pass'])
+            child = pexpect.spawn('su')
+            child.expect("Пароль:")
+            child.sendline(mp['su_pass'])
+            
+            child.expect(":")
+            child.sendline('git push origin '+branch)
 
-        child.expect("id_rsa': ")
-        child.sendline(u'друзья')
+            child.expect("id_rsa': ")
+            child.sendline(u'lhepmz')
 
-        child.sendline('exit')
-        child.expect(pexpect.EOF)
-
-        child = pexpect.spawn('git push origin '+branch)
-
-        child.expect("id_rsa': ")
-        child.sendline(u'lhepmz')
-
-        child.sendline('exit')
-        child.expect(pexpect.EOF)
+            child.sendline('exit')
+            child.expect(pexpect.EOF)
+        except:
+            print "git push ERROR"
+        else:
+            print "git push SUCCESS"
         
     cls.save = save
     cls.duplicate_using = duplicate_using
