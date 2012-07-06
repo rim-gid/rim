@@ -75,7 +75,6 @@ def PointedSaver(cls):
         if pre in file_path:
             file_path = file_path[len(pre):]
         print "new file_path:", file_path
-        
         #print "call =", subprocess.call("git add "+file_path, cwd=pre, shell=True)
         #return
         try:
@@ -85,7 +84,7 @@ def PointedSaver(cls):
         else:
           print "git add SUCCESS"
           try:
-            s = '''git commit -a -m "*** added file "'''+file_path+'''"***"'''
+            s = '''git commit -a -m "*** added file '"'''+file_path+'''"' ***"'''
             subprocess.check_call(s, cwd=pre, shell=True)
           except:
             print "git commit ERROR"
