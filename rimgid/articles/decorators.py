@@ -122,7 +122,7 @@ def PointedSaver(cls):
         child = pexpect.spawn('git push origin '+branch)
 
         child.expect("id_rsa': ")
-        child.sendline(u'друзья')
+        child.sendline(u'lhepmz')
 
         child.sendline('exit')
         child.expect(pexpect.EOF)
