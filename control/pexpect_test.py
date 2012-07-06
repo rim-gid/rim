@@ -42,6 +42,7 @@ def git_push():
     #p = Popen("su")
     #p.communicate("ceTNil")
     def get_branch_name():
+        import subprocess
         p = subprocess.Popen("git branch | grep \*", cwd=pre, shell=True, stdout=subprocess.PIPE)
         out = p.stdout.read()
         return out[1:]
@@ -68,5 +69,5 @@ def git_push():
     else:
         print "git push SUCCESS"
 
-git_add("/usr/local/www/rim/rimgid/images/_r.png")
+#git_add("/usr/local/www/rim/rimgid/images/_r.png")
 git_push()
