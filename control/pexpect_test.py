@@ -43,6 +43,7 @@ def git_push():
     #p.communicate("ceTNil")
     def get_branch_name():
         import subprocess
+        pre = "/usr/local/www/rim/"
         p = subprocess.Popen("git branch | grep \*", cwd=pre, shell=True, stdout=subprocess.PIPE)
         out = p.stdout.read()
         return out[1:]
