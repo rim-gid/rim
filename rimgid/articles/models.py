@@ -115,15 +115,29 @@ signals.post_save.connect(go_subscrib, sender=News)
 @PointedSaver
 class Foto(models.Model):
     def dublicate_me_using(self,uss,**kwargs):
+        sites = []
+        if 'sites' in kwargs:
+            sites += kwargs['sites']
+            del kwargs['sites']
         kwargs['url'] = self.url
         kwargs['title'] = self.title
         kwargs['text'] = self.text
         kwargs['image'] = self.image
-        return self.dublicate_me_using_base(uss,**kwargs)
+        me = self.dublicate_me_using_base(uss,**kwargs)
+        kwargs['sites']=sites
+        return me
     def duplicate_objects_using(self, obj, uss,*args,**kwargs):
-        self.fill_sites(obj, uss)
+        self.fill_sites(obj, uss, *args, **kwargs)
     def duplicate_files(self):
-        pass
+        s = self.image.path
+        print "image.path=", s
+        lenn = len(s)
+        pfx = s[lenn-4:lenn]
+        s = s[:lenn-4]+".200x200"+pfx
+        print "image.path=", s
+        self.git_add(self.image.path)
+        self.git_add(s)
+        self.git_push()
             
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
