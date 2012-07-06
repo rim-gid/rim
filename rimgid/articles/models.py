@@ -163,7 +163,7 @@ class Article(FlatPage, PointedSaver):
 # *************************************************************
 #  Далее функционал для перегона таблиц из старой версии в новую
 # *************************************************************
-
+"""
 from rimgid.books.models import *
 from django.contrib.sites.models import Site
 from views import file_text
@@ -612,4 +612,4 @@ def load_articles():
     #a = Article.objects.all()[0]
     #pickle.dump(a, wf)
     f.close()
-
+"""
