@@ -161,9 +161,12 @@ def PointedSaver(cls):
         #    try:
         mp = get_main_params()
         import pexpect
-
+        import os
+        
+        eee = os.environ
+        
         child = pexpect.spawn('su')
-        child.expect("Пароль:")
+        child.expect(u"Пароль:")
         child.sendline(mp['su_pass'])
         
         child.expect(":")
@@ -197,7 +200,7 @@ def PointedSaver(cls):
         import pexpect
 
         child = pexpect.spawn('su')
-        child.expect("Пароль:")
+        child.expect(u"Пароль:")
         child.sendline(mp['su_pass'])
         
         child.expect(":")
