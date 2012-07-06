@@ -17,9 +17,13 @@ class ArticleSpecial(models.Model):
     def dublicate_me_using(self,uss,**kwargs):
         kwargs['name'] = self.name
         kwargs['text'] = self.text
+        kwargs['image'] = str(self.image)
         return self.dublicate_me_using_base(uss,**kwargs)
     def duplicate_objects_using(self,obj,uss,*args,**kwargs):
         pass
+    def duplicate_files(self):
+        print "image.path=", self.image.path
+        self.git_add(self.image.path)
   
     name = models.CharField(max_length = 200, blank = "True")
     text = WYSIWYGField(blank="True")
@@ -57,6 +61,8 @@ class ArticleType(models.Model):
     #    return kwargs
     def duplicate_objects_using(self, obj, uss,*args,**kwargs):
         self.fill_specials(ArticleTypeSpecial, obj, uss,*args,**kwargs)
+    def duplicate_files(self):
+        pass
   
     title = models.CharField(max_length=200)
     text = WYSIWYGField(null="True", blank="True")
@@ -115,6 +121,8 @@ class Foto(models.Model):
         return self.dublicate_me_using_base(uss,**kwargs)
     def duplicate_objects_using(self, obj, uss,*args,**kwargs):
         self.fill_sites(obj, uss)
+    def duplicate_files(self):
+        pass
             
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
@@ -156,6 +164,8 @@ class Article(FlatPage):
         self.fill_specials(ArticleSpecial, obj, uss, *args, **kwargs)
         obj.datetime = self.datetime
         obj.content = self.content
+    def duplicate_files(self):
+        pass
         
     #def save_m2m(self):
     #    print "----saving_m2m----"

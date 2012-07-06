@@ -21,6 +21,7 @@ def PointedSaver(cls):
         else:
             print "----saving----"
             super(cls,self).save(*args, **kwargs)
+            self.duplicate_files()
     
     def dublicate_me_using_base(resource,uss,**kwargs):
         """
@@ -67,12 +68,36 @@ def PointedSaver(cls):
         for s in self.specials.all():
             new_s, created = sp_type.objects.using(uss).get_or_create(name=s.name,text=s.text)
             obj.specials.add(new_s)
+            
+    def git_add(self,file_path):
+        import subprocess
+        pre = "/usr/local/www/rim/"
+        if pre in file_path:
+            file_path = file_path[len(pre):]
+        print "new file_path:", file_path
+        
+        #print "call =", subprocess.call("git add "+file_path, cwd=pre, shell=True)
+        #return
+        try:
+          subprocess.check_call("git add "+file_path, cwd=pre, shell=True)
+        except:
+          print "git add ERROR"
+        else:
+          print "git add SUCCESS"
+          try:
+            s = '''git commit -a -m "*** added file "'''+file_path+'''"***"'''
+            subprocess.check_call(s, cwd=pre, shell=True)
+          except:
+            print "git commit ERROR"
+          else:
+            print "git commit SUCCESS"
         
     cls.save = save
     cls.duplicate_using = duplicate_using
     cls.fill_sites = fill_sites
     cls.fill_specials = fill_specials
     cls.dublicate_me_using_base = dublicate_me_using_base
+    cls.git_add = git_add
     return cls
     
 def PointedSaverSaveModel(cls):
