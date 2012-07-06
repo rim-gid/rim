@@ -171,7 +171,7 @@ def PointedSaver(cls):
         
         child.expect(":")
         s = '''git commit -a -m "*** added file '"'''+file_path+'''"' ***"'''
-        child.sendline(s)
+        child.sendline("cd /usr/local/www/rim;"+s)
 
         child.sendline('exit')
         child.expect(pexpect.EOF)
@@ -204,7 +204,7 @@ def PointedSaver(cls):
         child.sendline(mp['su_pass'])
         
         child.expect(":")
-        child.sendline('git push origin '+branch)
+        child.sendline('cd /usr/local/www/rim; git push origin '+branch)
 
         child.expect("id_rsa': ")
         child.sendline(u'lhepmz')
