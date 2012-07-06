@@ -60,7 +60,7 @@ DATABASES = {
     'pointed': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'aaveter_0',
-        'USER': 'gidinrome',
+        'USER': 'pointed',
         'PASSWORD': 'byd738ddu3289eud',
         'HOST': get_pointed_address(),
         'PORT': '3306'
