@@ -22,6 +22,7 @@ def PointedSaver(cls):
         else:
             print "----saving----"
             super(cls,self).save(*args, **kwargs)
+            #self.duplicate_files()
     
     def dublicate_me_using_base(resource,uss,**kwargs):
         """
@@ -76,6 +77,8 @@ def PointedSaver(cls):
             file_path = file_path[len(pre):]
         print "new file_path:", file_path
         #print "call =", subprocess.call("git add "+file_path, cwd=pre, shell=True)
+        
+        #p.communicate("ceTNil")
         #return
         try:
           subprocess.check_call("git add "+file_path, cwd=pre, shell=True)
@@ -92,14 +95,23 @@ def PointedSaver(cls):
             print "git commit SUCCESS"
             
     def git_push(self):
+        #return
         #import subprocess
         #p = Popen("su")
         #p.communicate("ceTNil")
+        def get_branch_name():
+            p = subprocess.Popen("git branch | grep \*", cwd=pre, shell=True, stdout=subprocess.PIPE)
+            out = p.stdout.read()
+            return out[1:]
+        branch = get_branch_name()
+        #print "out =", out
+        
+        mp = get_main_params()
         import pexpect
 
         child = pexpect.spawn('su')
         child.expect("Пароль:")
-        child.sendline(u'gahaciicpi')
+        child.sendline(mp['su_pass'])
 
         child.expect("id_rsa': ")
         child.sendline(u'друзья')
@@ -107,7 +119,7 @@ def PointedSaver(cls):
         child.sendline('exit')
         child.expect(pexpect.EOF)
 
-        child = pexpect.spawn('git push origin refactor')
+        child = pexpect.spawn('git push origin '+branch)
 
         child.expect("id_rsa': ")
         child.sendline(u'друзья')
@@ -121,6 +133,7 @@ def PointedSaver(cls):
     cls.fill_specials = fill_specials
     cls.dublicate_me_using_base = dublicate_me_using_base
     cls.git_add = git_add
+    cls.git_push = git_push
     return cls
     
 def PointedSaverSaveModel(cls):
@@ -145,6 +158,7 @@ def PointedSaverSaveModel(cls):
         #print "request:", request
         super(cls,self).save_model(request, obj, form, change)
         
+        """
         if not is_right('no_auto_git'):
             #!/usr/local/bin/python
             import pexpect
@@ -164,6 +178,7 @@ def PointedSaverSaveModel(cls):
 
             child.sendline('exit')
             child.expect(pexpect.EOF)
+        """
 
         #print child.before
         if is_right('no_duplicating'):

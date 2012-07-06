@@ -65,5 +65,7 @@ AAA_SITE_PARAMS = { 'site_name':u'Гид по Риму',
       'request_button_text':u"Заказать",
       'to_main_text':u"На главную",
       'site_version':"ru",
+      'su_pass':"udtufugeve",
+      'pointed_address':"141.8.193.142",
 	    }
 

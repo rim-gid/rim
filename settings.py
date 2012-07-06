@@ -34,6 +34,20 @@ MANAGERS = ADMINS
 
 PYTHON_EGG_CACHE = "/usr/local/www/rim/.python-eggs"
 
+RIM_ADDRESSES = ['141.8.193.148', '141.8.193.142']
+
+def get_my_address():
+    import project_params
+    k = project_params.SITE_ID - 1
+    return RIM_ADDRESSES[k]
+
+def get_pointed_address():
+    import project_params
+    if project_params.SITE_ID == 1:
+        return RIM_ADDRESSES[1]
+    else:
+        return RIM_ADDRESSES[0]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -48,7 +62,7 @@ DATABASES = {
         'NAME': 'aaveter_0',
         'USER': 'gidinrome',
         'PASSWORD': 'byd738ddu3289eud',
-        'HOST': '141.8.193.148',
+        'HOST': get_pointed_address(),
         'PORT': '3306'
     }
 }
