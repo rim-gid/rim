@@ -50,8 +50,7 @@ a.light {
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
   behavior4: url("border_radius.htc"); /* для IE */
-  background4: #009900 url("rim.png");
-
+  background: url("../images/header-img.jpg") repeat-x scroll 0 0 #F5F6E8;
   -moz-box-shadow: 3px 3px 15px #000;
   -webkit-box-shadow: 3px 3px 15px #000;
   box-shadow: 3px 3px 15px #000;
@@ -59,9 +58,6 @@ a.light {
 #header-left {
   width: 33%;
   height: 121px;
-  background5: #009900 url("rim-kolizey-fon.png");
-  background: #009900 url("rim_left.png");
-  background=#009900;
   position: relative;
   float: left;
   border-radius: 10px 0 0 10px;
@@ -70,9 +66,8 @@ a.light {
   behavior4: url("border_radius.htc"); /* для IE */
 }
 #header-top {
-  width: 34%;
+  width: 42%;
   height: 121px;
-  background: #ffffff;
   position: relative;
   float: left;
   text-align: center;
@@ -101,14 +96,13 @@ h1 {
   font-family= "Arial", "Courier", "Times New Roman";
   font-size: 44px;
   text-transform: uppercase;
-  color: #009900;
+  color: #F6F7E7;
   text-shadow: 0px 2px 3px #666;
   text-align: center;
 }
 #header-right {
-  width: 33%;
+  width: 25%;
   height: 121px;
-  background: #ff0000 url("rim_right.png");
   position: relative;
   float: left;
   border-radius: 0 10px 10px 0;
@@ -116,14 +110,14 @@ h1 {
   -webkit-border-radius: 0 10px 10px 0;  /* для Safari и Chrome */
   behavior4: url("border_radius.htc"); /* для IE */
   color: #990000;
-  box-shadow: 0px 2px 3px #666;
   background5: -moz-linear-gradient(top, #ff0000, #dd0000);
   background5: -webkit-gradient(linear, left top, right bottom, from(#ff0000), to(#dd0000));
   filter5: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff0000, endColorstr=#dd0000);
-  background=#dd0000;
+  background: none repeat scroll 0 0 rgba(144, 144, 144, 0.55);
+  box-shadow: 3px 3px 10px #000000;
 }
 #header-right a {
-  color: #770000;
+  color: #2695F7;
 }
 #menu {
   width: 100%;
@@ -516,7 +510,7 @@ cc:#4682B4;
 }
 
 #header-contacts {
-  background:url('2.png');width:260px;float:right;padding:5px;border-radius:10px;
+  width:260px;float:right;padding:5px;border-radius:10px;
 }
 
 #header-contacts p {
