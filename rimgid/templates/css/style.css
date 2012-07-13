@@ -113,7 +113,8 @@ h1 {
   background5: -moz-linear-gradient(top, #ff0000, #dd0000);
   background5: -webkit-gradient(linear, left top, right bottom, from(#ff0000), to(#dd0000));
   filter5: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff0000, endColorstr=#dd0000);
-  background: none repeat scroll 0 0 rgba(144, 144, 144, 0.55);
+  /*background: none repeat scroll 0 0 rgba(144, 144, 144, 0.55);*/
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.35);
   box-shadow: 3px 3px 10px #000000;
 }
 #header-right a {
