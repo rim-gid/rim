@@ -74,11 +74,16 @@ a.light {
 }
 .podpis {
   min-height:50;
-  color:#fff;padding:0 10px 0 10px;font-weight:bold;background:#009900;
+  color:#fff;
+  padding:0 10px 0 10px;
+  font-weight:bold;
+  /*background:#009900;*/
   border-radius: 0 0 10px 10px;
   -moz-border-radius: 0 0 10px 10px;  /* для firefox */
   -webkit-border-radius: 0 0 10px 10px;  /* для Safari и Chrome */
   behavior4: url("border_radius.htc"); /* для IE */
+  vertical-align: middle;
+   
 }
 @font-face {
   font-family: "Super Font";

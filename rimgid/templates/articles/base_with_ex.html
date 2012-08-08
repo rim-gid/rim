@@ -10,7 +10,7 @@
 <div id="list"><ul>
   {% articles_list "excursion" %}
 
-  <!--li><a class="shadowed papered" href="/excursion/{{ forloop.counter }}" {% if excursion.button_image != '0' %}style="height:50;background-image: url('/{{ excursion.button_image }}');"{% endif %}><span class="lefted {% if excursion.button_image != '0' %}papered{% endif %}">{{ forloop.counter }}. {{ excursion.title }}</span>{% if excursion.title_time != '0' %} - <span class="rounded time">{{ excursion.title_time }}</span>{% endif %}</a></li-->
+  <!--li><a class="shadowed papered" href="/excursion/{{ forloop.counter }}" {% if excursion.button_image != '0' %}style="height:50;background-image: url('/{{ excursion.button_image }}');"{% endif %}><span class="lefted {% if excursion.button_image != '0' %}shadowed papered{% endif %}">{{ forloop.counter }}. {{ excursion.title }}</span>{% if excursion.title_time != '0' %} - <span class="rounded time">{{ excursion.title_time }}</span>{% endif %}</a></li-->
 </ul></div>
 
 <span style="font-weight:bold;">{% project_option "owner_friends_title" %}:</span>
