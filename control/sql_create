@@ -2,13 +2,14 @@ PROJECT="rim"
 DB="aaveter_0";
 DBUSER="aaveter_0";
 DBPASS="uR1zdiC7";
-UROOPASS="cbdsibewh7c2b";
+UROOPASS="12345678";
+#"cbdsibewh7c2b";
 EMAIL="aa.veter@gmail.com"
 CLONEPATH="git@github.com:rim/rim.git"
 
 # Заменяем настроечный файл mysql
   cp /etc/mysql/my.cnf /etc/mysql/my.cnf.tmp0
-  cp my.cnf /etc/mysql/my.cnf
+  cp control/my.cnf /etc/mysql/my.cnf
 
 /etc/init.d/mysql restart;
 
@@ -18,4 +19,4 @@ CLONEPATH="git@github.com:rim/rim.git"
 	mysql -uroot -p${UROOPASS} --execute="GRANT ALL PRIVILEGES ON ${DB}.* TO ${DBUSER}@localhost IDENTIFIED by '${DBPASS}'  WITH GRANT OPTION;"
 
 python manage.py syncdb;
-./sql_load $DBPASS
+./control/sql_load $DBPASS

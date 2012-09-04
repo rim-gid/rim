@@ -4,7 +4,9 @@
 LANGUAGE_CODE = 'ru-RU'
 SITE_ID = 1
 
-AAA_SITE_PARAMS = { 'site_name':u'Гид по Риму',
+AAA_SITE_PARAMS = {
+      """
+      'site_name':u'Гид по Риму',
       'site_footer':u'© 2012 Гид по Риму, rim-gid.com. Все права защищены. Использование информации без ссылки на сайт запрещено.',
       'page_title':u'Русскоязычный индивидуальный гид по Риму и Италии. Экскурсии на русском языке в Риме в Италии русскоговорящий гид. rim-gid.com',
       'page_keywords':u"Русскоязычный индивидуальный гид по Риму и Италии. Экскурсии на русском языке в Риме в Италии русскоговорящий гид. rim-gid.com",
@@ -65,7 +67,9 @@ AAA_SITE_PARAMS = { 'site_name':u'Гид по Риму',
       'request_button_text':u"Заказать",
       'to_main_text':u"На главную",
       'site_version':"ru",
-      'su_pass':"udtufugeve",
-      'pointed_address':"141.8.193.142",
+      """
+      'su_pass':"ceTNil",#"udtufugeve",
+      'pointed_su_pass':"ceTNil",#"gahaciicpi",
+      'pointed_address':"10.10.10.7",#"141.8.193.142",
 	    }
 

@@ -1,45 +1,24 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls.defaults import *
-from views import *
-
-# Uncomment the next two lines to enable the admin:
+import order, static
 from django.contrib import admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    ('^/?contact_form(/(?P<ex>[^/]+))?/?$',contact_form),
-    
-    # PAGES---------------:
-    # для яндекса------------------:
-    #('^/?robots.txt', robots),
-    #('^/?yandex_61b9f126eb948082.txt', yandex_61b9f126eb948082_txt),
-    #('^/?1be09f3f8a74.html', html_1be09f3f8a74_html),
-    # для яндекса end------------------:
+    ('^/?contact_form(/(?P<ex>[^/]+))?/?$', order.contact_form),
     
     # админка------------------:
     (r'^admin/', include(admin.site.urls)),
-    # админка end------------------:
     
-    # общие страницы------------------:
-    #('^/?$', get_page, {'page_type':'main'}),
-    #('^/?(?P<page_type>\w+)?/?$', get_page),
-    # общие страницы end------------------:
+    # заказ экскурсии------------------:
+    ('^/?order_excursion/(?P<ex>\w+)/(?P<mail>\w+)/(?P<text>\w+)/?$', order.excursion_order),
     
-    # экскурсии------------------:
-    #('^/?excursion/(?P<num>\d+)/?$', excursion_page),
-    ('^/?order_excursion/(?P<ex>\w+)/(?P<mail>\w+)/(?P<text>\w+)/?$', excursion_order),
-    #('^/?ex_list.html', ex_list),
-    # экскурсии end------------------:
-    # PAGES end---------------:
-    
-    # STATIC------------------:
-    ('^/?(?P<name>\w+).css/?$', get_css),
-    
-    ('^/?rimgid/wysiwyg/(?P<name>[^.]+)\.(?P<tp>\w+)/?$', get_from_wysiwyg),
-    ('^/?(?P<name>\w+).js/?$', get_js),
-    ('^/?(images/)?((?P<papka>\w+)/)?(?P<name>[^/]+)\.(?P<tp>\w+)/?$', get_image),
-    ('^/?ds_stamper.ttf/?$', get_image, {'tp':'ttf'}),
-    # STATIC end------------------:
-    
+    # статика ------------------:
+    ('^/?(?P<name>\w+).css/?$', static.get_css),
+    ('^/?rimgid/wysiwyg/(?P<name>[^.]+)\.(?P<tp>\w+)/?$', static.get_from_wysiwyg),
+    ('^/?(?P<name>\w+).js/?$', static.get_js),
+    ('^/?(images/)?((?P<papka>\w+)/)?(?P<name>[^/]+)\.(?P<tp>\w+)/?$', static.get_image),
+    ('^/?ds_stamper.ttf/?$', static.get_image, {'tp':'ttf'}),
 )
 

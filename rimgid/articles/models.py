@@ -8,24 +8,20 @@ from django.contrib.flatpages.models import FlatPage
 from django.utils.text import truncate_words
 from django.utils.html import strip_tags
 from rimgid.added.thumbs import ImageWithThumbsField
-from decorators import PointedSaver
-#from widgets import WithImageTextarea
-#from fields import WithImageWysiwygField
+from django.db.models.signals import post_save
+from rimcelery import tasks
+
+def add_image_to_tasks(path):
+    """
+    Добавляет задание на копирование файла
+    """
+    tasks.duplicate_image.apply_async( [path] )
+    print "TASK ADDED..."
         
-@PointedSaver
 class ArticleSpecial(models.Model):
-    def dublicate_me_using(self,uss,**kwargs):
-        kwargs['name'] = self.name
-        kwargs['text'] = self.text
-        kwargs['image'] = str(self.image)
-        return self.dublicate_me_using_base(uss,**kwargs)
-    def duplicate_objects_using(self,obj,uss,*args,**kwargs):
-        pass
-    def duplicate_files(self):
-        print "image.path=", self.image.path
-        self.git_add(self.image.path)
-        self.git_push()
-  
+    """
+    Модель "Особенности статьи" - используется в модели Article
+    """
     name = models.CharField(max_length = 200, blank = "True")
     text = WYSIWYGField(blank="True")
     image = models.ImageField(default=False, upload_to='images', null="True")
@@ -44,32 +40,29 @@ class ArticleSpecial(models.Model):
             txt = txt[:k-3] + "..."
         if self.image:
             txt += " img:" + str(self.image)
-        return txt 
+        return txt
+        
+# Добавляем задание на копирование файла из ArticleSpecial
+def special_save_handler(sender, **kwargs):
+    print "special_save_handler", kwargs['instance'].image
+    add_image_to_tasks(str(kwargs['instance'].image))
+    
+# После сохранения ArticleSpecial будет выполнена special_save_handler
+post_save.connect(special_save_handler, sender=ArticleSpecial)
 
 class ArticleTypeSpecial(ArticleSpecial):
+    """
+    Модель "Особенности типа статьи" - используется в модели ArticleType
+    """
     stype = "articleType"
 
-@PointedSaver
 class ArticleType(models.Model):
-    def dublicate_me_using(self,uss,**kwargs):
-        kwargs['title'] = self.title
-        kwargs['text'] = self.text
-        return self.dublicate_me_using_base(uss,**kwargs)
-    #def duplicate_params(self):
-    #    kwargs = {}
-    #    kwargs['title'] = self.title
-    #    kwargs['text'] = self.text
-    #    return kwargs
-    def duplicate_objects_using(self, obj, uss,*args,**kwargs):
-        self.fill_specials(ArticleTypeSpecial, obj, uss,*args,**kwargs)
-    def duplicate_files(self):
-        pass
-  
+    """
+    Модель "Тип статьи" - используется для определения способа вывода статьи и задания общих особенностей
+    """
     title = models.CharField(max_length=200)
     text = WYSIWYGField(null="True", blank="True")
    
-    #url_prefix = models.CharField(max_length=200, blank="True")
-    #url_prefix_needed = models.BooleanField(default=True)
     def type_name_postfix(self):
         try:
             sp = self.specials.get(name="type_name_postfix")
@@ -93,52 +86,10 @@ class ArticleType(models.Model):
         except:
             return self.title
    
-"""
-def update_sites(sender, instance, created, **kwargs):
-    if created and instance.status == 1:
-        title = instance.title.encode('utf-8') # у меня на одном из проектов ругался на кодировку
-        for item in Subscrib.objects.all():
-            to_email = item.email
-            subject = 'Новая новость на сайте'
-            html_content = '<p><i>Здравствуйте</i></p>'
-            html_content += 'Новая новость: <a href="http://developtolive.com/news/%s/">%s</a>' % (instance.id, title)
-            html_content +='<p><i>Отписаться от рассылки можно по <a href="http://developtolive.com/send/sub/no/?email=%s">ссылке</a></i></p>' % (item.id)
-            html_content += '<p><i>Всего доброго.</i></p>'
-            from_email = 'i@developtolive.com'
-            msg = EmailMessage(subject, html_content, from_email, [to_email])
-            msg.content_subtype = "html"
-            msg.send()
-            
-signals.post_save.connect(go_subscrib, sender=News)
-"""
-
-@PointedSaver
 class Foto(models.Model):
-    def dublicate_me_using(self,uss,**kwargs):
-        sites = []
-        if 'sites' in kwargs:
-            sites += kwargs['sites']
-            del kwargs['sites']
-        kwargs['url'] = self.url
-        kwargs['title'] = self.title
-        kwargs['text'] = self.text
-        kwargs['image'] = self.image
-        me = self.dublicate_me_using_base(uss,**kwargs)
-        kwargs['sites']=sites
-        return me
-    def duplicate_objects_using(self, obj, uss,*args,**kwargs):
-        self.fill_sites(obj, uss, *args, **kwargs)
-    def duplicate_files(self):
-        s = self.image.path
-        print "image.path=", s
-        lenn = len(s)
-        pfx = s[lenn-4:lenn]
-        s = s[:lenn-4]+".200x200"+pfx
-        print "image.path=", s
-        self.git_add(self.image.path)
-        self.git_add(s)
-        self.git_push()
-            
+    """
+    Модель "Фото" - используется в галерее фотографий (страница фото)
+    """
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     text = WYSIWYGField(blank="True")
@@ -149,64 +100,28 @@ class Foto(models.Model):
 
     def __unicode__(self):
         return self.title + " - " + self.image.url_200x200
+        
+# добавляем задание на копирование двух файлов из Foto
+def foto_save_handler(sender, **kwargs):
+    print "foto_save_handler"
+    print kwargs['instance'].image, kwargs['instance'].image.url_200x200
+    add_image_to_tasks(kwargs['instance'].image)
+    add_image_to_tasks(kwargs['instance'].image.url_200x200)
+    
+# После сохранения Foto будет выполнена foto_save_handler
+post_save.connect(foto_save_handler, sender=Foto)
 
-@PointedSaver
 class Article(FlatPage):
     """
     Основной класс "статья". Наполнение сайта полностью определяется
     добавлением и редактированием статей. Остальные модели используются
     для их настройки.
     """
-    def dublicate_me_using(self,uss,**kwargs):
-        sites = []
-        specials = []
-        if 'sites' in kwargs:
-            sites += kwargs['sites']
-            del kwargs['sites']
-        if 'specials' in kwargs:
-            specials += kwargs['specials']
-            del kwargs['specials']
-        kwargs['url'] = self.url
-        kwargs['title'] = self.title
-        kwargs['atype'] = self.atype.duplicate_using(uss)
-        me = self.dublicate_me_using_base(uss,**kwargs)
-        kwargs['sites']=sites
-        kwargs['specials']=specials
-        #duplicate_objects_using(self, obj, uss, **kwargs)
-        return me
-    def duplicate_objects_using(self,obj,uss,*args,**kwargs):
-        self.fill_sites(obj, uss, *args, **kwargs)
-        self.fill_specials(ArticleSpecial, obj, uss, *args, **kwargs)
-        obj.datetime = self.datetime
-        obj.content = self.content
-    def duplicate_files(self):
-        pass
-        
-    #def save_m2m(self):
-    #    print "----saving_m2m----"
-    #    super(Article, self).save_m2m()
-    
-    """
-    def save123(self):
-        print "----saving----"
-        #self.save(*args, **kwargs)
-        super(Article, self).save()
-        try:
-            super(Article, self).save(using="pointed", force_insert=True)
-        except:
-            super(Article, self).save(using="pointed")
-            print "PointedSaver ERROR"
-    """
-
     atype = models.ForeignKey(ArticleType)
     specials = models.ManyToManyField(ArticleSpecial, null="True", blank="True")
     datetime = models.DateTimeField(blank="True",default=datetime.datetime.now) #auto_now_add=True
-    
-    def special(self):#FIXME не нужна
-        sp = self.specials.objects.values("name","text")
-        print str(sp)
-        return sp
         
+    # узнаем заданную особенность 'image'
     def image(self):
         try:
             sp = self.specials.get(name='image')
@@ -216,6 +131,7 @@ class Article(FlatPage):
         except:
             return False
     
+    # проверяем, что не нужно создавать свою страницу
     def is_only_in_list(self):
         try:
             sp = self.atype.specials.get(name='only_in_list')
@@ -226,18 +142,10 @@ class Article(FlatPage):
                 return True
         return False
     
-    """
-    def atype_url(self):
-        try:
-            self.atype.title
-            sp = self.atype.specials.get(name='only_in_list')
-        except:
-            pass
-        else:
-            if sp.text == "True":
-                return True
-    """
     def __init__(self, *args, **kwargs):
+        """
+        Берем особенности из выбранного типа статьи
+        """
         super(Article, self).__init__( *args, **kwargs)
         if len(self.template_name)>0:
             return

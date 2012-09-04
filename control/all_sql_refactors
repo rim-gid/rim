@@ -8,3 +8,12 @@ GRANT ALL ON aaveter_0.* TO 'pointed'@'141.8.193.148';
 - на rim-gid:
 CREATE USER pointed@141.8.193.142 IDENTIFIED BY "byd738ddu3289eud";
 GRANT ALL ON aaveter_0.* TO 'pointed'@'141.8.193.142';
+
+
+- на 10.10.10.7:
+CREATE USER pointed@10.10.10.59 IDENTIFIED BY "byd738ddu3289eud";
+GRANT ALL ON aaveter_0.* TO 'pointed'@'10.10.10.59';
+
+- на 10.10.10.59:
+CREATE USER pointed@10.10.10.7 IDENTIFIED BY "byd738ddu3289eud";
+GRANT ALL ON aaveter_0.* TO 'pointed'@'10.10.10.7';

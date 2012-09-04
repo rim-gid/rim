@@ -4,7 +4,9 @@
 LANGUAGE_CODE = 'en-US'
 SITE_ID = 2
 
-AAA_SITE_PARAMS = { 'site_name':u'Guide in Rome',
+AAA_SITE_PARAMS = {
+      """
+      'site_name':u'Guide in Rome',
       'site_footer':u'© 2012 Guide in Rome, gidinrome.com. All rights reserved.',
       'page_title':u'Individual guide in Rome. gidinrome.com',
       'page_keywords':u"Individual guide in Rome. gidinrome.com",
@@ -65,7 +67,9 @@ AAA_SITE_PARAMS = { 'site_name':u'Guide in Rome',
       'request_button_text':u"Send",
       'to_main_text':u"To main page",
       'site_version':u"eng",
-      'su_pass':"gahaciicpi",
-      'pointed_address':"141.8.193.148",
+      """
+      'su_pass':"ceTNil",#"gahaciicpi",
+      'pointed_su_pass':"ceTNil",#"udtufugeve",
+      'pointed_address':"10.10.10.59",#"141.8.193.148",
 	    }
 

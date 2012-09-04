@@ -14,17 +14,20 @@ def do_project_option(parser, token):
         raise template.TemplateSyntaxError(msg)
     return ProjectOptionResult(name[1:-1])
     
+def get_project_option(name):
+    try:
+        pr = ProjectOption.objects.filter(
+            name__exact = name,
+            sites__id__exact = settings.SITE_ID
+        )
+        pr = pr[0].value
+    except:
+        pr = ""
+    return pr
+    
 class ProjectOptionResult(template.Node):
     def __init__(self, name):
         self.name = str(name)
         
     def render(self, context):
-        try: 
-            pr = ProjectOption.objects.filter(
-                    name__exact = self.name,
-                    sites__id__exact=settings.SITE_ID
-                )
-            pr = pr[0].value
-        except:
-            pr = ""
-        return pr
+        return get_project_option(self.name)

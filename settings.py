@@ -1,28 +1,26 @@
 # -*- coding: utf-8 -*-
-# Django settings for application project.
+import sys, os, site
+from django.conf import settings
 
-import sys, os
-sys.path.append('/usr/local/www/rim')
-sys.path.append('/usr/local/www/rim_version')
-sys.path.append('../rim_version')
+PROJ_PATH = os.path.dirname(__file__)
+site.addsitedir(os.path.join(PROJ_PATH, '..',
+    '.env', 'lib', 'python2.6', 'site-packages'))
+sys.path.append(PROJ_PATH)
+sys.path.append(PROJ_PATH + '/../rim_version')
 
-import os
+import project_params, project_local_params
+
 os.environ['PYTHON_EGG_CACHE'] = '/usr/local/www/egg_cache'
 
 ADMIN_MEDIA_ROOT = '/admin-media/'
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
-from project_local_params import *
-from django.conf import settings
-
-def get_main_params():
-    mp = settings.AAA_SITE_PARAMS
-    mp['local']=settings.AAA_SITE_LOCAL_PARAMS
-    return mp
+MP = project_params.AAA_SITE_PARAMS
+MP['local'] = project_local_params.AAA_SITE_LOCAL_PARAMS
 
 DEBUG = False
-if "DEBUG" in AAA_SITE_LOCAL_PARAMS:
-    if AAA_SITE_LOCAL_PARAMS['DEBUG']:
+if "DEBUG" in MP['local']:
+    if MP['local']['DEBUG']:
         DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -32,32 +30,46 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-PYTHON_EGG_CACHE = "/usr/local/www/rim/.python-eggs"
+PYTHON_EGG_CACHE = PROJ_PATH + ".python-eggs"
 
 RIM_ADDRESSES = ['141.8.193.148', '141.8.193.142']
+RIM_PASSES = ["udtufugeve", "gahaciicpi"]
+if "TESTING" in MP['local']:
+    if MP['local']['TESTING']:
+        RIM_ADDRESSES = ['10.10.10.59', '10.10.10.7']
+        RIM_PASSES = ["ceTNil", "ceTNil"]
+
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = project_params.LANGUAGE_CODE
+
+SITE_ID = project_params.SITE_ID
 
 def get_my_address():
-    import project_params
-    k = project_params.SITE_ID - 1
+    k = SITE_ID - 1
     return RIM_ADDRESSES[k]
 
 def get_pointed_address():
-    import project_params
-    if project_params.SITE_ID == 1:
+    if SITE_ID == 1:
         return RIM_ADDRESSES[1]
     else:
         return RIM_ADDRESSES[0]
 
-DATABASES = {
-    'default': {
+def get_pointed_pass():
+    if SITE_ID == 1:
+        return RIM_PASSES[1]
+    else:
+        return RIM_PASSES[0]
+
+def get_databases():
+    local = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'aaveter_0',
         'USER': 'aaveter_0',
         'PASSWORD': 'uR1zdiC7',
         'HOST': 'localhost',
         'PORT': '3306'
-    },
-    'pointed': {
+    }
+    point = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'aaveter_0',
         'USER': 'pointed',
@@ -65,77 +77,32 @@ DATABASES = {
         'HOST': get_pointed_address(),
         'PORT': '3306'
     }
+    if SITE_ID == 1:
+        return point, local
+    else:
+        return local, point
+        
+default, point = get_databases()
+
+DATABASES = {
+    'default': default,
+    'pointed': point
 }
 
-"""
-'rus': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'aaveter_rus',
-    'USER': 'aaveter_0',
-    'PASSWORD': 'uR1zdiC7',
-    'HOST': 'localhost',
-    'PORT': '3306'
-},
-'eng': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'aaveter_eng',
-    'USER': 'aaveter_0',
-    'PASSWORD': 'uR1zdiC7',
-    'HOST': 'localhost',
-    'PORT': '3306'
-},
-"""
-
-#DATABASE_ENGINE = 'django.db.backends.mysql'          # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-#DATABASE_NAME = 'aaveter_0'             # Or path to database file if using sqlite3.
-#DATABASE_USER = 'aaveter_0'             # Not used with sqlite3.
-#DATABASE_PASSWORD = 'uR1zdiC7'         # Not used with sqlite3.
-#DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
-#DATABASE_PORT = '3306'             # Set to empty string for default. Not used with sqlite3.
-
-# Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
 TIME_ZONE = 'Europe/Rome'
 
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-#LANGUAGE_CODE = 'ru-RU' ****Определяется в project_params.py****
-
-#SITE_ID = 1 ****Определяется в project_params.py****
-
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
 USE_I18N = True
 
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-#MEDIA_ROOT = '/home/a/aaveter/public_html///rim/rimgid/'
-MEDIA_ROOT = '/usr/local/www/rim/rimgid/'
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
+MEDIA_ROOT = PROJ_PATH + '/rimgid/'
 MEDIA_URL = '/rimgid/'
 
 DEFAULT_CHARSET = 'UTF-8'
 
 from project_params import *
-#from project_params_2 import AAA_SITE_PARAMS as mp2
 
-#STATIC = '/home/a/aaveter/public_html///rim/rimgid/'
-
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-#ADMIN_MEDIA_PREFIX = '/admin_media/'
-
-# Make this unique, and don't share it with anybody.
 SECRET_KEY = '4f_el$0#*3oyxaf9@#fhh*of6w(iumyev7-z_932@fcw*g)ets'
 
-# List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     #'django.template.loaders.filesystem.load_template_source',
     #'django.template.loaders.app_directories.load_template_source',
@@ -157,10 +124,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'rimgid.urls'
 
 TEMPLATE_DIRS = (
-    '/usr/local/www/rim/rimgid/templates',
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    PROJ_PATH + '/rimgid/templates',
 )
 
 INSTALLED_APPS = (
@@ -171,8 +135,17 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.admin',
     'rimgid',
-    'rimgid.books',
     'rimgid.articles',
     'rimgid.templatetags',
     'rimgid.added',
+    'djcelery',
+    'djkombu',
+    'rimcelery',
 )
+
+import djcelery
+djcelery.setup_loader()
+
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
+
+BROKER_BACKEND = "djkombu.transport.DatabaseTransport"
