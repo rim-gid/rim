@@ -3,3 +3,6 @@
 *.kdev4
 *~
 rimgid/images
+control/logs
+.arhiv/
+start_celery

@@ -23,9 +23,14 @@ def duplicate_image(file_path):
     
     ok = False
     try:
-        i = child.expect (['100%', 'No such file or directory'])
+        i = child.expect(['100%', 'No such file or directory', 'yes/no'])
         if i==0:
             ok = True
+        elif i==2:
+            child.sendline("yes\n")
+            i = child.expect(['100%', 'No such file or directory'])
+            if i==0:
+                ok = True
     except:
         ok = False
     if not ok:
@@ -34,8 +39,9 @@ def duplicate_image(file_path):
         print "new command:", command
         child = pexpect.spawn( command )
         child.expect(":")
+        #print "pass:", settings.get_pointed_pass()
         child.sendline(settings.get_pointed_pass())
-        child.expect ([':'])
+        child.expect(':')
 
     child.sendline('exit')
     child.expect(pexpect.EOF)
