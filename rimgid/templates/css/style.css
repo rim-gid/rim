@@ -163,6 +163,9 @@ h1 {
   margin5: 10px 410px 10px 0px;
   margin: 10px 350px 10px 0px;
 }
+#content  table{
+	margin: 0 auto;
+}
 #content IMG {
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
