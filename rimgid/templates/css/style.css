@@ -183,7 +183,7 @@ h1 {
   background: #000033 url("ravenna-01.png");
   position: relative;
   float: left;
-  padding: 15px 20px 5px;
+  padding: 15px 20px 10px;
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
@@ -225,6 +225,10 @@ dd: #fb9904;
   border-radius: 10px;
   margin: 5px;
   padding: 0px;
+}
+
+#content-down  table{
+	background-color: #1B561B;
 }
 #right {
   width: 320px;
