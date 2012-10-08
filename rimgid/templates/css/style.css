@@ -73,9 +73,9 @@ a.light {
   text-align: center;
 }
 .podpis {
-  min-height:50;
+  min-height:30px;
   color:#fff;
-  padding:0 10px 0 10px;
+  padding:5px 10px 5px 10px;
   font-weight:bold;
   background:#009900;
   border-radius: 0 0 10px 10px;
