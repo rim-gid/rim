@@ -213,9 +213,8 @@ dd: #fb9904;
   behavior5: url("border_radius.htc"); /* для IE */
 }
 #content-down {
-  width: auto;
+  width: 680px;
   height: auto;
-  /*height: 165px;*/
   position: relative;
   float: left;
   border-radius: 10px;

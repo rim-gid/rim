@@ -1,0 +1,9 @@
+{% for article in articles %}
+<div id="content-down" align="justify">
+  {% if article.image %}
+  <img class="contact_img" src="{{ article.image }}" width="150px" align="left" vspace="5" alt="{{ article.title }}"/>
+  {% endif %}
+  <h1>{{ article.title }}</h1><div class="contact_place"><a href="/{{ article.atype.title_with_postfix }}">{{ article.atype }}</a></div>
+  {{ article.datetime|date:"d-m-Y" }} {{ article.content|safe }}
+</div>
+{% endfor %}
