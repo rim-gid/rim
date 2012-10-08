@@ -83,6 +83,7 @@ a.light {
   -webkit-border-radius: 0 0 10px 10px;  /* для Safari и Chrome */
   behavior4: url("border_radius.htc"); /* для IE */
   vertical-align: middle;
+  text-align: center;
    
 }
 @font-face {
