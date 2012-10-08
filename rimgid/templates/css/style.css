@@ -28,7 +28,7 @@ TABLE {
   float: left;
 }
 a {
-  color: #007700;
+  color: #1B561B;
   text-decoration: none;
   font-weight: bold;
   font-size: 11px;
@@ -93,6 +93,7 @@ a.light {
 }
 h1 {
   text-align: left;
+  font-family: Comic Sans MS, Helvetica, sans-serif;
 }
 .note_place {
   text-align:right;margin-top:-40px;float:right;width:auto;
