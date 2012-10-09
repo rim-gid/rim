@@ -15,7 +15,7 @@ TABLE {
     border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;
    }
   TD {
-    background: #009900; /* Цвет фона ячеек */
+    /*background: #009900;*/ /* Цвет фона ячеек */
   }
 #order_form {border-radius:10px;border:1px solid #363636;width:500px;display:inline-block;padding:20px;margin:20px;height:525px;overflow:hidden;background:#d7f3d7;}
 #order_form_pole {width:100%;float:left;text-align:center;}
@@ -109,6 +109,7 @@ h1 {
   -moz-border-radius: 5px;  /* для firefox */
   -webkit-border-radius: 5px;  /* для Safari и Chrome */
   padding: 2px;
+  visibility: hidden;
 }
 .note_place a:hover {
   background: #ffcc00;
@@ -220,7 +221,7 @@ dd: #fb9904;
   behavior5: url("border_radius.htc"); /* для IE */
 }
 #content-down {
-  width: 714px;
+  width: 98%;
   height: auto;
   position: relative;
   float: left;
@@ -235,6 +236,7 @@ dd: #fb9904;
 }
 #content-down  table{
 	background-image: url("/bedge_grunge_01.png");
+	margin-bottom: 10px;
 }
 #right {
   width: 320px;
@@ -505,7 +507,7 @@ ul.second_info {
   padding-left: 0px;
   margin: 0;
   list-style: none;
-  width: 100%;
+  width: 104%;
   position: relative;
   float: left;
   font-weight: bold;
@@ -526,7 +528,7 @@ ul.second_info li a, ul.second_info li a:visited {
    text-align: center;
    text-decoration: none;
    height: 18px;
-	line-height: 18px;
+   line-height: 18px;
 }
 /*ul.second_info li2 a, ul.second_info li2 a:visited {
 	color: #0000ff;
