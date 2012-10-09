@@ -73,10 +73,10 @@ a.light {
 }
 .podpis {
   min-height:20px;
-  color:#fff;
+  color:#000;
   padding:10px;
   font-weight:bold;
-  background:#009900;
+  background:none;
   border-radius: 0 0 10px 10px;
   -moz-border-radius: 0 0 10px 10px;  /* для firefox */
   -webkit-border-radius: 0 0 10px 10px;  /* для Safari и Chrome */
@@ -642,4 +642,30 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
 #content img { width: 100px; }
 .ex_div {padding-left:15px;padding-right:15px;padding-bottom:20px;background:#999 url('/bedge_grunge_01.png');border-radius:10px;color:#fff;}
 
+.main_photo {
+	background:url('/olga.png');
+	width:230px;
+	height:213px;
+}
 
+.main_podpis {
+    background: url("/olga.png") no-repeat scroll -8px -213px transparent;
+    margin-left: 8px;
+    width: 201px;
+}
+
+.pdf_icon {
+    width: 36px;
+}
+.podpis_text {
+    font-weight: normal;
+	font-size: 8px;
+}
+.license_icon {
+
+}
+
+.others_links {
+	float:left;
+	margin:10px;
+}
