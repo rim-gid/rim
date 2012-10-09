@@ -32,6 +32,14 @@ a {
   font-size: 11px;
 }
 a.light {
+    color: #DDDDDD;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 5px;
+    text-decoration: none;
+}
+a.light_with_icon {
   color: #ddd;
   text-decoration: none;
   font-weight: bold;
@@ -77,10 +85,10 @@ a.light {
   padding:10px;
   font-weight:bold;
   background:none;
-  border-radius: 0 0 10px 10px;
-  -moz-border-radius: 0 0 10px 10px;  /* для firefox */
-  -webkit-border-radius: 0 0 10px 10px;  /* для Safari и Chrome */
-  behavior4: url("border_radius.htc"); /* для IE */
+ /* border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px; */ /* для firefox */
+ /* -webkit-border-radius: 0 0 10px 10px;  /* для Safari и Chrome */
+  /*behavior4: url("border_radius.htc");*/ /* для IE */
   vertical-align: middle;
   text-align: center;
   font-family: Tahoma;
@@ -137,7 +145,7 @@ h1 {
   background5: -webkit-gradient(linear, left top, right bottom, from(#ff0000), to(#dd0000));
   filter5: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff0000, endColorstr=#dd0000);
   /*background: none repeat scroll 0 0 rgba(144, 144, 144, 0.55);*/
-  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.35);
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.4);
   box-shadow: 3px 3px 10px #000000;
 }
 
@@ -186,7 +194,7 @@ h1 {
   background: #000033 url("ravenna-01.png");
   position: relative;
   float: left;
-  padding: 15px 20px 10px;
+  padding: 20px;
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
@@ -441,7 +449,7 @@ dd: #fb9904;
     height: auto;
     position: relative;
     float: left;
-    margin: 0 18px 0 0;
+    margin: 0 18px 42px 0;
 }
 
 .foto_with_podpis IMG {
@@ -607,9 +615,9 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
 
 #header-contacts p {
   /*margin: 0 10px;*/
-  color: #99FF99;
+  color: #70FF70;
   text-align:right;
-  text-shadow: 1px 1px 3px #99ff99;
+  /*text-shadow: 1px 1px 3px #99ff99;*/
   font-weight: bold;
   font-size: 15px;
 }
@@ -620,7 +628,7 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
 
 
 #header-contacts a{
-	color: #99FF99;
+	color:#70FF70;
 	font-size: 17px;
 }
 
@@ -643,29 +651,66 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
 .ex_div {padding-left:15px;padding-right:15px;padding-bottom:20px;background:#999 url('/bedge_grunge_01.png');border-radius:10px;color:#fff;}
 
 .main_photo {
-	background:url('/olga.png');
-	width:230px;
-	height:213px;
+	background:url('/olga.png') no-repeat scroll 0 0 transparent; 
+	width:222px;
+	height:228px;
 }
 
 .main_podpis {
-    background: url("/olga.png") no-repeat scroll -8px -213px transparent;
-    margin-left: 8px;
-    width: 201px;
+    background: url("/olga.png") no-repeat scroll 0px bottom transparent;
+    padding: 8px 15px 16px;
+    width: 192px;
+	font-family: lucida console,sans-serif;
 }
 
-.pdf_icon {
-    width: 36px;
+.about_icon {
+    padding: 0 8px;
+	vertical-align: middle;
 }
 .podpis_text {
     font-weight: normal;
-	font-size: 8px;
+	font-size: 12px;
+	color: #404040;
 }
-.license_icon {
+/*.license_icon {
+
+}*/
+
+/*.others_links {
+	margin-top: 5px;
+    text-align: center;
+    width: 212px;
+}*/
+
+.about_info_links {
+    position: absolute;
+	bottom: 0;
+    text-align: right;
+    width: 674px;
+}
+
+#content-up h1 {
+	text-align: center;
+}
+
+.main-info-wrap {
+}
+
+#olga_info {
 
 }
 
-.others_links {
-	float:left;
-	margin:10px;
+.podpis_name {
+   color: #009900;
+   font-size: 12px;
+}
+
+.about_info_links ul  li{
+   list-style: none;
+   display: inline-block;
+   padding: 0 6px;
+}
+
+.about_info_links ul  li:first-child{
+  padding: 0 6px;
 }
