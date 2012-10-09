@@ -4,17 +4,24 @@
 {% load articles_tags %}
 
 {% block content_up %}
-<div id="content-up" align="justify" style="margin-top=-10px;border='solid 10px #333';">
-  <div id="olga_info" style="margin-top:-15px;">
-    <div class="foto_with_podpis"><div class="rounded_up" style="background:url('/olga.png');width:200px;height:220px;margin-top=10px;"></div><div class="podpis" style="width:180px;width=200px;">{% project_option "owner_name" %} - <span style="font-weight:normal;font-size:8pt;">{% project_option "owner_status" %}</span></div></div>
-    <h1 style="text-align: center;">{{ flatpage.title }}</h1>{{ flatpage.content|safe }}
-    <div style="margin:10;">
-      <div style="float:left;"><a class="light" href="/guida_turistica.pdf">
-        <img src="/pdf.png" width="36" style="width:36px;" alt="{% project_option "url_name_license" %}" /> {% project_option "url_name_license" %}</a></div>
-      <div style="float:left;margin:10;">
-        <a class="light" href="/italy">- {% project_option "url_name_italy" %}</a><br>
-        <a class="light" href="/translate">- {% project_option "url_name_translate" %}</a>
-      </div>
+<div id="content-up" class="main-info-wrap" align="justify">
+  <div id="olga_info">
+    <div class="foto_with_podpis"><div class="rounded_up main_photo"></div><div class="podpis main_podpis"><span class="podpis_name">{% project_option "owner_name" %} </span>- <span class="podpis_text">{% project_option "owner_status" %}</span></div>
+   
+	</div>
+    <h1>{{ flatpage.title }}</h1>{{ flatpage.content|safe }}
+    <div class="about_info_links">
+            <ul>		   
+            <li><a class="light_with_icon" href="/guida_turistica.pdf">
+                 <img src="/images/pdf-ico.png" class="about_icon" width="32" style="width:32px;" alt="" /> {% project_option "url_name_license" %}
+            </a></li>
+            <li><a class="light_with_icon" href="/italy">
+			     <img src="/images/excursions-ico.png" class="about_icon" width="32" style="width:32px;" alt="" />{% project_option "url_name_italy" %}
+			</a></li>
+            <li><a class="light_with_icon" href="/translate">
+			     <img src="/images/translate-ico.png" class="about_icon" width="32" style="width:32px;" alt="" />{% project_option "url_name_translate" %}
+			</a></li>
+            </ul>
     </div>
   </div>
 </div>

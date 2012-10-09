@@ -37,6 +37,12 @@ a.light {
   font-weight: bold;
   font-size: 11px;
 }
+a.light_with_icon {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 11px;
+}
 #header {
   width: 104%;
   height: 121px;
@@ -73,14 +79,14 @@ a.light {
 }
 .podpis {
   min-height:20px;
-  color:#fff;
+  color:#000;
   padding:10px;
   font-weight:bold;
-  background:#009900;
-  border-radius: 0 0 10px 10px;
-  -moz-border-radius: 0 0 10px 10px;  /* для firefox */
-  -webkit-border-radius: 0 0 10px 10px;  /* для Safari и Chrome */
-  behavior4: url("border_radius.htc"); /* для IE */
+  background:none;
+ /* border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px; */ /* для firefox */
+ /* -webkit-border-radius: 0 0 10px 10px;  /* для Safari и Chrome */
+  /*behavior4: url("border_radius.htc");*/ /* для IE */
   vertical-align: middle;
   text-align: center;
   font-family: Tahoma;
@@ -186,7 +192,7 @@ h1 {
   background: #000033 url("ravenna-01.png");
   position: relative;
   float: left;
-  padding: 15px 20px 10px;
+  padding: 20px 20px 10px;
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
@@ -642,4 +648,38 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
 #content img { width: 100px; }
 .ex_div {padding-left:15px;padding-right:15px;padding-bottom:20px;background:#999 url('/bedge_grunge_01.png');border-radius:10px;color:#fff;}
 
+.main_photo {
+	background:url('/olga.png');
+	width:240px;
+	height:228px;
+}
 
+.main_podpis {
+    background: url("/olga.png") no-repeat scroll 0px bottom transparent;
+    padding: 10px 15px 14px;
+    width: 207px;
+}
+
+.pdf_icon {
+    width: 36px;
+}
+.podpis_text {
+    font-weight: normal;
+	font-size: 11px;
+}
+.license_icon {
+
+}
+
+.others_links {
+	float:left;
+	margin:10px;
+}
+
+.about_info_links {
+
+}
+
+#content-up h1 {
+	text-align: center;
+}

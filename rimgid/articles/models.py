@@ -93,8 +93,9 @@ class Foto(models.Model):
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     text = WYSIWYGField(blank="True")
-    image = ImageWithThumbsField(upload_to='images', sizes=((200,200),))    #image = models.ImageField(upload_to="fotos/",null="True", blank="True")
-
+    #image = ImageWithThumbsField(upload_to='images', sizes=((200,200),))    
+    #image = models.ImageField(upload_to="fotos/",null="True", blank="True")
+    image = models.ImageField(upload_to="fotos/",null="True", blank="True")
     datetime = models.DateTimeField(blank="True")
     sites = models.ManyToManyField(Site)
 
