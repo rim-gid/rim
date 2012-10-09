@@ -1,0 +1,41 @@
+<VirtualHost $HOST:$PORT>
+	ServerAdmin $SERVER_ADMIN
+    ServerName $SITENAME
+
+    WSGIScriptAlias / $PROJECT_PATH/django.wsgi
+    WSGIDaemonProcess $SITENAME processes=2 maximum-requests=5 threads=1
+    WSGIProcessGroup $SITENAME
+
+	DocumentRoot $PROJECT_PATH
+	<Directory />
+		Options -Indexes FollowSymLinks
+		#Options ExecCGI
+		AllowOverride None
+	</Directory>
+	<Directory $PROJECT_PATH>
+		Options -Indexes FollowSymLinks MultiViews ExecCGI
+		#Options ExecCGI
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+	<Directory $CONTROL_PATH>
+   		AllowOverride None
+   		Order allow,deny
+   		Deny from all
+	</Directory>
+
+	ErrorLog $LOGS_PATH/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog $LOGS_PATH/access.log combined
+
+    Alias "$ADMIN_MEDIA_PREFIX" "$ADMIN_MEDIA_ROOT"
+    <Location "$ADMIN_MEDIA_PREFIX">
+        SetHandler None
+    </Location>
+
+</VirtualHost>

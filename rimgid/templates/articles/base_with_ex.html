@@ -1,0 +1,19 @@
+{% extends "articles/base.html" %}
+
+{% block style %}{% endblock %}
+
+{% load project_options %}
+{% load articles_tags %}
+
+{% block right %}
+<div id="right">
+<div id="list"><ul>
+  {% articles_list "excursion" %}
+</ul></div>
+
+<span style="font-weight:bold;">{% project_option "owner_friends_title" %}:</span>
+<div id="friends"><ul>
+  {% articles_list "friend" %}
+</ul></div>
+</div>
+{% endblock %}

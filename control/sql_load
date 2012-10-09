@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "loading db"
-mysql -u aaveter_0 -p$1 -D aaveter_0 -h localhost < backup-file.sql
+mysql -u aaveter_0 -p$1 -D aaveter_0 -h localhost < control/backup-file.sql

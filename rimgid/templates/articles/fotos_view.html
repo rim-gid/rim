@@ -1,0 +1,10 @@
+{% for foto in fotos %}
+<div id="content-down" align="justify">
+  {% if foto.image %}
+  <a href="{{ foto.image }}"><img src="{{ foto.image.url_200x200 }}" width="150px" align="left" vspace="5" style="margin-top:24px;margin-right:10px;border='solid 1px #333;'" alt="{{ foto.title }}"/></a>
+  {% endif %}
+  <h1>{{ foto.title }}</h1><div class="note_place"><a href="{{ type_url }}">{{ type_title }}</a></div>
+  {{ foto.datetime }} - {{ foto.text|safe }}
+  <div style="width:600;"></div>
+</div>
+{% endfor %}

@@ -1,0 +1,9 @@
+{% extends "articles/notes.html" %}
+
+{% load articles_tags %}
+
+{% block list_content %}
+<p><h1 style="text-align:center;">{{ flatpage.title }}</h1>
+    {{ flatpage.url|fotos_view }}
+</p>
+{% endblock %}

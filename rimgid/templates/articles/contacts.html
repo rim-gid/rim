@@ -1,0 +1,7 @@
+{% extends "articles/simple_page.html" %}
+{% load articles_tags %}
+{% block list_content %}
+  <p><h1 style="text-align:center;">{{ flatpage.title }}</h1>
+      {{ flatpage.content|removetags:"p"|articles_view }}
+  </p>
+{% endblock %}

@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 # RUS VERSION
 
-AAA_SITE_PARAMS = { 'site_name':u'Гид по Риму',
+LANGUAGE_CODE = 'ru-RU'
+SITE_ID = 1
+
+AAA_SITE_PARAMS = {
+      """
+      'site_name':u'Гид по Риму',
       'site_footer':u'© 2012 Гид по Риму, rim-gid.com. Все права защищены. Использование информации без ссылки на сайт запрещено.',
       'page_title':u'Русскоязычный индивидуальный гид по Риму и Италии. Экскурсии на русском языке в Риме в Италии русскоговорящий гид. rim-gid.com',
       'page_keywords':u"Русскоязычный индивидуальный гид по Риму и Италии. Экскурсии на русском языке в Риме в Италии русскоговорящий гид. rim-gid.com",
@@ -43,23 +48,28 @@ AAA_SITE_PARAMS = { 'site_name':u'Гид по Риму',
       'content_name_flights':"Авиаперелеты",
       'content_name_flights_no':"Пока нет заметок об авиа",
       'url_name_restaurants':u"Рестораны",
-      'content_name_restaurants':"Рестораны",
-      'content_name_restaurants_no':"Пока нет заметок о ресторанах",
-      'msg_thx':"Спасибо за заявку! Я отвечу Вам в ближайшее время (в течение нескольких дней)",
-      'msg_error':"Ошибка! Возможно, это проблемы с сайтом",
-      'msg_error_repeat':"Если проблема повторяется, отправьте, пожалуйста, заявку вручную на e-mail: olga@rim-gid.com",
-      'msg_error_contacts':"Или свяжитесь со мной любым удобным для Вас способом. Мои контакты указаны на странице: gid-rim.com/contacts",
-      'request_title':"Заявка",
-      'request_msg_error':"Исправьте, пожалуйста, все ошибки",
-      'form_label_name':"Ваше имя:",
-      'form_input_name':"Введите Ваше имя...",
-      'form_label_date':"Предпочтительная дата экскурсии:",
-      'form_input_date':"Введите желаемую дату...",
-      'form_label_email':"Ваш e-mail:",
-      'form_input_email':"Адрес почты...",
-      'form_label_comments':"Комментарий к заказу:",
-      'form_input_comments':"Напишите дополнительные пожелания...",
-      'request_button_text':"Заказать",
+      'content_name_restaurants':u"Рестораны",
+      'content_name_restaurants_no':u"Пока нет заметок о ресторанах",
+      'msg_thx':u"Спасибо за заявку! Я отвечу Вам в ближайшее время (в течение нескольких дней)",
+      'msg_error':u"Ошибка! Возможно, это проблемы с сайтом",
+      'msg_error_repeat':u"Если проблема повторяется, отправьте, пожалуйста, заявку вручную на e-mail: olga@rim-gid.com",
+      'msg_error_contacts':u"Или свяжитесь со мной любым удобным для Вас способом. Мои контакты указаны на странице: gid-rim.com/contacts",
+      'request_title':u"Заявка",
+      'request_msg_error':u"Исправьте, пожалуйста, все ошибки",
+      'form_label_name':u"Ваше имя:",
+      'form_input_name':u"Введите Ваше имя...",
+      'form_label_date':u"Предпочтительная дата экскурсии:",
+      'form_input_date':u"Введите желаемую дату...",
+      'form_label_email':u"Ваш e-mail:",
+      'form_input_email':u"Адрес почты...",
+      'form_label_comments':u"Комментарий к заказу:",
+      'form_input_comments':u"Напишите дополнительные пожелания...",
+      'request_button_text':u"Заказать",
+      'to_main_text':u"На главную",
       'site_version':"ru",
+      """
+      'su_pass':"ceTNil",#"udtufugeve",
+      'pointed_su_pass':"ceTNil",#"gahaciicpi",
+      'pointed_address':"10.10.10.7",#"141.8.193.142",
 	    }
 

@@ -1,3 +1,0 @@
-#!/bin/bash
-echo "running testing server"
-python manage.py runserver

@@ -1,7 +1,19 @@
 # -*- coding: utf-8 -*-
-import os, sys, site
-sys.path.insert(0, os.path.dirname(__file__))
-#site.addsitedir('/home/httpd/env/djbookru/lib/python2.6/sitepackages')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
-from django.core.handlers.wsgi import WSGIHandler
+
+import sys, os, os.path,  site 
+
+os.environ["CELERY_LOADER"] = "django"
+
+site.addsitedir(os.path.join(os.path.dirname(__file__), '..',
+    '.env', 'lib', 'python2.6', 'site-packages'))
+
+import djcelery
+djcelery.setup_loader()
+
+if not os.path.dirname(__file__) in sys.path[:1]: 
+    sys.path.insert(0, os.path.dirname(__file__)) 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings' 
+
+from django.core.handlers.wsgi import WSGIHandler 
 application = WSGIHandler()
+

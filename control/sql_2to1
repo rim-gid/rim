@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "saving db"
+#mysqldump -u aaveter_0 -p$1 -h localhost aaveter_0 > backup-file.sql
+insrert into db_name1.table1 select * from db_name2.table2

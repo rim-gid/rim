@@ -4,7 +4,7 @@ html, body {
   min-width: 1000px;
   margin: 0;
   background: #eee url('paper_white.jpg');
-  font: 0.92em Arial,sans-serif;
+  font: 0.92em Verdana, Arial,sans-serif;
   line-height: 1.4;
   color: black;
 }
@@ -15,53 +15,56 @@ TABLE {
     border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;
    }
   TD {
-    background: #009900; /* Цвет фона ячеек */
+    /*background: #009900;*/ /* Цвет фона ячеек */
   }
 #order_form {border-radius:10px;border:1px solid #363636;width:500px;display:inline-block;padding:20px;margin:20px;height:525px;overflow:hidden;background:#d7f3d7;}
 #order_form_pole {width:100%;float:left;text-align:center;}
 #main {
-  width: 1000px;
+  width: 1024px;
   height: auto;
-  left: 50%;
-  margin-left: -500px;
   position: relative;
-  float: left;
+  margin: 0 auto;
 }
 a {
-  color: #007700;
+  color: #1B561B;
   text-decoration: none;
   font-weight: bold;
   font-size: 11px;
 }
 a.light {
+    color: #DDDDDD;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 5px;
+    text-decoration: none;
+}
+a.light_with_icon {
   color: #ddd;
   text-decoration: none;
   font-weight: bold;
   font-size: 11px;
 }
 #header {
-  width: 100%;
+  width: 104%;
   height: 121px;
   position: relative;
-  margin: 10px 0 10px;
+  margin: 10px auto 10px;
   margin= 10px 0 10px; /* for IE */
   border= solid 1px #333; /* for IE */
-  border-radius: 10px;
-  -moz-border-radius: 10px;  /* для firefox */
-  -webkit-border-radius: 10px;  /* для Safari и Chrome */
+  border-radius: 5px;
+  -moz-border-radius: 5px;  /* для firefox */
+  -webkit-border-radius: 5px;  /* для Safari и Chrome */
   behavior4: url("border_radius.htc"); /* для IE */
-  background4: #009900 url("rim.png");
-
+  background: url("../images/header-img.jpg") repeat-x scroll 0 0 #F5F6E8;
   -moz-box-shadow: 3px 3px 15px #000;
   -webkit-box-shadow: 3px 3px 15px #000;
   box-shadow: 3px 3px 15px #000;
+  font-family: Arial,sans-serif;
 }
 #header-left {
-  width: 33%;
+  width: 23%;
   height: 121px;
-  background5: #009900 url("rim-kolizey-fon.png");
-  background: #009900 url("rim_left.png");
-  background=#009900;
   position: relative;
   float: left;
   border-radius: 10px 0 0 10px;
@@ -70,20 +73,26 @@ a.light {
   behavior4: url("border_radius.htc"); /* для IE */
 }
 #header-top {
-  width: 34%;
+  width: 52%;
   height: 121px;
-  background: #ffffff;
   position: relative;
   float: left;
   text-align: center;
 }
 .podpis {
-  min-height:50;
-  color:#fff;padding:0 10px 0 10px;font-weight:bold;background:#009900;
-  border-radius: 0 0 10px 10px;
-  -moz-border-radius: 0 0 10px 10px;  /* для firefox */
-  -webkit-border-radius: 0 0 10px 10px;  /* для Safari и Chrome */
-  behavior4: url("border_radius.htc"); /* для IE */
+  min-height:20px;
+  color:#000;
+  padding:10px;
+  font-weight:bold;
+  background:none;
+ /* border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px; */ /* для firefox */
+ /* -webkit-border-radius: 0 0 10px 10px;  /* для Safari и Chrome */
+  /*behavior4: url("border_radius.htc");*/ /* для IE */
+  vertical-align: middle;
+  text-align: center;
+  font-family: Tahoma;
+   
 }
 @font-face {
   font-family: "Super Font";
@@ -92,23 +101,39 @@ a.light {
 }
 h1 {
   text-align: left;
+  font-family: Comic Sans MS, Helvetica, sans-serif;
 }
 .note_place {
-  text-align:right;margin-top:-40px;float:right;width:auto;
+  /*text-align:right;margin-top:-40px;float:right;width:auto;*/
+   position: absolute;
+   right: 46px;
+   top: -45px;
+   width: auto;
+}
+.note_place a {
+  color: #fff;
+  background: #cc9900;
+  border-radius: 5px;
+  -moz-border-radius: 5px;  /* для firefox */
+  -webkit-border-radius: 5px;  /* для Safari и Chrome */
+  padding: 2px;
+  visibility: hidden;
+}
+.note_place a:hover {
+  background: #ffcc00;
 }
 #header-top h1 {
   font-family: "Super Font", "Arial", "Courier";
   font-family= "Arial", "Courier", "Times New Roman";
   font-size: 44px;
   text-transform: uppercase;
-  color: #009900;
+  color: #F6F7E7;
   text-shadow: 0px 2px 3px #666;
   text-align: center;
 }
 #header-right {
-  width: 33%;
+  width: 25%;
   height: 121px;
-  background: #ff0000 url("rim_right.png");
   position: relative;
   float: left;
   border-radius: 0 10px 10px 0;
@@ -116,15 +141,14 @@ h1 {
   -webkit-border-radius: 0 10px 10px 0;  /* для Safari и Chrome */
   behavior4: url("border_radius.htc"); /* для IE */
   color: #990000;
-  box-shadow: 0px 2px 3px #666;
   background5: -moz-linear-gradient(top, #ff0000, #dd0000);
   background5: -webkit-gradient(linear, left top, right bottom, from(#ff0000), to(#dd0000));
   filter5: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ff0000, endColorstr=#dd0000);
-  background=#dd0000;
+  /*background: none repeat scroll 0 0 rgba(144, 144, 144, 0.55);*/
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 3px 10px #000000;
 }
-#header-right a {
-  color: #770000;
-}
+
 #menu {
   width: 100%;
   height: 40px;
@@ -146,13 +170,17 @@ h1 {
   background5:#333333;
 }
 #content {
-  width: auto;
+  width: 714px;
   height: auto;
   background4: #ffffff;
   position: relative;
   float: left;
   margin5: 10px 410px 10px 0px;
   margin: 10px 350px 10px 0px;
+}
+#content  table{
+	/*margin: 0 auto;*/
+	width: 680px;
 }
 #content IMG {
   border-radius: 10px;
@@ -163,13 +191,10 @@ h1 {
 #content-up {
   width: auto;
   height: auto;
-  background7: #000033 url("rim-fon-7.jpg");
-  background5: #000033 url("kolizey-2.jpg");
-  background4: #000033 url("main_fon.png");
-  background: #000033 url("paper_yellow.jpg");
+  background: #000033 url("ravenna-01.png");
   position: relative;
   float: left;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
@@ -204,13 +229,22 @@ dd: #fb9904;
   behavior5: url("border_radius.htc"); /* для IE */
 }
 #content-down {
-  width: auto;
+  width: 98%;
   height: auto;
   position: relative;
   float: left;
   border-radius: 10px;
   margin: 5px;
   padding: 0px;
+}
+
+#content-down  td{
+	background-image: url("/bedge_grunge_02.png");
+	padding: 10px;
+}
+#content-down  table{
+	background-image: url("/bedge_grunge_01.png");
+	margin-bottom: 10px;
 }
 #right {
   width: 320px;
@@ -234,7 +268,24 @@ dd: #fb9904;
   padding: 0px;
   position: relative;
 }
-#list ul li a, #list ul li a:visited {
+
+#list ul li:nth-child(1),
+#list ul li:nth-child(2),
+#list ul li:nth-child(1) a:hover,#list ul li:nth-child(2) a:hover
+{
+	background: none;
+}
+#list ul li:nth-child(1) a{
+	height: 50px;
+	background-image: url("/ex-li-fon-1.png");
+	
+}
+#list ul li:nth-child(2) a{
+	height: 50px;
+	background-image: url("/ex-li-fon-2.png");
+}
+
+#list ul li a, #list ul li a {
   display: block;
   padding: 5px;
   margin-right: 1px;
@@ -253,10 +304,11 @@ dd: #fb9904;
 #list ul li a:hover {
   color: #fff;
   background-color: #9d5b0e;
-  margin-left: -20px;
-  width: 360px;
-  margin-left= 0px; /*for IE*/
-  width= 100%; /*for IE*/
+  text-decoration: none;
+  /*margin-left: -20px;*/
+  /*width: 360px;*/
+ /* margin-left= 0px; /*for IE*/
+ /* width= 100%; /*for IE*/
 }
 #list ul li a span {
   background6: #009900 url("paper_green.jpg");
@@ -272,10 +324,10 @@ dd: #fb9904;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
   behavior4: url("border_radius.htc"); /* для IE */
-  text-align: justify;
+  text-align: center;
   float: left;
   height: auto;
-  width: 100%;
+  width: 104%;
   padding8: 10px;
   padding-right5: 0px;
   padding-left5: 0px;
@@ -284,8 +336,8 @@ dd: #fb9904;
   -webkit-box-shadow: 3px 3px 15px #000;
   box-shadow: 3px 3px 15px #000;
   background: #009900 -moz-linear-gradient(top, #009900, #007700);
-background: #009900 -webkit-gradient(linear, left top, left bottom, from(#009900), to(#007700));
-filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#009900, endColorstr=#007700);
+	background: #009900 -webkit-gradient(linear, left top, left bottom, from(#009900), to(#007700));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#009900, endColorstr=#007700);
 }
 #footer p {
   padding-right: 10px;
@@ -302,56 +354,76 @@ ul.mainmenu, ul.mainmenu_2 {
   position= relative;
   float: left;
   font-weight: bold;
+  font-family: Arial,sans-serif;
 }
 ul.mainmenu_2 {
   left: 33%;
+  margin-left: 46px;
 }
 ul.mainmenu li, ul.mainmenu_2 li {
   float: left;
+  
+  margin: 0 2px;
 }
-ul.mainmenu li a, ul.mainmenu li a:visited {
+ul.mainmenu li a, ul.mainmenu li a {
   display: block;
-  padding: 5px;
+  padding: 5px 10px;
   margin-right: 1px;
   color: #fff;
   width: 100px;
   text-align: center;
   text-decoration: none;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.35);
 }
-ul.mainmenu_2 li a, ul.mainmenu_2 li a:visited {
-  color: #999999;
+ul.mainmenu_2 li a, ul.mainmenu_2 li a {
+  color: #fff;
   display: block;
-  padding: 5px;
+  padding: 5px 10px;
   margin-right: 1px;
   width: 100px;
   text-align: center;
   text-decoration: none;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.35);
 }
 ul.mainmenu li a:hover {
-  border-radius: 10px;
-  -moz-border-radius: 10px;  /* для firefox */
-  -webkit-border-radius: 10px;  /* для Safari и Chrome */
-  behavior5: url("border_radius.htc"); /* для IE */
+  /*border-radius: 15px;
+  -moz-border-radius: 15px;  /* для firefox */
+  /*-webkit-border-radius: 15px;  /* для Safari и Chrome */
+  /*behavior5: url("border_radius.htc"); /* для IE */
   color: #99ff99;
-  background-color: #00bb00;
+  /*background-color: #00bb00;
   background: -moz-linear-gradient(top, #00bb00, #009900);
   background: -webkit-gradient(linear, left top, left bottom, from(#00bb00), to(#009900));
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#00bb00, endColorstr=#009900);
-  margin-top: -8px;
-  height: 24px;
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#00bb00, endColorstr=#009900);*/
+  margin-top: -2px;
+  height: 18px;
+  line-height: 18px;
+  vertical-align: middle;
+  box-shadow: 0px -1px 4px #fff;
+  text-align: center;
+  padding: 5px 10px;
+  background: none repeat scroll 0 0 rgba(102, 102, 102, 0.45);
+  text-shadow: 1px 2px 3px #99ff99;
 }
 ul.mainmenu_2 li a:hover {
-  border-radius: 10px;
-  -moz-border-radius: 10px;  /* для firefox */
-  -webkit-border-radius: 10px;  /* для Safari и Chrome */
-  behavior5: url("border_radius.htc"); /* для IE */
-  color: #999;
+  /*border-radius: 15px;
+  -moz-border-radius: 15px;  /* для firefox */
+  /*-webkit-border-radius: 15px;  /* для Safari и Chrome */
+  /*behavior5: url("border_radius.htc"); /* для IE */
+  color: #99ff99;
   background-color: #eee;
-  background: -moz-linear-gradient(top, #eee, #fff);
+  /*background: -moz-linear-gradient(top, #eee, #fff);
   background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff));
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#eee, endColorstr=#fff);
-  margin-top: -8px;
-  height: 24px;
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#eee, endColorstr=#fff);*/
+  margin-top: -2px;
+  height: 18px;
+  line-height: 18px;
+  vertical-align: middle;
+  box-shadow: 0px -1px 4px #fff;
+  text-align: center;
+  padding: 5px 10px;
+  background: none repeat scroll 0 0 rgba(102, 102, 102, 0.45);
+  text-shadow: 1px 2px 3px #99ff99;
 }
 .foto {
     width: auto;
@@ -377,7 +449,7 @@ dd: #fb9904;
     height: auto;
     position: relative;
     float: left;
-    margin-right: 10px;
+    margin: 0 18px 42px 0;
 }
 
 .foto_with_podpis IMG {
@@ -388,9 +460,9 @@ dd: #fb9904;
 }
 
 .shadowed {
-  -moz-box-shadow: 3px 3px 15px #000;
-  -webkit-box-shadow: 3px 3px 15px #000;
-  box-shadow: 3px 3px 15px #000;
+  -moz-box-shadow: 1px 1px 15px #000;
+  -webkit-box-shadow: 1px 1px 15px #000;
+  box-shadow: 1px 1px 15px #000;
 }
 
 #friends {
@@ -413,7 +485,7 @@ dd: #fb9904;
   width: 100%;
   text-decoration: none;
   font-weight: bold;
-  background: #aaa url("ex-li-fon-2.png");
+  background4: #aaa url("ex-li-fon-2.png");
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
@@ -424,10 +496,10 @@ dd: #fb9904;
 #friends ul li a:hover {
   color: #fff;
   background-color: #9d5b0e;
-  margin-left: -20px;
-  width: 360px;
+  /*margin-left: -20px;*/
+  /*width: 360px;*/
   margin-left= 0px; /*for IE*/
-  width= 100%; /*for IE*/
+  /*width= 100%; */  /*for IE*/
 }
 #friends ul li a span {
   background6: #009900 url("paper_green.jpg");
@@ -443,52 +515,65 @@ ul.second_info {
   padding-left: 0px;
   margin: 0;
   list-style: none;
-  width: 100%;
+  width: 104%;
   position: relative;
   float: left;
   font-weight: bold;
-  background: #009900;
-  border-radius: 10px;
-  -moz-border-radius: 10px;  /* для firefox */
-  -webkit-border-radius: 10px;  /* для Safari и Chrome */
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  -moz-border-radius: 6px;  /* для firefox */
+  -webkit-border-radius: 6px;  /* для Safari и Chrome */
 }
 ul.second_info li, li2 {
    float: left;
 }
 ul.second_info li a, ul.second_info li a:visited {
    display: block;
-   padding: 5px;
+   padding: 5px 10px;
    margin-right: 1px;
    color: #fff;
    width: 100px;
    text-align: center;
    text-decoration: none;
+   height: 18px;
+   line-height: 18px;
 }
-ul.second_info li2 a, ul.second_info li2 a:visited {
-  color: #0000ff;
-  display: block;
-   padding: 5px;
-   margin-right: 1px;
-   width: 100px;
-   text-align: center;
-   text-decoration: none;
-}
+/*ul.second_info li2 a, ul.second_info li2 a:visited {
+	color: #0000ff;
+	display: block;
+	padding: 5px 10px;
+	margin-right: 1px;
+	width: 100px;
+	text-align: center;
+	text-decoration: none;
+	height: 18px;
+	line-height: 18px;
+}*/
 ul.second_info li a:hover, ul.second_info li2 a:hover {
-  border-radius: 10px;
-    -moz-border-radius: 10px;  /* для firefox */
-    -webkit-border-radius: 10px;  /* для Safari и Chrome */
-   color: #fff;
-cc:#4682B4;
-   background-color: #00bb00;
+ /* border-radius: 10px;
+   -moz-border-radius: 10px;  /* для firefox */
+   /* -webkit-border-radius: 10px;  /* для Safari и Chrome */
+   /*color: #fff;
+ /* background-color: #00bb00;
   background: -moz-linear-gradient(top, #00bb00, #009900);
   background: -webkit-gradient(linear, left top, left bottom, from(#00bb00), to(#009900));
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#00bb00, endColorstr=#009900);
   margin-top: -8px;
-  height: 24px;
+  height: 24px;*/
+  color: #99ff99;
+  /*margin-top: -2px;*/
+  height: 18px;
+  line-height: 18px;
+  vertical-align: middle;
+  /*box-shadow: 0px -2px 4px #fff;*/
+  text-align: center;
+  padding: 5px 10px;
+  /*background: none repeat scroll 0 0 rgba(102, 102, 102, 0.45);*/
+  text-shadow: 1px 2px 3px #99ff99;
 }
-#info a:hover {
+/*#info a:hover {
   height: 34px;
-}
+}*/
 
 .page_fon {
   background8: #336879;
@@ -516,15 +601,39 @@ cc:#4682B4;
 }
 
 #header-contacts {
-  background:url('2.png');width:260px;float:right;padding:5px;border-radius:10px;
+	width:260px;
+	margin: 0 auto;
+	border-radius: 5px;
+	-moz-border-radius: 5px;  /* для firefox */
+	-webkit-border-radius: 5px;  /* для Safari и Chrome */
+	text-align: center;
+	vertical-align: middle;
+	width: 213px;
+	/*padding: 5px 0;*/
+
 }
 
 #header-contacts p {
-  margin: 0 10px;color:#fff;text-align:right;
+  /*margin: 0 10px;*/
+  color: #70FF70;
+  text-align:right;
+  /*text-shadow: 1px 1px 3px #99ff99;*/
+  font-weight: bold;
+  font-size: 15px;
+}
+
+#header-contacts b {
+	color:#fff;
+}
+
+
+#header-contacts a{
+	color:#70FF70;
+	font-size: 17px;
 }
 
 #list ul li a:hover {
-  width: 340px;
+  /*width: 340px;*/
 }
 .abzac {
   float: left;
@@ -539,6 +648,69 @@ cc:#4682B4;
   padding-bottom: 20px;
 }
 #content img { width: 100px; }
-.ex_div {padding-left:10px;padding-right:10px;padding-bottom:20px;background:#999 url('/paper_yellow_alpha.png');border-radius:10px;color:#fff;}
+.ex_div {padding-left:15px;padding-right:15px;padding-bottom:20px;background:#999 url('/bedge_grunge_01.png');border-radius:10px;color:#fff;}
 
+.main_photo {
+	background:url('/olga.png') no-repeat scroll 0 0 transparent; 
+	width:222px;
+	height:228px;
+}
 
+.main_podpis {
+    background: url("/olga.png") no-repeat scroll 0px bottom transparent;
+    padding: 8px 15px 16px;
+    width: 192px;
+	font-family: lucida console,sans-serif;
+}
+
+.about_icon {
+    padding: 0 8px;
+	vertical-align: middle;
+}
+.podpis_text {
+    font-weight: normal;
+	font-size: 12px;
+	color: #404040;
+}
+/*.license_icon {
+
+}*/
+
+/*.others_links {
+	margin-top: 5px;
+    text-align: center;
+    width: 212px;
+}*/
+
+.about_info_links {
+    position: absolute;
+	bottom: 0;
+    text-align: right;
+    width: 674px;
+}
+
+#content-up h1 {
+	text-align: center;
+}
+
+.main-info-wrap {
+}
+
+#olga_info {
+
+}
+
+.podpis_name {
+   color: #009900;
+   font-size: 12px;
+}
+
+.about_info_links ul  li{
+   list-style: none;
+   display: inline-block;
+   padding: 0 6px;
+}
+
+.about_info_links ul  li:first-child{
+  padding: 0 6px;
+}
