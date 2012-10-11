@@ -92,11 +92,11 @@ a.light_with_icon {
 }
 #header {
   width: 1024px;
+  //width: 1022px;
   height: 121px;
   position: relative;
-  margin: 10px auto 10px;
-  margin= 10px 0 10px; /* for IE */
-  border= solid 1px #333; /* for IE */
+  margin: 10px auto;
+  //margin: 0 auto;
   border-radius: 5px;
   -moz-border-radius: 5px;  /* для firefox */
   -webkit-border-radius: 5px;  /* для Safari и Chrome */
@@ -182,11 +182,13 @@ h1 {
 }
 #header-right {
   width: 25%;
+  //width: 271px;
   height: 66px;
   position: absolute;
   right: 0;
   top: 0;
   padding: 28px 10px;
+  //padding: 26px 19px;
   border-radius: 0 10px 10px 0;
   -moz-border-radius: 0 10px 10px 0;  /* для firefox */
   -webkit-border-radius: 0 10px 10px 0;  /* для Safari и Chrome */
@@ -246,6 +248,7 @@ h1 {
   position: relative;
   float: left;
   padding: 20px;
+  //padding-bottom: 58px;
   border-radius: 10px;
   -moz-border-radius: 10px;  /* для firefox */
   -webkit-border-radius: 10px;  /* для Safari и Chrome */
@@ -304,6 +307,7 @@ dd: #fb9904;
 }
 #right {
   width: 285px;
+  //width: 290px;
   height: auto;
   position: relative;
   /*margin: 10px 0px 10px 714px;*/
@@ -382,8 +386,11 @@ dd: #fb9904;
   text-align: center;
   float: left;
   height: auto;
-  width: 1024px;
+  width: 1004px;
+  //width: 1024px;
   margin-bottom: 10px;
+  //margin-bottom: -10px;
+  //margin-top: 8px;
   -moz-box-shadow: 3px 3px 15px #000;
   -webkit-box-shadow: 3px 3px 15px #000;
   box-shadow: 3px 3px 15px #000;
@@ -392,7 +399,6 @@ dd: #fb9904;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#009900, endColorstr=#007700);*/
   background: url("/paper_yellow_alpha.png") repeat scroll 0 0 transparent;
   border: 1px solid #89765C;
-  width: 1004px;
   font-size: 12px;
   padding: 4px 10px;
 }
@@ -405,6 +411,7 @@ ul.mainmenu, ul.mainmenu_2 {
   padding: 0;
   margin: 0;
   margin-top: -36px;
+  //margin-top: -28px;
   list-style: none;
   width: 100%;
   position: absolute;
@@ -413,34 +420,45 @@ ul.mainmenu, ul.mainmenu_2 {
   font-weight: bold;
   font-family: Arial,sans-serif;
 }
+ul.mainmenu {
+  //margin-left: 0px;
+}
 ul.mainmenu_2 {
   left: 33%;
+  //left: 310px;
   margin-left: 46px;
 }
 ul.mainmenu li, ul.mainmenu_2 li {
   float: left;
   
   margin: 0 2px;
+  //margin: 0 3px;
 }
 ul.mainmenu li a, ul.mainmenu li a {
   display: block;
   padding: 5px 10px;
+  //padding: 5px 31px;
   margin-right: 1px;
+  //margin-right: 4px;
   color: #fff;
   width: 100px;
   text-align: center;
   text-decoration: none;
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.35);
+  //background:url("grey-bg.png") 0 0 repeat transparent;
 }
 ul.mainmenu_2 li a, ul.mainmenu_2 li a {
   color: #fff;
   display: block;
   padding: 5px 10px;
+  //padding: 5px 31px;
   margin-right: 1px;
+  //margin-right: 4px;
   width: 100px;
   text-align: center;
   text-decoration: none;
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.35);
+  //background:url("grey-bg.png") 0 0 repeat transparent;
 }
 ul.mainmenu li a:hover {
   /*border-radius: 15px;
@@ -458,9 +476,11 @@ ul.mainmenu li a:hover {
   vertical-align: middle;
   box-shadow: 0px -1px 4px #fff;
   text-align: center;
-  padding: 5px 10px;
+/*padding: 5px 10px;*/
   background: none repeat scroll 0 0 rgba(102, 102, 102, 0.45);
+  //background:url("grey-bg.png") 0 0 repeat transparent;
   text-shadow: 1px 2px 3px #99ff99;
+  cursor: pointer;
 }
 ul.mainmenu_2 li a:hover {
   /*border-radius: 15px;
@@ -478,9 +498,11 @@ ul.mainmenu_2 li a:hover {
   vertical-align: middle;
   box-shadow: 0px -1px 4px #fff;
   text-align: center;
-  padding: 5px 10px;
+  /*padding: 5px 10px;*/
   background: none repeat scroll 0 0 rgba(102, 102, 102, 0.45);
+  //background:url("grey-bg.png") 0 0 repeat transparent;
   text-shadow: 1px 2px 3px #99ff99;
+  cursor: pointer;
 }
 .foto {
     width: auto;
@@ -495,7 +517,6 @@ ul.mainmenu_2 li a:hover {
     -webkit-border-radius: 10px;  /* для Safari и Chrome */
     behavior5: url("border_radius.htc"); /* для IE */
     color: #ffffff;
-dd: #fb9904;
     -moz-box-shadow6: 3px 3px 15px #000;
     -webkit-box-shadow6: 3px 3px 15px #000;
     box-shadow6: 3px 3px 15px #000;
@@ -584,7 +605,7 @@ ul.second_info {
   -moz-border-radius: 6px;  /* для firefox */
   -webkit-border-radius: 6px;  /* для Safari и Chrome */
   z-index: 9999;
-  //padding: 0 50px;
+  //padding: 0 40px;
 }
 
 ul.second_info li, li2 {
@@ -738,6 +759,7 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
     background: url("/olga.png") no-repeat scroll 0px bottom transparent;
     padding: 8px 15px 16px;
     width: 192px;
+	//width: 222px;
 	font-family: lucida console,sans-serif;
 	color: #000000;
 }
@@ -792,6 +814,8 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
    list-style: none;
    display: inline-block;
    padding: 0 6px;
+   //display: inline; 
+   zoom:1;
 }
 
 .about_info_links ul  li:first-child{
