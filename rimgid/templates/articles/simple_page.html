@@ -9,12 +9,9 @@
   </p>
   {% endblock %}
   {% block content_down_adding %}{% endblock%}
-  <table border="0" width="100%" cellspacing="0" cellpadding="0" style="background-color: #007700; border-style: solid; border-width: 1px 0px 1px 0px; border-color: url(100, 100, 100);"><tr>
-    <td width="2%">&nbsp;</td>
-    <td align="center"><a href="/" class=menu style="color:#fff;"><div class="menu_url">&nbsp; {% project_option "to_main_text" %} &nbsp;</div></a></td>
-    <td width="2%">&nbsp;</td>
-    </tr>
-  </table>
+  <div class="return-main_wrap">
+    <a href="/"><div class="menu_url">&nbsp; {% project_option "to_main_text" %} &nbsp;</div></a>
+  </div>
 </div>
 <div style="padding-left:20px;padding-bottom:20px;text-align:center;"></div>
 {% endblock %}
