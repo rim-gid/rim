@@ -24,7 +24,7 @@ class ArticleSpecial(models.Model):
     """
     name = models.CharField(max_length = 200, blank = "True")
     text = WYSIWYGField(blank="True")
-    image = models.ImageField(default=False, upload_to='images', null="True")
+    image = models.ImageField(default=False, upload_to='images', null="True", blank='True')
     
     stype = "article"
 

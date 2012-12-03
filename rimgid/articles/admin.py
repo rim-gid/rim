@@ -49,7 +49,7 @@ class ArticleAdmin(WysiwygAdmin):
     """
     form = ArticleForm
     fieldsets = (
-        (None, {'fields': ( 'url', ('title', 'atype'), 'content', 'sites')}), #('sites', 'image'))}),
+        (None, {'fields': ( 'url', ('title', 'atype'), 'content', 'datetime', 'sites')}), #('sites', 'image'))}),
         (_('Advanced options'), {'classes': ('collapse',), 'fields': ('specials', ('enable_comments', 'registration_required'), 'template_name')}),
     )
     list_display = ('url', 'atype', 'title')
