@@ -675,6 +675,7 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
 #right #list ul li a {
   color: #fff;
   height: auto;
+  font-size: 10px;
 }
 
 .lefted {margin-left:-5px;padding-left:10px;}
