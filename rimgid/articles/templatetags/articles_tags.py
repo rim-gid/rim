@@ -95,8 +95,9 @@ def last_article(type_name):
     try:
         ar = articles.models.ArticleType.objects.get(title=type_name)
         ar_set = ar.article_set.filter(sites__id=settings.SITE_ID)
-        count = ar_set.count()
-        article = ar.article_set.all()[count-1]
+        #count = ar_set.count()
+        article = ar_set[ar_set.count()-1] #article = ar_set[-1]
+        #article = ar.article_set.all()[count-1]
         return {'article': article}
     except:
         return {'article': False}
