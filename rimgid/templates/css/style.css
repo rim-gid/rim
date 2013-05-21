@@ -372,7 +372,7 @@ to here*/
   padding: 5px;
   margin-right: 1px;
   color: #fff;
-  width: 100%;
+  /*width: 100%;*/
   text-decoration: none;
   font-weight: bold;
   background5: #aaa url("ex-li-fon-2.png");
@@ -719,14 +719,21 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
   color: #fff;
   height: auto;
   font-size: 10px;  
+  padding-right: 23px;
 }
 
+
 #right #list ul li a.menu-item-big {
-  background-position: right center;
-  background-repeat: no-repeat;	
+  background-position: right top;
+  background-repeat: no-repeat;
+  padding-right: 23px;	
 }
-background-position: right center;
-background-repeat: no-repeat;
+
+#right #list ul li a.menu-item-big span.menu-item-big-content {
+  /*background-color: #009900;*/
+  background-color: darkblue;
+  
+}
 
 .lefted {margin-left:-5px;padding-left:10px;}
 .papered {background: url('/paper_yellow_alpha.png');}
