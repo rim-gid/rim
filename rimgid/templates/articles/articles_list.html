@@ -1,6 +1,6 @@
 {% load articles_tags %}
 <div id="list"><ul>
   {% for article in articles %}
-  <li><a class="rightmenu_bordered shadowed papered" href="{{ article.url }}" {% if article|special:"button_image" != "" %}style="height:50;background-image: url('/{{ article|special:"button_image" }}');"{% endif %}><span class="lefted {% if article|special:"button_image" %}papered{% endif %}">{{ forloop.counter }}. {{ article.title }}</span>{% if article|special:"excursion_time" %} - <span class="rounded time">{{ article|special:"excursion_time" }}</span>{% endif %}</a></li>
+  <li><a class="rightmenu_bordered shadowed papered{% if article|special:"button_image" != "" %} menu-item-big{% endif %}" href="{{ article.url }}" {% if article|special:"button_image" != "" %} style="height:50;background-image: url('/{{ article|special:"button_image" }}');"{% endif %}><span class="lefted {% if article|special:"button_image" %}papered{% endif %}">{{ forloop.counter }}. {{ article.title }}</span>{% if article|special:"excursion_time" %} - <span class="rounded time">{{ article|special:"excursion_time" }}</span>{% endif %}</a></li>
   {% endfor %}
 </ul></div>

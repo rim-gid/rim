@@ -718,8 +718,15 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
 #right #list ul li a {
   color: #fff;
   height: auto;
-  font-size: 10px;
+  font-size: 10px;  
 }
+
+#right #list ul li a.menu-item-big {
+  background-position: right center;
+  background-repeat: no-repeat;	
+}
+background-position: right center;
+background-repeat: no-repeat;
 
 .lefted {margin-left:-5px;padding-left:10px;}
 .papered {background: url('/paper_yellow_alpha.png');}
