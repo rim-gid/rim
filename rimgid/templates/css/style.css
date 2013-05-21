@@ -987,6 +987,10 @@ to here*/
 	width: auto;
 	height: auto;
 }
+#content img.big-size-img {
+	width: 330px;
+	height: auto;
+}
 
 #content img.no-radius {
 	border-radius: 0px;
