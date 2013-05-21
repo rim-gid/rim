@@ -983,7 +983,11 @@ to here*/
 }
 /*border="0" width="100%" cellspacing="0" cellpadding="0" style="background-color: #007700; border-style: solid; border-width: 1px 0px 1px 0px; border-color: url(100, 100, 100);"*/
 
-.full-size-img {
+#content img.full-size-img {
 	width: auto;
 	height: auto;
+}
+
+#content img.no-radius {
+	border-radius: 0px;
 }
