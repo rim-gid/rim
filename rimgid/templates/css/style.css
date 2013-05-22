@@ -600,7 +600,7 @@ to here*/
   padding: 5px;
   margin-right: 1px;
   color: #fff;
-  width: 100%;
+  /*width: 100%;*/
   text-decoration: none;
   font-weight: bold;
   background4: #aaa url("ex-li-fon-2.png");
@@ -731,7 +731,8 @@ ul.second_info li a:hover, ul.second_info li2 a:hover {
 
 #right #list ul li a.menu-item-big span.menu-item-big-content {
   /*background-color: #009900;*/
-  background-color: darkblue;
+  background-image: url('/paper_yellow_alpha.png');
+  background-repeat: repeat;
   
 }
 
